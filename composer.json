@@ -1,0 +1,15 @@
+{
+    "name": "thepurpose/thepurpose",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Deon Okonkwo",
+            "email": "deondazy@gmail.com"
+        }
+    ],
+    "require": {}
+}
