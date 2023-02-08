@@ -11,7 +11,7 @@ define('CORE_VERSION', '1.0.0');
 define('CORE_DB_VERSION', '1'); // Increment on every DB change.
 
 // Define required PHP version
-define('CORE_PHP', '7.4');
+define('CORE_PHP', '8.1');
 
 // Define installation root path
 define('CORE_ROOT', __DIR__);
