@@ -55,6 +55,6 @@ try {
     if ($config->debug->on) {
         echo $e->getMessage();
     }
-    $log = new Core\Log($config);
-    $log->error($e->getMessage());
+    $logger = Core\Log::factory($config);
+    $logger->error($e->getMessage());
 }
