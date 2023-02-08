@@ -1,6 +1,6 @@
 <?php
 
-namespace CFXP\Core;
+namespace Core;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
