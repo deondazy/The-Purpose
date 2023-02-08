@@ -35,7 +35,6 @@ require_once(CORE_ROOT . '/vendor/autoload.php');
 // Use our own exception handler (with Whoops)
 Core\Exception\CoreException::handle();
 
-
 // Require the configuration file
 require_once(CORE_ROOT . '/config.php');
 
