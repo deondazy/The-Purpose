@@ -35,6 +35,10 @@ require_once(CORE_ROOT . '/vendor/autoload.php');
 // Use our own exception handler (with Whoops)
 Core\Exception\CoreException::handle();
 
+// Load environment variables
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
+
 // Require the configuration file
 require_once(CORE_ROOT . '/config.php');
 
