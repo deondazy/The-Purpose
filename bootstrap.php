@@ -32,9 +32,8 @@ date_default_timezone_set('UTC');
 // Require Autoloader
 require_once(CORE_ROOT . '/vendor/autoload.php');
 
-// TODO: Use Whoops for error handling
-// Use our own exception handler
-// CFXP\Core\Exception\CFXPException::handle();
+// Use our own exception handler (with Whoops)
+Core\Exception\CoreException::handle();
 
 
 // Require the configuration file
