@@ -23,31 +23,23 @@ if (!version_compare(PHP_VERSION, CORE_PHP, '>=')) {
     );
 }
 
-// Increase error reporting to E_ALL
-error_reporting(E_ALL);
-
 // Set default timezone, we'll base off of this later
 date_default_timezone_set('UTC');
 
 // Require Autoloader
 require_once(CORE_ROOT . '/vendor/autoload.php');
 
-// Use our own exception handler (with Whoops)
-Core\Exception\CoreException::handle();
-
 // Load environment variables
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
+if ($_ENV['APP_DEBUG'] === 'true') {
+    // Use our own exception handler (with Whoops)
+    Core\Exception\CoreException::handle();
+}
+
 // Require the configuration file
 require_once(CORE_ROOT . '/config.php');
-
-// TODO: Set up a config class to handle this
-if ($config->debug->on) {
-    ini_set('display_errors', 1);
-    ini_set('log_errors', 1);
-    ini_set('error_log', $config->debug->logPath);
-}
 
 // Get Database configuration details
 $db = $config->database;
@@ -56,9 +48,7 @@ $db = $config->database;
 try {
     Core\Database::instance()->connect("mysql:host=$db->host;dbname=$db->name", $db->user, $db->password);
 } catch (Core\Exception\DatabaseException $e) {
-    if ($config->debug->on) {
-        echo $e->getMessage();
-    }
+    $config->debug->logPath = __DIR__ . '/logs/db.log';
     $logger = Core\Log::factory($config);
     $logger->error($e->getMessage());
 }
