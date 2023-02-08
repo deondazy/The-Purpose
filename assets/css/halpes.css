@@ -23,7 +23,8 @@
     --thm-reey-font: 'reeyregular';
     --thm-gray: #707876;
     --thm-gray-rgb: 112, 120, 118;
-    --thm-primary: #15c8a0;
+    --thm-primary: #009393;
+    --thm-secondary: #30CDCD;
     --thm-primary-rgb: 21, 200, 160;
     --thm-black: #1f2230;
     --thm-black-rgb: 31, 34, 48;
@@ -4099,7 +4100,7 @@ h6 {
 }
 
 .faq-one-accrodion .accrodion.active .accrodion-title h4 {
-    color: var(--thm-primary);
+    color: var(--thm-secondary);
 }
 
 .faq-one-accrodion .accrodion-title h4::before {
