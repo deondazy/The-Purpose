@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace CFXP\Core;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -8,14 +8,17 @@ use Monolog\Handler\StreamHandler;
 class Log
 {
     private static $logger;
+    private static $config;
 
     private function __construct() {}
 
     public static function factory($config)
     {
+        self::$config = $config;
+
         if (!self::$logger) {
             self::$logger = new Logger('Log');
-            self::$logger->pushHandler(new StreamHandler($config->debug->logPath, Logger::DEBUG));
+            self::$logger->pushHandler(new StreamHandler(self::$config->debug->logPath, Logger::DEBUG));
         }
 
         return self::$logger;
@@ -23,7 +26,7 @@ class Log
 
     public static function log($message, $type, array $args = [])
     {
-        $logger = self::factory();
+        $logger = self::factory(self::$config);
         $logger->$type($message, $args);
     }
 
