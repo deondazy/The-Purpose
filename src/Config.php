@@ -27,7 +27,7 @@ class Config
     public function __set($key, $val)
     {
         if (!array_key_exists($key, $this->registry)) {
-            $this->registry[$key] = $val;
+            $this->registry[$key] = (object)$val;
         }
     }
 
