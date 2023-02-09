@@ -11,5 +11,9 @@
             "email": "deondazy@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "filp/whoops": "^2.14",
+        "monolog/monolog": "^3.3",
+        "vlucas/phpdotenv": "^5.5"
+    }
 }
