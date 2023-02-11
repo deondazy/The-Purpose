@@ -3455,7 +3455,7 @@ h6 {
     position: relative;
     -webkit-transition: 500ms;
     transition: 500ms;
-    opacity: 0.3;
+    opacity: 1;
 }
 
 .brand-one__single:hover .brand-one__img>img {
