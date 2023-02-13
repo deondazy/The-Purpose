@@ -218,26 +218,6 @@ class Connection
     }
 
     /**
-     * Delete Query
-     *
-     * @param string $table Table to update
-     * @param array $conditions Array of conditions to delete
-     * 
-     * @return PDOStatement
-     */
-    public function delete($table, $conditions = [])
-    {
-        $query = "DELETE FROM {$table} ";
-
-        if (isset($conditions['where'])) {
-            $query .= "WHERE ";
-            $query .= $this->generateWhereClause($conditions['where']);
-        }
-
-        return $this->query($query);
-    }
-
-    /**
      * Get entries from a table
      *
      * @param string $table
