@@ -218,31 +218,6 @@ class Connection
     }
 
     /**
-     * Insert Query
-     *
-     * @param string $table Table to run the query on
-     * @param array $data Array of data to insert
-     *
-     * @return int Last inserted id
-     */
-    public function insert($table, array $data)
-    {
-        $columns = implode("`, `", array_keys($data));
-        $placeholders = implode(", :", array_keys($data));
-        $query = "INSERT INTO `{$table}` (`{$columns}`) VALUES (:{$placeholders})";
-
-        $this->query($query);
-
-        foreach ($data as $param => $value) {
-            $this->bind(":{$param}", $value);
-        }
-
-        $this->execute();
-
-        return $this->lastInsertId();
-    }
-
-    /**
      * Update Query
      *
      * @param string $table Table to update
