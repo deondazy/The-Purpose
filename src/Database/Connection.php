@@ -218,53 +218,6 @@ class Connection
     }
 
     /**
-     * Get entries from a table
-     *
-     * @param string $table
-     * @param string|array $columns
-     *   - 'where' (optional): The WHERE clause of the query.
-     *   - 'order' (optional): The ORDER BY clause of the query.
-     *   - 'limit' (optional): The LIMIT clause of the query.
-     *   - 'offset' (optional): The OFFSET clause of the query.
-     * @param array $conditions
-     * 
-     * @return array
-     */
-    public function get($table, $columns = '*', $conditions = [])
-    {
-        $query = "SELECT ";
-
-        if (is_array($columns)) {
-            $query .= implode(', ', $columns);
-        } else {
-            $query .= $columns;
-        }
-
-        $query .= " FROM {$table} ";
-
-        if (isset($conditions['where'])) {
-            $query .= "WHERE ";
-            $query .= $this->generateWhereClause($conditions['where']);
-        }
-    
-        if (isset($conditions['order'])) {
-            $query .= "ORDER BY {$conditions['order']} ";
-        }
-    
-        if (isset($conditions['limit'])) {
-            $query .= "LIMIT {$conditions['limit']} ";
-        }
-    
-        if (isset($conditions['offset'])) {
-            $query .= "OFFSET {$conditions['offset']} ";
-        }
-
-        var_dump($query);
-    
-        return $this->query($query);
-    }
-
-    /**
      * Generates a WHERE clause based on the provided conditions
      * 
      * @param array $where The conditions to generate the WHERE clause from
