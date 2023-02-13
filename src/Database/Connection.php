@@ -218,34 +218,6 @@ class Connection
     }
 
     /**
-     * Update Query
-     *
-     * @param string $table Table to update
-     * @param array $data Array of data to update
-     * @param array $conditions Array of conditions to update
-     * 
-     * @return PDOStatement
-     */
-    public function update($table, $data, $conditions = [])
-    {
-        $query = "UPDATE {$table} SET ";
-        $set = [];
-
-        foreach ($data as $key => $value) {
-            $set[] = "$key = :$key";
-        }
-
-        $query .= implode(', ', $set) . " ";
-
-        if (isset($conditions['where'])) {
-            $query .= "WHERE ";
-            $query .= $this->generateWhereClause($conditions['where']);
-        }
-
-        return $this->query($query);
-    }
-
-    /**
      * Delete Query
      *
      * @param string $table Table to update
