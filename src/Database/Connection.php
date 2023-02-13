@@ -81,7 +81,6 @@ class Connection
         return static::$instance;
     }
 
-
     /**
      * Connect to the Database.
      *
@@ -196,7 +195,6 @@ class Connection
         $this->statement->bindValue($param, $value, $type);
     }
 
-
     /**
      * Execute the prepared statement.
      *
@@ -216,7 +214,7 @@ class Connection
             throw new DatabaseException('Error executing PDO statement: ' . $e->getMessage());
         }
     }
-    
+
     /**
      * Execute prepared statement and fetch array of all the result set rows.
      *
