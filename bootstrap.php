@@ -46,7 +46,7 @@ $db = $config->database;
 
 // Connect to the Database
 try {
-    Core\Database::instance()->connect("mysql:host=$db->host;dbname=$db->name", $db->user, $db->password);
+    Core\Database\Connection::instance()->connect("mysql:host=$db->host;dbname=$db->name", $db->user, $db->password);
 } catch (Core\Exception\DatabaseException $e) {
     $config->debug->logPath = __DIR__ . '/logs/db.log';
     $logger = Core\Log::factory($config);

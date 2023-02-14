@@ -1,13 +1,13 @@
 <?php
 
-namespace Core;
+namespace Core\Database;
 
 use Core\Exception\DatabaseException;
 use PDO;
 use PDOStatement;
 use PDOException;
 
-class Database
+class Connection
 {
     /**
      * Database instance.
@@ -15,6 +15,13 @@ class Database
      * @var PDO
      */
     private static $instance;
+
+    /**
+     * The Database credentials.
+     * 
+     * @var array
+     */
+    protected array $credentials = [];
 
     /**
      * The active PDO connection.
@@ -74,7 +81,6 @@ class Database
         return static::$instance;
     }
 
-
     /**
      * Connect to the Database.
      *
@@ -95,14 +101,19 @@ class Database
             return $this->pdo;
         }
 
-        if ($dsn instanceof PDO) {
-            $this->pdo = $dsn;
-        } else {
-            try {
-                $this->pdo = new PDO($dsn, $username, $password, array_merge($this->options, $options));
-            } catch (PDOException $e) {
-                throw new DatabaseException("{$e->getMessage()} in {$e->getFile()} on line {$e->getLine()}", $e->getCode());
-            }
+        $this->credentials = [
+            'dsn'      => $dsn,
+            'username' => $username,
+            'password' => $password,
+            'options'  => $options,
+        ];
+
+        list($dsn, $username, $password, $options) = array_values($this->credentials);
+
+        try {
+            $this->pdo = new PDO($dsn, $username, $password, array_merge($this->options, $options));
+        } catch (PDOException $e) {
+            throw new DatabaseException("{$e->getMessage()} in {$e->getFile()} on line {$e->getLine()}", $e->getCode());
         }
 
         return $this->pdo;
@@ -184,7 +195,6 @@ class Database
         $this->statement->bindValue($param, $value, $type);
     }
 
-
     /**
      * Execute the prepared statement.
      *
@@ -203,147 +213,6 @@ class Database
         } catch (PDOException $e) {
             throw new DatabaseException('Error executing PDO statement: ' . $e->getMessage());
         }
-    }
-
-    /**
-     * Insert Query
-     *
-     * @param string $table Table to run the query on
-     * @param array $data Array of data to insert
-     *
-     * @return int Last inserted id
-     */
-    public function insert($table, array $data)
-    {
-        $columns = implode("`, `", array_keys($data));
-        $placeholders = implode(", :", array_keys($data));
-        $query = "INSERT INTO `{$table}` (`{$columns}`) VALUES (:{$placeholders})";
-
-        $this->query($query);
-
-        foreach ($data as $param => $value) {
-            $this->bind(":{$param}", $value);
-        }
-
-        $this->execute();
-
-        return $this->lastInsertId();
-    }
-
-    /**
-     * Update Query
-     *
-     * @param string $table Table to update
-     * @param string $id Id of the item to update
-     * @param array $data Array of data to update
-     *
-     * @return int Number of rows updated
-     */
-    public function update($table, array $data, $id)
-    {
-        $set = '';
-        foreach ($data as $column => $value) {
-            // use column names as named parameters
-            $set .= "{$column} = :{$column}, ";
-        }
-        $set = rtrim($set, ', '); // remove last comma(,)
-
-        // Construct the query
-        $this->query("UPDATE {$table} SET {$set} WHERE id = :id");
-
-        $this->bind(':id', $id);
-
-        // Bind the {$set} parameters
-        foreach ($data as $param => $value) {
-            $this->bind(":{$param}", $value);
-        }
-
-        $this->execute();
-
-        return $this->rowCount();
-    }
-
-    /**
-     * Delete Query
-     *
-     * @param string $table Table to update
-     * @param string $id Id of the item to update
-     *
-     * @return int Number of rows deleted
-     */
-    public function delete($table, $id)
-    {
-        $this->query("DELETE FROM {$table} WHERE id = :id");
-        $this->bind(':id', $id);
-        $this->execute();
-        return $this->rowCount();
-    }
-
-    /**
-     * Get result of a single entry column
-     *
-     * @param string $field
-     * @param int $id
-     * @return string
-     */
-    public function get($table, $field, $id)
-    {
-        $this->query("SELECT `{$field}` FROM `{$table}` WHERE `id` = :id");
-        $this->bind(':id', $id);
-        $this->execute();
-
-        if ($this->rowCount() > 0) {
-            return $this->fetchOne()->$field;
-        }
-        
-        return null;
-    }
-
-    /**
-     * Get all entries from a table
-     *
-     * @param string $table
-     * @param string|array $columns
-     *   - 'where' (optional): The WHERE clause of the query.
-     *   - 'order' (optional): The ORDER BY clause of the query.
-     *   - 'limit' (optional): The LIMIT clause of the query.
-     *   - 'offset' (optional): The OFFSET clause of the query.
-     * @param array $conditions
-     * 
-     * @return array
-     */
-    public function getAll($table, $columns = '*', $conditions = [])
-    {
-        $query = "SELECT ";
-
-        if (is_array($columns)) {
-            $query .= implode(', ', $columns);
-        } else {
-            $query .= $columns;
-        }
-
-        $query .= " FROM {$table} ";
-
-        if (isset($conditions['where'])) {
-            $query .= "WHERE {$conditions['where']} ";
-        }
-    
-        if (isset($conditions['order'])) {
-            $query .= "ORDER BY {$conditions['order']} ";
-        }
-    
-        if (isset($conditions['limit'])) {
-            $query .= "LIMIT {$conditions['limit']} ";
-        }
-    
-        if (isset($conditions['offset'])) {
-            $query .= "OFFSET {$conditions['offset']} ";
-        }
-    
-        $this->query($query);
-        $this->execute();
-    
-        return $this->fetchAll();
     }
 
     /**
@@ -384,5 +253,20 @@ class Database
     public function lastInsertId()
     {
         return (int)$this->pdo->lastInsertId();
+    }
+
+    /**
+     * Hide sensitive information from the stack trace.
+     *
+     * @return array
+     */
+    public function __debugInfo()
+    {
+        return [
+            'dsn'      => $this->credentials['dsn'],
+            'username' => '******',
+            'password' => '******',
+            'options'  => $this->credentials['options'],
+        ];
     }
 }
