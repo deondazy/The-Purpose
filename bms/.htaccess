@@ -21,4 +21,7 @@ RewriteRule ^sign-up/*$ ./auth/sign-up.php
 RewriteRule ^sign-in/*$ ./auth/sign-in.php
 RewriteRule ^sign-out/*$ ./auth/sign-out.php
 
+# FORM ACTIONS
+RewriteRule ^http/posts/new/*$ ./http/posts/new.php
+
 </IfModule>
