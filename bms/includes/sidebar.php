@@ -30,62 +30,62 @@
             <ul class="nav nav-sidebar" data-nav-type="accordion">
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="<?= $config->site->url; ?>/bms/" class="nav-link active">
                         <i class="ph-house"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
+                    <a href="<?= $config->site->url; ?>/bms/posts/" class="nav-link">
                         <i class="ph-pencil-line"></i>
                         <span>Posts</span>
                     </a>
 
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link">Add New Post</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Manage Posts</a></li>
+                        <li class="nav-item"><a href="<?= $config->site->url; ?>/bms/posts/new/" class="nav-link">Add New Post</a></li>
+                        <li class="nav-item"><a href="<?= $config->site->url; ?>/bms/posts/" class="nav-link">Manage Posts</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
+                    <a href="<?= $config->site->url; ?>/bms/categories/" class="nav-link">
                         <i class="ph-square-half"></i>
                         <span>Categories</span>
                     </a>
 
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link">Add New Category</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Manage Categories</a></li>
+                        <li class="nav-item"><a href="<?= $config->site->url; ?>/bms/categories/new/" class="nav-link">Add New Category</a></li>
+                        <li class="nav-item"><a href="<?= $config->site->url; ?>/bms/categories/" class="nav-link">Manage Categories</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
+                    <a href="<?= $config->site->url; ?>/bms/tags/" class="nav-link">
                         <i class="ph-tag"></i>
                         <span>Tags</span>
                     </a>
 
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link">Add New Tag</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Manage Tags</a></li>
+                        <li class="nav-item"><a href="<?= $config->site->url; ?>/bms/tags/new/" class="nav-link">Add New Tag</a></li>
+                        <li class="nav-item"><a href="<?= $config->site->url; ?>/bms/tags/" class="nav-link">Manage Tags</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
+                    <a href="<?= $config->site->url; ?>/bms/gallery/" class="nav-link">
                         <i class="ph-image"></i>
                         <span>Gallery</span>
                     </a>
 
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link">Add New Image</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Media Manager</a></li>
+                        <li class="nav-item"><a href="<?= $config->site->url; ?>/bms/gallery/new/" class="nav-link">Add New Image</a></li>
+                        <li class="nav-item"><a href="<?= $config->site->url; ?>/bms/gallery/" class="nav-link">Media Manager</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?= $config->site->url; ?>/bms/sign-out/" class="nav-link">
                         <i class="ph-sign-out"></i>
                         <span>Sign Out</span>
                     </a>
