@@ -1,3 +1,5 @@
+<?php require_once dirname(__DIR__) . '/bootstrap.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="layout-static">
 <head>
