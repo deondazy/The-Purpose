@@ -1,3 +1,28 @@
+<?php 
+
+/**
+ * Menu Item array
+ *
+ * 0: Name of the menu item
+ * 1: Filename of the menu item
+ * 2: Icon for the menu item
+ */
+$menuItem[] = ['Dashboard', '', 'ph-house'];
+$menuItem[] = ['Posts', 'posts/', 'ph-pencil-line'];
+    $submenuItem['posts/'][] = ['Add New Post', 'posts/new/'];
+    $submenuItem['posts/'][] = ['Manage Posts', 'posts/'];
+$menuItem[] = ['Categories', 'categories/', 'ph-square-half'];
+    $submenuItem['categories/'][] = ['Add New Category', 'categories/new/'];
+    $submenuItem['categories/'][] = ['Manage Categories', 'categories/'];
+$menuItem[] = ['Tags', 'tags/', 'ph-tag'];
+    $submenuItem['tags/'][] = ['Add New Tag', 'tags/new/'];
+    $submenuItem['tags/'][] = ['Manage Tags', 'tags/'];
+$menuItem[] = ['Gallery', 'gallery/', 'ph-image'];
+    $submenuItem['gallery/'][] = ['Add New Image', 'gallery/new/'];
+    $submenuItem['gallery/'][] = ['Media Manager', 'gallery/'];
+$menuItem[] = ['Sign Out', 'sign-out/', 'ph-sign-out'];
+?>
+
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg">
 
     <!-- Sidebar header -->
@@ -21,75 +46,45 @@
     </div>
     <!-- /sidebar header -->
 
-
     <!-- Sidebar content -->
     <div class="sidebar-content">
 
         <!-- Main navigation -->
         <div class="sidebar-section">
             <ul class="nav nav-sidebar" data-nav-type="accordion">
+                <?php
+                $url = $config->site->url . '/bms/';
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <i class="ph-house"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+                foreach ($menuItem as $menu) : ?>
 
-                <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="ph-pencil-line"></i>
-                        <span>Posts</span>
-                    </a>
+                    <?php if (isset($submenuItem[$menu[1]])) : ?>
+                        <li class="nav-item nav-item-submenu <?= ($parent == $menu[1]) ? 'nav-item-expanded nav-item-open' : '' ?>">
+                    <?php else : ?>
+                        <li class="nav-item">
+                    <?php endif; ?>
 
-                    <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link">Add New Post</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Manage Posts</a></li>
-                    </ul>
-                </li>
 
-                <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="ph-square-half"></i>
-                        <span>Categories</span>
+                    <?php if ($file == $menu[1]) : ?>
+                        <a href="<?= $url . $menu[1]; ?>" class="nav-link active">
+                    <?php else : ?>
+                        <a href="<?= $url . $menu[1]; ?>" class="nav-link">
+                    <?php endif; ?>
+
+                    <i class="<?= $menu[2]; ?>"></i>
+                    <span><?= $menu[0]; ?></span>
                     </a>
 
-                    <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link">Add New Category</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Manage Categories</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="ph-tag"></i>
-                        <span>Tags</span>
-                    </a>
-
-                    <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link">Add New Tag</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Manage Tags</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="ph-image"></i>
-                        <span>Gallery</span>
-                    </a>
-
-                    <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="#" class="nav-link">Add New Image</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Media Manager</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="ph-sign-out"></i>
-                        <span>Sign Out</span>
-                    </a>
-                </li>
+                    <?php if (isset($submenuItem[$menu[1]])) : ?>
+                        <ul class="nav-group-sub collapse <?= ($parent == $menu[1]) ? 'show' : '' ?>">
+                            <?php foreach ($submenuItem[$menu[1]] as $sub) : ?>
+                                <li class="nav-item">
+                                    <a href="<?= $url . $sub[1]; ?>" class="nav-link <?= ($file == $sub[1]) ? 'active' : '' ?>"><?= $sub[0]; ?></a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
         <!-- /main navigation -->

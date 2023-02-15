@@ -1,8 +1,8 @@
 <?php 
 
-namespace Core\Model;
+namespace Core\Models;
 
-use Core\Base;
+use Core\Models\Base;
 
 class User extends Base
 {
