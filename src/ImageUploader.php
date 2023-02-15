@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Exception;
+
 class ImageUploader 
 {
     private $uploadPath;
