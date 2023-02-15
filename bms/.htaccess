@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} /+[^\.]+$
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^tags/*$ ./tags/index.php
+RewriteRule ^tags/new/*$ ./tags/new.php
+RewriteRule ^posts/*$ ./posts/index.php
+RewriteRule ^posts/new/*$ ./posts/new.php
+RewriteRule ^gallery/*$ ./gallery/index.php
+RewriteRule ^gallery/new/*$ ./gallery/new.php
+RewriteRule ^categories/*$ ./categories/index.php
+RewriteRule ^categories/new/*$ ./categories/new.php
+
+RewriteRule ^sign-up/*$ ./auth/sign-up.php
+RewriteRule ^sign-in/*$ ./auth/sign-in.php
+RewriteRule ^sign-out/*$ ./auth/sign-out.php
+
+</IfModule>
