@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace Core\Model;
 
 use Core\Database\Query;
 
