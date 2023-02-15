@@ -11,12 +11,16 @@ class Validator
     protected $errors = [];
 
     protected $rules = [
+        'max' => 'validateMax',
+        'min' => 'validateMin',
+        'date' => 'validateDate',
+        'phone' => 'validatePhone',
+        'image' => 'validateImage',
+        'email' => 'validateEmail',
+        'array' => 'validateArray',
+        'numeric' => 'validateNumeric',
         'required' => 'validateRequired',
         'alphanum' => 'validateAlphanum',
-        'email' => 'validateEmail',
-        'phone' => 'validatePhone',
-        'min' => 'validateMin',
-        'max' => 'validateMax'
     ];
 
     public function __construct($input)
@@ -91,6 +95,26 @@ class Validator
     {
         //TODO: Add support for other phone number formats
         return new Assert\Regex(['pattern' => '/^[0-9]{10}$/']);
+    }
+
+    protected function validateDate()
+    {
+        return new Assert\Date();
+    }
+
+    protected function validateNumeric()
+    {
+        return new Assert\Type(['type' => 'numeric']);
+    }
+
+    protected function validateImage()
+    {
+        return new Assert\Image();
+    }
+
+    protected function validateArray()
+    {
+        return new Assert\Type(['type' => 'array']);
     }
 
     protected function addError($field, $error)
