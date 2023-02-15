@@ -1,4 +1,10 @@
-<?php include __DIR__ . '/header.php'; ?>
+<?php 
+
+$parent = '';
+$file = '';
+$page = 'Dashboard';
+
+include __DIR__ . '/header.php'; ?>
 
     <!-- Content area -->
     <div class="content pt-0">
