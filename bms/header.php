@@ -9,17 +9,17 @@
 	<title>Blog Management System</title>
 
 	<!-- Global stylesheets -->
-	<link href="assets/fonts/inter/inter.css" rel="stylesheet" type="text/css">
-	<link href="assets/icons/phosphor/styles.min.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">
+	<link href="<?= $config->site->url; ?>/bms/assets/fonts/inter/inter.css" rel="stylesheet" type="text/css">
+	<link href="<?= $config->site->url; ?>/bms/assets/icons/phosphor/styles.min.css" rel="stylesheet" type="text/css">
+	<link href="<?= $config->site->url; ?>/bms/assets/css/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
-	<script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="<?= $config->site->url; ?>/bms/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script src="assets/js/app.js"></script>
+	<script src="<?= $config->site->url; ?>/bms/assets/js/app.js"></script>
 	<!-- /theme JS files -->
 
 </head>
@@ -50,7 +50,7 @@
 					<div class="page-header-content d-lg-flex">
 						<div class="d-flex">
 							<h4 class="page-title mb-0">
-								Dashboard
+								<?= $page ?>
 							</h4>
 						</div>
 					</div>
