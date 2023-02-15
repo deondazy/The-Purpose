@@ -1,45 +1,55 @@
-<?php 
+<?php
 
 namespace Core;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Validation;
 
-class InputValidator {
-
+class Validator
+{
     protected $input;
-
     protected $errors = [];
-    
+
     protected $rules = [
         'required' => 'validateRequired',
         'alphanum' => 'validateAlphanum',
         'email' => 'validateEmail',
-        'phone' => 'validatePhone'
+        'phone' => 'validatePhone',
+        'min' => 'validateMin',
+        'max' => 'validateMax'
     ];
 
-    public function __construct($input) 
+    public function __construct($input)
     {
         $this->input = $input;
     }
 
-    public function validate() 
+    public function validate($data)
     {
+        $validator = Validation::createValidator();
+        
         foreach ($this->input as $field => $rules) {
-            $rules = explode('|', $rules);
+            $rulesArray = explode('|', $rules);
+            $constraints = [];
 
-            foreach ($rules as $rule) {
-                $value = isset($_POST[$field]) ? $_POST[$field] : null;
-
+            foreach ($rulesArray as $rule) {
                 if (isset($this->rules[$rule])) {
-                    $method = $this->rules[$rule];
-                    $this->$method($field, $value);
+                    $constraints[] = call_user_func([$this, $this->rules[$rule]]);
                 } else if (preg_match('/^min:(\d+)$/', $rule, $matches)) {
                     $min = $matches[1];
-                    $this->validateMin($field, $value, $min);
+                    $constraints[] = $this->validateMin($min);
                 } else if (preg_match('/^max:(\d+)$/', $rule, $matches)) {
                     $max = $matches[1];
-                    $this->validateMax($field, $value, $max);
-                } else {
-                    $this->addError("$field has an invalid validation rule: $rule");
+                    $constraints[] = $this->validateMax($max);
+                }
+            }
+            
+            $value = isset($data[$field]) ? $data[$field] : null;
+            $violations = $validator->validate($value, $constraints);
+
+            if ($violations->count() > 0) {
+                foreach ($violations as $violation) {
+                    $this->addError($field, $violation->getMessage());
                 }
             }
         }
@@ -47,56 +57,44 @@ class InputValidator {
         return empty($this->errors);
     }
 
-    public function getErrors() 
+    public function getErrors()
     {
         return $this->errors;
     }
 
-    protected function validateRequired($field, $value) 
+    protected function validateRequired()
     {
-        if (empty($value)) {
-            $this->addError("$field is required.");
-        }
+        return new Assert\NotBlank();
     }
 
-    protected function validateAlphanum($field, $value) 
+    protected function validateAlphanum()
     {
-        if (!ctype_alnum($value)) {
-            $this->addError("$field must contain only alphanumeric characters.");
-        }
+        return new Assert\Regex(['pattern' => '/^[a-zA-Z0-9]+$/']);
     }
 
-    protected function validateMin($field, $value, $min) 
+    protected function validateMin($min)
     {
-        if (strlen($value) < $min) {
-            $this->addError("$field must be at least $min characters long.");
-        }
+        return new Assert\Length(['min' => $min]);
     }
 
-    protected function validateMax($field, $value, $max) 
+    protected function validateMax($max)
     {
-        if (strlen($value) > $max) {
-            $this->addError("$field must be no more than $max characters long.");
-        }
+        return new Assert\Length(['max' => $max]);
     }
 
-    protected function validateEmail($field, $value) 
+    protected function validateEmail()
     {
-        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            $this->addError("$field must be a valid email address.");
-        }
+        return new Assert\Email();
     }
 
-    protected function validatePhone($field, $value) 
+    protected function validatePhone()
     {
-        // TODO: Use a better phone number validation
-        if (!preg_match('/^[0-9]{10}$/', $value)) {
-            $this->addError("$field must be a valid phone number.");
-        }
+        //TODO: Add support for other phone number formats
+        return new Assert\Regex(['pattern' => '/^[0-9]{10}$/']);
     }
 
-    protected function addError($error) 
+    protected function addError($field, $error)
     {
-        $this->errors[] = $error;
+        $this->errors[$field][] = $error;
     }
 }
