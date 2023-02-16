@@ -28,10 +28,10 @@ class Validator
         $this->input = $input;
     }
 
-    public function validate($data)
+    public function validate($data, $messages = [])
     {
         $validator = Validation::createValidator();
-        
+
         foreach ($this->input as $field => $rules) {
             $rulesArray = explode('|', $rules);
             $constraints = [];
@@ -47,13 +47,23 @@ class Validator
                     $constraints[] = $this->validateMax($max);
                 }
             }
-            
+
             $value = isset($data[$field]) ? $data[$field] : null;
             $violations = $validator->validate($value, $constraints);
 
             if ($violations->count() > 0) {
                 foreach ($violations as $violation) {
-                    $this->addError($field, $violation->getMessage());
+                    if (isset($violation->getParameters()['{{ type }}'])) {
+                        $error = isset($messages[$field][$violation->getParameters()['{{ type }}']])
+                        ? $messages[$field][$violation->getParameters()['{{ type }}']]
+                        : $violation->getMessage();
+                    } else {
+                        $error = isset($messages[$field][$violation->getMessageTemplate()])
+                            ? $messages[$field][$violation->getMessageTemplate()]
+                            : $violation->getMessage();
+                }
+
+                    $this->addError($field, $error);
                 }
             }
         }
