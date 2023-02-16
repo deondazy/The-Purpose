@@ -97,9 +97,22 @@ abstract class Base
     public function delete($conditions = [])
     {
         $query = $this->query->delete();
-        
+
         $query = $query->where($conditions[0], $conditions[1], $conditions[2] ?? "=");
 
         return $query->run();
+    }
+
+    /**
+     * Get the count of the returned data
+     * 
+     */
+    public function count()
+    {
+        $query = $this->query->select('COUNT(*) as count');
+
+        $result = $query->run();
+
+        return $result->count;
     }
 }
