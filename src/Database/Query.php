@@ -138,4 +138,9 @@ class Query
             return $db->rowCount();
         }
     }
+
+    public function getTable()
+    {
+        return $this->table;
+    }
 }
