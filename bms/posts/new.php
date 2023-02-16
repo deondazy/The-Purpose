@@ -23,7 +23,7 @@ include __DIR__ . '/../header.php';
     <!-- Content area -->
     <div class="content pt-0">
 
-        <form method="post" action="<?= $config->site->url ?>/bms/http/posts/new/" class="position-relative">
+        <form method="post" action="<?= $config->site->url ?>/bms/http/posts/new/" class="position-relative" enctype="multipart/form-data">
             <div class="float-end position-absolute d-flex" style="margin-top:-48px;margin-bottom: 0.5rem;z-index:999;right:0;top:-12px;gap: 10px;">
                 <button type="submit" name="draft" class="btn btn-light">Save Draft</button>
                 <button type="submit" name="publish" class="btn btn-primary">Publish</button>
@@ -69,13 +69,20 @@ include __DIR__ . '/../header.php';
                             </div>
 
                             <div class="mb-3">
+                                <?php 
+                                $category = new Core\Models\Category; 
+                                $cats = $category->get(['id', 'name']);
+                                ?>
                                 <label for="categories" class="form-label">Categories:</label>
                                 <input type="hidden" id="categories" name="categories" value="">
                                 <select class="form-control multiselect" multiple="multiple">
-                                    <option value="cheese" selected>Cheese</option>
-                                    <option value="tomatoes">Tomatoes</option>
-                                    <option value="mozarella">Mozzarella</option>
-                                    <option value="mushrooms">Mushrooms</option>
+                                    <?php if ($category->count() > 1) : ?>
+                                        <?php foreach ($cats as $cat) : ?>
+                                            <option <?= ($cat->id == 1 ) ? 'selected' : ''; ?> value="<?= $cat->id ?>"><?= $cat->name ?></option>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <option selected value="<?= $cats->id ?>"><?= $cats->name ?></option>
+                                    <?php endif; ?>
                                 </select>
                             </div>
 
@@ -94,11 +101,6 @@ include __DIR__ . '/../header.php';
                 </div>
             </div>
         </form>
-
-        <?php 
-        // $date = DateTime::createFromFormat('m/d/Y', date('m/d/Y'));
-        // echo $date->format('Y-m-d h:i:s');
-        ?>
 
     </div>
     <!-- /content area -->
@@ -150,80 +152,31 @@ document.addEventListener('DOMContentLoaded', function() {
 <script src="<?= $config->site->url; ?>/bms/assets/js/custom.js"></script>
 
 <script> 
-// Setup module
-// ------------------------------
-
 var TagInputs = function() {
 
-
-//
-// Setup module components
-//
-
-// Tokenfield
 var _componentTokenfield = function() {
     if (typeof Tokenfield == 'undefined') {
         console.warn('Warning - tokenfield.min.js is not loaded.');
         return;
     }
 
-    // Demo data
-    const cars = [
-        {id: 1, name: "Acura"},
-        {id: 2, name: "Audi"},
-        {id: 3, name: "BMW"},
-        {id: 4, name: "Buick"},
-        {id: 5, name: "Cadillac"},
-        {id: 6, name: "Chevrolet"},
-        {id: 7, name: "Chrysler"},
-        {id: 8, name: "Citroen"},
-        {id: 9, name: "Dodge"},
-        {id: 10, name: "Eagle"},
-        {id: 11, name: "Ferrari"},
-        {id: 12, name: "Ford"},
-        {id: 13, name: "General Motors"},
-        {id: 14, name: "GMC"},
-        {id: 15, name: "Honda"},
-        {id: 16, name: "Hummer"},
-        {id: 17, name: "Hyundai"},
-        {id: 18, name: "Infiniti"},
-        {id: 19, name: "Isuzu"},
-        {id: 20, name: "Jaguar"},
-        {id: 21, name: "Jeep"},
-        {id: 22, name: "Kia"},
-        {id: 23, name: "Lamborghini"},
-        {id: 24, name: "Land Rover"},
-        {id: 25, name: "Lexus"},
-        {id: 26, name: "Lincoln"},
-        {id: 27, name: "Lotus"},
-        {id: 28, name: "Mazda"},
-        {id: 29, name: "Mercedes-Benz"},
-        {id: 30, name: "Mercury"},
-        {id: 31, name: "Mitsubishi"},
-        {id: 32, name: "Nissan"},
-        {id: 33, name: "Oldsmobile"},
-        {id: 34, name: "Peugeot"},
-        {id: 35, name: "Pontiac"},
-        {id: 36, name: "Porsche"},
-        {id: 37, name: "Regal"},
-        {id: 38, name: "Renault"},
-        {id: 39, name: "Saab"},
-        {id: 40, name: "Saturn"},
-        {id: 41, name: "Seat"},
-        {id: 42, name: "Skoda"},
-        {id: 43, name: "Subaru"},
-        {id: 44, name: "Suzuki"},
-        {id: 45, name: "Toyota"},
-        {id: 46, name: "Volkswagen"},
-        {id: 47, name: "Volvo"}
-    ];
+    <?php 
+    $tags = (new Core\Models\Tag)->get(['id', 'name']);
+    ?>
 
+    // Tags prefill
+    const tags = [
+        <?php foreach ($tags as $tag) {    
+            echo '{id: ' . $tag->id . ', name: "' . $tag->name . '"},';
+        }
+        ?>
+        ];
 
     // Basic initialization
     document.querySelectorAll('.tokenfield-basic').forEach(function(element) {
         const tfBasic = new Tokenfield({
             el: element,
-            items: cars
+            items: tags
         });
     });
 
@@ -236,20 +189,12 @@ var _componentTokenfield = function() {
     }
 };
 
-//
-// Return objects assigned to module
-//
-
 return {
     init: function() {
         _componentTokenfield();
     }
 }
 }();
-
-
-// Initialize module
-// ------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
 TagInputs.init();
@@ -275,7 +220,6 @@ fileInput.addEventListener('change', function() {
 <script type="text/javascript" src="<?= $config->site->url; ?>/bms/assets/js/vendor/datepicker.min.js"></script>
 
 <script> 
-// Basic initialization
 const dpTodayButtonElement = document.querySelector('.datepicker-date-today');
     if(dpTodayButtonElement) {
         const dpTodayButton = new Datepicker(dpTodayButtonElement, {
