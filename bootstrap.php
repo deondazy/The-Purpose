@@ -42,11 +42,12 @@ if ($_ENV['APP_DEBUG'] === 'true') {
 require_once(CORE_ROOT . '/config.php');
 
 // Get Database configuration details
-$db = $config->database;
+$dbConfig = $config->database;
 
 // Connect to the Database
+$database = Core\Database\Connection::instance();
 try {
-    Core\Database\Connection::instance()->connect("mysql:host=$db->host;dbname=$db->name", $db->user, $db->password);
+    $database->connect("mysql:host=$dbConfig->host;dbname=$dbConfig->name", $dbConfig->user, $dbConfig->password);
 } catch (Core\Exception\DatabaseException $e) {
     $config->debug->logPath = __DIR__ . '/logs/db.log';
     $logger = Core\Log::factory($config);
