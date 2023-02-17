@@ -61,6 +61,7 @@ CREATE TABLE `posts` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `content` text COLLATE utf8mb4_unicode_ci,
+  `featured_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `author` bigint(20) unsigned DEFAULT NULL,
   `status` enum('DRAFT','PUBLISH','TRASH') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DRAFT',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -113,7 +114,8 @@ CREATE TABLE `tags` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_roles` (

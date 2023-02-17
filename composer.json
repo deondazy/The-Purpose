@@ -9,11 +9,15 @@
     "require": {
         "filp/whoops": "^2.14",
         "monolog/monolog": "^3.3",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "symfony/validator": "^6.2"
     },
     "autoload": {
         "psr-4": {
             "Core\\": "src/"
         }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.2"
     }
 }

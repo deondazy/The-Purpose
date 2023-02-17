@@ -246,6 +246,48 @@ class Connection
     }
 
     /**
+     * Begin a transaction.
+     * 
+     * @throws DatabaseException
+     */
+    public function beginTransaction()
+    {
+        try {
+            $this->pdo->beginTransaction();
+        } catch (PDOException $e) {
+            throw new DatabaseException('Error starting transaction: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Commit a transaction.
+     * 
+     * @throws DatabaseException
+     */
+    public function commit()
+    {
+        try {
+            $this->pdo->commit();
+        } catch (PDOException $e) {
+            throw new DatabaseException('Error committing transaction: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Rollback a transaction.
+     * 
+     * @throws DatabaseException
+     */
+    public function rollBack()
+    {
+        try {
+            $this->pdo->rollBack();
+        } catch (PDOException $e) {
+            throw new DatabaseException('Error rolling back transaction: ' . $e->getMessage());
+        }
+    }
+
+    /**
      * The last AUTO_INCREMENTed id for the last INSERT query.
      *
      * @return int
