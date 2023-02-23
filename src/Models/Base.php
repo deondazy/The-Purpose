@@ -2,25 +2,36 @@
 
 namespace Core\Models;
 
-use Core\Database\Query;
+use Atlas\Query\Delete;
+use Atlas\Query\Insert;
+use Atlas\Query\Select;
+use Atlas\Query\Update;
 
 abstract class Base
 {
     /**
-     * The Query Builder
+     * The Database Connection
      * 
-     * @var Core\Database\Query
+     * @var Core\Database\Connection
      */
-    protected $query;
+    protected $connection;
+
+    /**
+     * The Database Table
+     * 
+     * @var string
+     */
+    protected $table;
 
     /**
      * Constructor sets the Database Table.
      *
      * @param string $table The Database Table.
      */
-    public function __construct($table)
+    public function __construct($connection, $table)
     {
-        $this->query = new Query($table);
+        $this->connection = $connection;
+        $this->table = $table;
     }
 
     /**
@@ -32,7 +43,12 @@ abstract class Base
      */
     public function create(array $data)
     {
-        return $this->query->insert($data)->run();
+        $insert = Insert::new($this->connection)
+            ->into($this->table)
+            ->columns($data);
+        $insert->perform();
+
+        return $insert->getLastInsertId();
     }
 
     /**
@@ -43,31 +59,40 @@ abstract class Base
      *
      * @return mixed The data.
      */
-    public function get($columns = '*', $conditions = [])
+    public function get($columns, $id)
     {
-        $query = $this->query->select($columns);
+        $select = Select::new($this->connection)
+            ->columns($columns)
+            ->from($this->table)
+            ->whereEquals(['id' => $id]);
+
+        return $select->fetchOne();
+    }
+
+    public function getAll($columns = '*', $conditions = [])
+    {
+        $select = Select::new($this->connection)
+            ->columns($columns)
+            ->from($this->table);
+
+        if (isset($conditions['join'])) {
+            $select->join($conditions['join'][0], $conditions['join'][1], $conditions['join'][2]);
+        }
 
         if (isset($conditions['where'])) {
-            $query = $query->where($conditions['where'][0], $conditions['where'][1], $conditions['where'][2] ?? "=");
+            $select->whereEquals($conditions['where']);
         }
 
-        if (isset($conditions['orWhere'])) {
-            $query = $query->orWhere($conditions['orWhere'][0], $conditions['orWhere'][1], $conditions['orWhere'][2] ?? "=");
+        if (isset($conditions['whereRaw'])) {
+            $select->whereSprintf($conditions['whereRaw'][0], $conditions['whereRaw'][1]);
         }
-        
+
         if (isset($conditions['orderBy'])) {
-            $query = $query->orderBy($conditions['orderBy'][0], $conditions['orderBy'][1] ?? "ASC");
-        }
-        
-        if (isset($conditions['limit'])) {
-            $query = $query->limit($conditions['limit']);
-        }
-        
-        if (isset($conditions['offset'])) {
-            $query = $query->offset($conditions['offset']);
+            $orderBy = implode(',', $conditions['orderBy']);
+            $select->orderBy($orderBy);
         }
 
-        return $query->run();
+        return $select->fetchAll();
     }
 
     /**
@@ -78,13 +103,15 @@ abstract class Base
      *
      * @return int Number of updated columns
      */
-    public function update(array $data, $conditions = [])
+    public function update(array $condition, array $data)
     {
-        $query = $this->query->update($data);
-        
-        $query = $query->where($conditions[0], $conditions[1], $conditions[2] ?? "=");
+        $update = Update::new($this->connection)
+            ->table($this->table)
+            ->columns($data)
+            ->whereEquals($condition);
+        $result = $update->perform();
 
-        return $query->run();
+        return $result->rowCount();
     }
 
     /**
@@ -94,25 +121,30 @@ abstract class Base
      *
      * @return int Number of deleted columns
      */
-    public function delete($conditions = [])
+    public function delete(array $conditions)
     {
-        $query = $this->query->delete();
-
-        $query = $query->where($conditions[0], $conditions[1], $conditions[2] ?? "=");
-
-        return $query->run();
+        $delete = Delete::new($this->connection)
+            ->from($this->table)
+            ->whereEquals($conditions);
+        $result = $delete->perform();
+        
+        return $result->rowCount();
     }
 
     /**
      * Get the count of the returned data
      * 
      */
-    public function count()
+    public function count($conditions = [])
     {
-        $query = $this->query->select('COUNT(*) as count');
+        $select = Select::new($this->connection)
+            ->columns('COUNT(id) as count')
+            ->from($this->table);
 
-        $result = $query->run();
+            if (isset($conditions)) {
+                $select->whereEquals($conditions);
+            }
 
-        return $result->count;
+        return $select->fetchOne();
     }
 }
