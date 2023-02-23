@@ -8,14 +8,28 @@ RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
-RewriteRule ^tags/*$ ./tags/index.php
-RewriteRule ^tags/new/*$ ./tags/new.php
 RewriteRule ^posts/*$ ./posts/index.php
 RewriteRule ^posts/new/*$ ./posts/new.php
-RewriteRule ^gallery/*$ ./gallery/index.php
-RewriteRule ^gallery/new/*$ ./gallery/new.php
+RewriteRule ^posts/edit/([0-9]+)/*$ ./posts/edit.php?post_id=$1
+RewriteRule ^posts/status/([a-z]+)/*$ ./posts/index.php?post_status=$1
+
+RewriteRule ^tags/*$ ./tags/index.php
+RewriteRule ^tags/edit/([0-9]+)/*$ ./tags/edit.php?tag_id=$1
+
 RewriteRule ^categories/*$ ./categories/index.php
-RewriteRule ^categories/new/*$ ./categories/new.php
+RewriteRule ^categories/edit/([0-9]+)/*$ ./categories/edit.php?category_id=$1
+
+RewriteRule ^comments/*$ ./comments/index.php
+RewriteRule ^comments/status/([a-z]+)/*$ ./comments/index.php?comment_status=$1
+
+RewriteRule ^gallery/*$ ./gallery/index.php
+RewriteRule ^gallery/page/([0-9]+)/*$ ./gallery/index.php?page=$1
+
+RewriteRule ^users/*$ ./users/index.php
+RewriteRule ^users/new/*$ ./users/new.php
+RewriteRule ^users/profile/*$ ./users/profile.php
+RewriteRule ^users/edit/([0-9]+)/*$ ./users/edit.php?user_id=$1
+RewriteRule ^users/delete/([0-9]+)/*$ ./users/delete.php?user_id=$1
 
 RewriteRule ^sign-up/*$ ./auth/sign-up.php
 RewriteRule ^sign-in/*$ ./auth/sign-in.php
@@ -23,5 +37,29 @@ RewriteRule ^sign-out/*$ ./auth/sign-out.php
 
 # FORM ACTIONS
 RewriteRule ^http/posts/new/*$ ./http/posts/new.php
+RewriteRule ^http/posts/edit/*$ ./http/posts/edit.php
+RewriteRule ^http/posts/trash/([0-9]+)/*$ ./http/posts/trash.php?post_id=$1
+RewriteRule ^http/posts/restore/([0-9]+)/*$ ./http/posts/restore.php?post_id=$1
+RewriteRule ^http/posts/delete/([0-9]+)/*$ ./http/posts/delete.php?post_id=$1
+
+RewriteRule ^http/categories/new/*$ ./http/categories/new.php
+RewriteRule ^http/categories/edit/*$ ./http/categories/edit.php
+RewriteRule ^http/categories/delete/([0-9]+)/*$ ./http/categories/delete.php?category_id=$1
+
+RewriteRule ^http/tags/new/*$ ./http/tags/new.php
+RewriteRule ^http/tags/edit/*$ ./http/tags/edit.php
+RewriteRule ^http/tags/delete/([0-9]+)/*$ ./http/tags/delete.php?tag_id=$1
+
+RewriteRule ^http/comments/edit/([0-9]+)/*$ ./http/comments/edit.php?comment_id=$1
+RewriteRule ^http/comments/delete/([0-9]+)/*$ ./http/comments/delete.php?comment_id=$1
+RewriteRule ^http/comments/status/([a-z]+)/([0-9]+)/*$ ./http/comments/status.php?status=$1&comment_id=$2
+
+RewriteRule ^http/gallery/upload/*$ ./http/gallery/upload.php
+RewriteRule ^http/gallery/delete/([0-9]+)/*$ ./http/gallery/delete.php?image_id=$1
+
+RewriteRule ^http/users/new/*$ ./http/users/new.php
+RewriteRule ^http/users/edit/*$ ./http/users/edit.php
+RewriteRule ^http/users/delete/([0-9]+)/*$ ./http/users/delete.php?user_id=$1
+RewriteRule ^http/users/remove-avatar/*$ ./http/users/remove-avatar.php
 
 </IfModule>
