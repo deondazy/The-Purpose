@@ -9,17 +9,16 @@
  */
 $menuItem[] = ['Dashboard', '', 'ph-house'];
 $menuItem[] = ['Posts', 'posts/', 'ph-pencil-line'];
-    $submenuItem['posts/'][] = ['Add New Post', 'posts/new/'];
+    $submenuItem['posts/'][] = ['Add New', 'posts/new/'];
     $submenuItem['posts/'][] = ['Manage Posts', 'posts/'];
 $menuItem[] = ['Categories', 'categories/', 'ph-square-half'];
-    $submenuItem['categories/'][] = ['Add New Category', 'categories/new/'];
-    $submenuItem['categories/'][] = ['Manage Categories', 'categories/'];
 $menuItem[] = ['Tags', 'tags/', 'ph-tag'];
-    $submenuItem['tags/'][] = ['Add New Tag', 'tags/new/'];
-    $submenuItem['tags/'][] = ['Manage Tags', 'tags/'];
+$menuItem[] = ['Comments', 'comments/', 'ph-chats'];
 $menuItem[] = ['Gallery', 'gallery/', 'ph-image'];
-    $submenuItem['gallery/'][] = ['Add New Image', 'gallery/new/'];
-    $submenuItem['gallery/'][] = ['Media Manager', 'gallery/'];
+$menuItem[] = ['Users', 'users/', 'ph-users'];
+    $submenuItem['users/'][] = ['Manage Users', 'users/'];
+    $submenuItem['users/'][] = ['Add New', 'users/new/'];
+    $submenuItem['users/'][] = ['Profile', 'users/profile/'];
 $menuItem[] = ['Sign Out', 'sign-out/', 'ph-sign-out'];
 ?>
 
@@ -29,8 +28,8 @@ $menuItem[] = ['Sign Out', 'sign-out/', 'ph-sign-out'];
     <div class="sidebar-section bg-black bg-opacity-10 border-bottom border-bottom-white border-opacity-10">
         <div class="sidebar-logo d-flex justify-content-center align-items-center">
             <a href="#" class="d-inline-flex align-items-center py-2">
-                <img src="#" class="sidebar-logo-icon" alt="">
-                <img src="#" class="sidebar-resize-hide ms-3" height="14" alt="">
+                <img src="<?= $config->site->url ?>/public/assets/images/icon.svg" height="70" class="sidebar-logo-icon" alt="">
+                <img src="<?= $config->site->url ?>/public/assets/images/logo.svg" class="sidebar-resize-hide ms-2" height="70" alt="">
             </a>
 
             <div class="sidebar-resize-hide ms-auto">
@@ -72,6 +71,16 @@ $menuItem[] = ['Sign Out', 'sign-out/', 'ph-sign-out'];
 
                     <i class="<?= $menu[2]; ?>"></i>
                     <span><?= $menu[0]; ?></span>
+
+                    <?php 
+                    if ($menu[1] == 'comments/') : 
+                        // Add Notification for comment approval
+                        $comment = new Core\Models\Comment($connection);
+                        $commentCount = $comment->count(['status' => 'PENDING'])['count'];
+                        if ($commentCount > 0) : ?>
+                            <span class="badge bg-warning align-self-center rounded-pill ms-auto"><?= $commentCount ?></span>
+                        <?php endif; 
+                    endif; ?>
                     </a>
 
                     <?php if (isset($submenuItem[$menu[1]])) : ?>
