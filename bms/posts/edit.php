@@ -1,12 +1,32 @@
 <?php 
 
+use Core\Utility;
+
 require_once __DIR__ . '/../../bootstrap.php';
 
 $parent = 'posts/';
-$file = 'posts/new/';
-$page = 'Add New Post';
+$file = 'posts/';
+$page = 'Edit Post';
 
-include __DIR__ . '/../header.php'; 
+$postId = $_GET['post_id'] ?? null;
+
+$postCategory = new Core\Models\PostCategory($connection);
+$postTag = new Core\Models\PostTag($connection);
+$tag = new Core\Models\Tag($connection);
+$post = (new Core\Models\Post($connection, $postCategory, $postTag, $tag));
+
+// Check that post exist
+if (!$post->get('id', $postId)) {
+    $flash->set('error', 'Invalid action');
+    Utility::redirect($config->site->url . '/bms/posts/');
+}
+
+$post = $post->get('title, slug, content, author, created_at, featured_image', $postId);
+$user = new Core\Models\User($connection);
+$authors = $user->getAll();
+$currentAuthor = $user->get('id', $post['author'])['id'];
+
+include __DIR__ . '/../header.php';
 ?>
 
 <style>
@@ -34,9 +54,11 @@ include __DIR__ . '/../header.php';
     <!-- Content area -->
     <div class="content pt-0">
 
-        <form method="post" action="<?= $config->site->url ?>/bms/http/posts/new/" class="position-relative" enctype="multipart/form-data">
+        <form method="post" action="<?= $config->site->url ?>/bms/http/posts/edit/" class="position-relative" enctype="multipart/form-data">
+            <input name="post_id" value="<?= $postId ?>" type="hidden">
             <div class="float-end position-absolute d-flex" style="margin-top:-48px;margin-bottom: 0.5rem;z-index:999;right:0;top:-12px;gap: 10px;">
                 <a href="<?= $config->site->url ?>/bms/posts/" class="btn btn-light">Cancel</a>
+                <a href="<?= $config->site->url ?>/bms/http/posts/trash/<?= $postId ?>/" class="btn btn-danger">Trash</a>
                 <button type="submit" name="draft" class="btn btn-info">Save Draft</button>
                 <button type="submit" name="publish" class="btn btn-primary">Publish</button>
             </div>
@@ -47,12 +69,12 @@ include __DIR__ . '/../header.php';
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title:</label>
-                                <input type="text" class="form-control" id="title" name="title" required autofocus>
+                                <input type="text" class="form-control" id="title" name="title" required autofocus value="<?= $post['title'] ?>">
                             </div>
 
                             <div class="mb-3">
-                                <label for="content" class="form-label editor">Content:</label>
-                                <textarea rows="4" cols="3" class="form-control" id="content" name="content" oninput="autoresize(this)"></textarea>    
+                                <label for="content" class="form-label">Content:</label>
+                                <textarea rows="4" cols="3" class="form-control" id="content" name="content"><?= $post['content'] ?></textarea>
                                 <div id="word-count" class="text-muted"></div>
                             </div>
                         </div>
@@ -64,20 +86,19 @@ include __DIR__ . '/../header.php';
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="slug" class="form-label">Slug:</label>
-                                <input type="text" class="form-control" id="slug" name="slug" required>
+                                <input type="text" class="form-control" id="slug" name="slug" required value="<?= $post['slug'] ?>">
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="date" class="form-label">Date:</label>
-                                <input type="text" class="form-control datepicker-date-today" id="date" name="date" value="<?= date('m/d/Y') ?>" required>
-                            </div>
+                                <input type="text" class="form-control datepicker-date-today" id="date" name="date" value="<?= Utility::formatDate($post['created_at'], 'm/d/Y') ?>" required>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label for="author" class="form-label">Author:</label>
                                 <select class="form-control" id="author" name="author" required>
-                                    <?php $authors = (new Core\Models\User($connection))->getAll('id, email'); ?>
                                     <?php foreach ($authors as $author) : ?>
-                                        <option value="<?= $author['id'] ?>"><?= $author['email'] ?></option>
+                                        <option <?= ($author['id'] == $currentAuthor) ? 'selected' : '' ?> value="<?= $author['id'] ?>"><?= $author['email'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -86,17 +107,20 @@ include __DIR__ . '/../header.php';
                                 <?php 
                                 $category = new Core\Models\Category($connection); 
                                 $cats = $category->getAll('id, name');
+                                $currentCats = (new Core\Models\PostCategory($connection))->getAll('category_id', ['where' => ['post_id' => $postId]]);
                                 ?>
                                 <label for="categories" class="form-label">Categories:</label>
                                 <input type="hidden" id="categories" name="categories" value="">
                                 <select class="form-control multiselect" multiple="multiple">
-                                    <?php if ($category->count()['count'] > 1) : ?>
-                                        <?php foreach ($cats as $cat) : ?>
-                                            <option <?= ($cat['id'] == 1 ) ? 'selected' : ''; ?> value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
-                                        <?php endforeach; ?>
-                                    <?php else : ?>
-                                        <option selected value="<?= $cats['id'] ?>"><?= $cats['name'] ?></option>
-                                    <?php endif; ?>
+                                <?php $currentCats = is_array($currentCats) ? $currentCats : [$currentCats]; ?>
+                                <?php $currentCatIds = array_column($currentCats, 'category_id'); ?>
+                                
+                                <?php foreach ($cats as $cat): ?>
+                                    <?php $selected = in_array($cat['id'], $currentCatIds); ?>
+                                    <option value="<?= $cat['id'] ?>"<?= $selected ? ' selected' : '' ?>>
+                                        <?= $cat['name'] ?>
+                                    </option>
+                                <?php endforeach; ?>
                                 </select>
                             </div>
 
@@ -107,7 +131,7 @@ include __DIR__ . '/../header.php';
                             
                             <div class="mb-3">
                                 <label for="featured-image" class="form-label">Featured Image:</label>
-                                <img id="image-preview">
+                                <img id="image-preview" <?= (!empty($post['featured_image'])) ? "src=\"{$config->site->url}/public/uploads/posts/featured-images/{$post['featured_image']}\" style=\"display:block\"" : '' ?>>
                                 <input type="file" class="form-control" id="featured-image" accept="image/png, image/jpeg, image/jpg, image/gif" name="featured-image">
                             </div>
                         </div>
@@ -119,7 +143,7 @@ include __DIR__ . '/../header.php';
     </div>
     <!-- /content area -->
 
-<script src="<?= $config->site->url; ?>/bms/assets/js/vendor/ckeditor.js"></script>
+    <script src="<?= $config->site->url; ?>/bms/assets/js/vendor/ckeditor.js"></script>
 
 <script>
 const watchdog = new CKSource.EditorWatchdog();
@@ -169,27 +193,6 @@ function handleError(error) {
 }			
 </script>
 
-<script>
-// Make Strings URL-safe
-function slug(text) {
-    return text.toString().toLowerCase()
-        .replace(/\s+/g, '-')           // Replace spaces with -
-        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-        .replace(/^-+/, '')             // Trim - from start of text
-        .replace(/-+$/, '');            // Trim - from end of text
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const titleInput = document.querySelector('input[name="title"]');
-    const slugInput = document.querySelector('input[name="slug"]');
-
-    titleInput.addEventListener('keyup', function() {
-        slugInput.value = slug(titleInput.value);
-    });
-});
-</script>
-
 <script src="<?= $config->site->url; ?>/bms/assets/js/bootstrap/bootstrap_multiselect.js"></script>
 <script src="<?= $config->site->url; ?>/bms/assets/js/tokenfield.min.js"></script>
 <script src="<?= $config->site->url; ?>/bms/assets/js/custom.js"></script>
@@ -204,19 +207,31 @@ var _componentTokenfield = function() {
     }
 
     <?php 
+
     // Fetch all tag IDs and their names
-    $tags = (new Core\Models\Tag($connection))->getAll('id, name') ?: [];
+    $tags = $tag->getAll('id, name') ?: [];
+
+    // Fetch the selected tags with their names
+    $selectedTags = $postTag->getAll('tag_id, tags.name AS name', ['join' => ['', 'tags', 'tags.id = post_tags.tag_id'], 'where' => ['post_id' => $postId]]);
+    $currentTags = $selectedTags ? array_map(function($tag) {
+        return ['id' => $tag['tag_id'], 'name' => $tag['name']];
+    }, $selectedTags) : [];
+
+    $selectedTagsJSON = json_encode($currentTags);
     $tags = json_encode($tags);
+
     ?>
 
     // Tags prefill
     const tags = <?= $tags ?>;
+    const selectedTags = <?= $selectedTagsJSON ?>
 
     // Basic initialization
     document.querySelectorAll('.tokenfield-basic').forEach(function(element) {
         const tfBasic = new Tokenfield({
             el: element,
             items: tags,
+            setItems: selectedTags,
             addItemsOnPaste: true,
             delimiters: [',']
         });
@@ -273,5 +288,6 @@ const dpTodayButtonElement = document.querySelector('.datepicker-date-today');
         });
     }
 </script>
+
 <?php include __DIR__ . '/../includes/flash.php'; ?>
 <?php include __DIR__ . '/../footer.php'; ?>
