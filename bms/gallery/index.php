@@ -12,205 +12,165 @@ include __DIR__ . '/../header.php';
 ?>
 
 <style>
-    .gallery_upload {
+    img {
+        display: inline-block;
+        margin: 10px;
+        vertical-align: top;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    #progressBar {
+        height: 5px;
+        background-color: #ddd;
+        margin: 0 10px;
+        border-radius: 5px;
+        overflow: hidden;
         display: none;
     }
 
-    #dropZone {
-  width: 300px;
-  height: 150px;
-  border: 2px dashed #ccc;
-  border-radius: 5px;
-  text-align: center;
-  margin: 20px auto;
-  font-size: 16px;
-  line-height: 150px;
-  color: #999;
-}
+    .progress {
+        top: 50%;
+        right: 50px;
+        left: 50px;
+    }
 
-#dropZone:hover {
-  border-color: #333;
-}
+    .progress-bar {
+        -webkit-transition: width 0.6s ease;
+        transition: width 0.6s ease;
+    }
 
-#imageInput {
-  display: none;
-}
+    .card-img {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 255px;
+    }
 
-img {
-  display: inline-block;
-  margin: 10px;
-  vertical-align: top;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
+    #image-form {
+        border: 2px dashed #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
 
-#progressBar {
-  height: 5px;
-  background-color: #ddd;
-  margin: 0 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  display: none;
-}
+    #image-form.dragover {
+        border-color: #2196f3;
+    }
 
-#progressBarFill {
-  height: 100%;
-  background-color: #007bff;
-  border-radius: 5px;
-  animation: fillProgressBar 1s ease-in-out forwards;
-}
+    #image-form .form-label::before {
+        content: ""; 
+        font-family: "Phosphor";
+        font-weight: bold;
+        font-size: 16px;
+        margin-right: 10px;
+    }
 
-@keyframes fillProgressBar {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
+    #image-form .form-control {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
 
-.progress-bar {
-  -webkit-transition: width 0.6s ease;
-  transition: width 0.6s ease;
-}
+    #image-form .form-control:focus {
+        border-color: #66afe9;
+        outline: 0;
+    }
 
-.card-img {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 255px;
-}
+    .gallery_upload,
+    #image-form .form-control::-webkit-file-upload-button {
+        display: none;
+    }
 
-.progress {
-    top: 50%;
-    right: 50px;
-    left: 50px;
-}
+    #image-form .form-control::before {
+        content: 'Select Images';
+        display: inline-block;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px 12px;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+    }
 
-#image-form {
-  border: 2px dashed #ccc;
-  padding: 20px;
-  border-radius: 5px;
-  text-align: center;
-}
+    #image-form .form-control:hover::before {
+        border-color: #999;
+    }
 
-#image-upload {
-  display: none;
-}
+    #image-form .form-control:active::before {
+        background-color: #eee;
+    }
 
-#image-upload::-webkit-file-upload-button {
-  visibility: hidden;
-}
+    #image-form .form-label {
+        margin-bottom: 10px;
+        border: 1px solid var(--primary);
+        font-size: 13px;
+        min-height: 46px;
+        padding: 0 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 190px;
+        margin: 0 auto;
+        color: var(--white);
+        background: var(--primary);
+        cursor: pointer;
+        border-radius: 4px;
+    }
 
-#image-upload::before {
-  content: 'Select Image(s)';
-  display: inline-block;
-  background: #007bff;
-  color: #fff;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.25rem;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: pointer;
-}
+    #image-upload {
+        display: none;
+    }
 
-#image-upload:hover::before {
-  background: #0062cc;
-}
+    #image-upload::-webkit-file-upload-button {
+        visibility: hidden;
+    }
 
-#image-form.dragover {
-  border-color: #2196f3;
-}
+    #image-upload::before {
+        content: 'Select Image(s)';
+        display: inline-block;
+        background: #007bff;
+        color: #fff;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.25rem;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+    }
 
-#image-form .form-label::before {
-  content: ""; /* Phosphor icon character code */
-  font-family: "Phosphor";
-  font-weight: bold;
-  font-size: 16px;
-  margin-right: 10px;
-}
+    #image-upload:hover::before {
+        background: #0062cc;
+    }
 
-#image-form .form-control {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+    .overlay {
+        background: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+    }
 
-#image-form .form-control:focus {
-  border-color: #66afe9;
-  outline: 0;
-}
+    .gallery-meta {
+        visibility: hidden;
+    }
 
-#image-form .form-control::-webkit-file-upload-button {
-  display: none;
-}
-
-#image-form .form-control::before {
-  content: 'Select Images';
-  display: inline-block;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 6px 12px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-}
-
-#image-form .form-control:hover::before {
-  border-color: #999;
-}
-
-#image-form .form-control:active::before {
-  background-color: #eee;
-}
-
-#image-form .form-label {
-    margin-bottom: 10px;
-    border: 1px solid var(--primary);
-    font-size: 13px;
-    min-height: 46px;
-    padding: 0 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 190px;
-    margin: 0 auto;
-    color: var(--white);
-    background: var(--primary);
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.overlay {
-    background: rgba(0, 0, 0, 0.7);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-}
-
-.gallery-meta {
-    visibility: hidden;
-}
-
-#image-preview .card-img-actions:hover > .overlay,
-#image-preview .card-img-actions:hover .gallery-meta {
-    visibility: visible;
-}
-
+    #image-preview .card-img-actions:hover > .overlay,
+    #image-preview .card-img-actions:hover .gallery-meta {
+        visibility: visible;
+    }
 </style>
 
 <!-- Content area -->
@@ -258,7 +218,6 @@ img {
                         $offset = ($current_page - 1) * $limit;
 
                         $imageCount = $gallery->count()['count'];
-                        
                         
                         $images = Select::new($connection)
                             ->columns('*')
