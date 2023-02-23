@@ -8,6 +8,8 @@ $config->database = [
     'name'         => $_ENV['DB_NAME'],
     'user'         => $_ENV['DB_USER'],
     'password'     => $_ENV['DB_PASSWORD'],
+    'charset'      => $_ENV['DB_CHARSET'],
+    'collation'    => $_ENV['DB_COLLATION'],
     'table_prefix' => $_ENV['DB_TABLE_PREFIX'],
 ];
 
