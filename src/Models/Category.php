@@ -6,8 +6,10 @@ use Core\Models\Base;
 
 class Category extends Base
 {
-    public function __construct()
+    protected $table = 'categories';
+
+    public function __construct($connection)
     {
-        parent::__construct('categories');
+        parent::__construct($connection, $this->table);
     }
 }

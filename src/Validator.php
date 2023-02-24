@@ -11,16 +11,16 @@ class Validator
     protected $errors = [];
 
     protected $rules = [
-        'max' => 'validateMax',
-        'min' => 'validateMin',
-        'date' => 'validateDate',
-        'phone' => 'validatePhone',
-        'image' => 'validateImage',
-        'email' => 'validateEmail',
-        'array' => 'validateArray',
-        'numeric' => 'validateNumeric',
+        'max'      => 'validateMax',
+        'min'      => 'validateMin',
+        'date'     => 'validateDate',
+        'phone'    => 'validatePhone',
+        'email'    => 'validateEmail',
+        'array'    => 'validateArray',
+        'numeric'  => 'validateNumeric',
         'required' => 'validateRequired',
         'alphanum' => 'validateAlphanum',
+        'url'      => 'validateUrl',
     ];
 
     public function __construct($input)
@@ -49,26 +49,48 @@ class Validator
             }
 
             $value = isset($data[$field]) ? $data[$field] : null;
-            $violations = $validator->validate($value, $constraints);
+            if (!empty($value) || in_array('required', $rulesArray)) {
+                // Only validate the field if it's not empty or if it's required
+                $violations = $validator->validate($value, $constraints);
 
-            if ($violations->count() > 0) {
-                foreach ($violations as $violation) {
-                    if (isset($violation->getParameters()['{{ type }}'])) {
-                        $error = isset($messages[$field][$violation->getParameters()['{{ type }}']])
-                        ? $messages[$field][$violation->getParameters()['{{ type }}']]
-                        : $violation->getMessage();
-                    } else {
-                        $error = isset($messages[$field][$violation->getMessageTemplate()])
-                            ? $messages[$field][$violation->getMessageTemplate()]
-                            : $violation->getMessage();
-                }
+                if ($violations->count() > 0) {
+                    // foreach ($violations as $violation) {
+                    //     // $message = $violation->getMessage();
+                    //     dd($messages[$field][$violation->getConstraint()->getTargets()[0]]);
+                    //     if (isset($messages[$field][$violation->getConstraint()->getTargets()[0]][$violation->getCode()])) {
+                    //         $message = $messages[$field][$violation->getConstraint()->getTargets()[0]][$violation->getCode()];
+                    //     }
+                    //     $this->addError($field, $message);
+                    // }
+                    foreach ($violations as $violation) {
+                        $message = $violation->getMessage();
 
-                    $this->addError($field, $error);
+                        if (isset($messages[$field]) && isset($messages[$field][$this->getRuleNameFromCode($violation->getCode())])) {
+                            $message = $messages[$field][$this->getRuleNameFromCode($violation->getCode())];
+                        }
+                        $this->addError($field, $message);
+                    }
                 }
             }
         }
 
         return empty($this->errors);
+    }
+
+    protected function getRuleNameFromCode($code)
+    {
+        $map = [
+            Assert\NotBlank::IS_BLANK_ERROR    => 'required',
+            Assert\Length::TOO_SHORT_ERROR     => 'min',
+            Assert\Length::TOO_LONG_ERROR      => 'max',
+            Assert\Date::INVALID_FORMAT_ERROR  => 'date',
+            Assert\Regex::REGEX_FAILED_ERROR   => 'phone',
+            Assert\Email::INVALID_FORMAT_ERROR => 'email',
+            Assert\Type::INVALID_TYPE_ERROR    => 'array',
+            Assert\Url::INVALID_URL_ERROR      => 'url',
+        ];
+
+        return isset($map[$code]) ? $map[$code] : null;
     }
 
     public function getErrors()
@@ -117,14 +139,14 @@ class Validator
         return new Assert\Type(['type' => 'numeric']);
     }
 
-    protected function validateImage()
-    {
-        return new Assert\Image();
-    }
-
     protected function validateArray()
     {
         return new Assert\Type(['type' => 'array']);
+    }
+
+    protected function validateUrl()
+    {
+        return new Assert\Url();
     }
 
     protected function addError($field, $error)

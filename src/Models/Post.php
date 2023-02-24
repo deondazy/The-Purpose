@@ -5,56 +5,92 @@ namespace Core\Models;
 use Core\Models\Base;
 use Core\Utility;
 
+use Atlas\Query\Delete;
+use Atlas\Query\Insert;
+use Atlas\Query\Select;
+use Atlas\Query\Update;
+
 class Post extends Base
 {
+    protected $table = 'posts';
+
     private $postCategory;
     private $postTag;
     private $tag;
 
-    public function __construct(PostCategory $postCategory, PostTag $postTag, Tag $tag)
+    public function __construct($connection, PostCategory $postCategory, PostTag $postTag, Tag $tag)
     {
-        parent::__construct('posts');
+        parent::__construct($connection, $this->table);
 
         $this->postCategory = $postCategory;
         $this->postTag      = $postTag;
         $this->tag          = $tag;
     }
 
-    public function saveCategories($postId, $categories)
-    {
-        if (empty($categories)) {
-            $categories = [];
-        } elseif (is_string($categories)) {
-            if (strpos($categories, ',') !== false) {
-                $categories = explode(',', $categories);
-            } else {
-                $categories = [$categories];
-            }
-        }
-        
-        if ($this->postCategory->save($postId, $categories)) {
-            return true;
-        }
-
-        return false;
-    }
-
     public function saveTags($postId, $tags, $tagsNew)
     {
-        // If new tags array are added, save them first,
-        // then get their ids and add them to the tags array
-        if (!empty($tagsNew)) {
-            $newTagIds = $this->tag->saveNewTags($tagsNew);
-            $tags = array_merge($tags, $newTagIds);
+        if (empty($tags) && empty($tagsNew)) {
+            $this->postTag->deleteAllTags($postId);
+            return;
         }
 
-        if (!empty($tags)) {
-            // Insert new tags for this post
-            foreach ($tags as $tag) {
-                $this->postTag->create([
+        // Remove the tags that are not in the tags array
+        // but exists on the post_tags table
+        $this->postTag->deleteRemovedTags($postId, $tags);
+
+        // Get existing tags
+        $exitingTags = $this->postTag->getAll('tag_id', ['where' => ['post_id' => $postId]]);
+        $exitingTags = array_column($exitingTags, 'tag_id');
+
+        // Add only tags that do not already exist
+        foreach($tags as $tag) {
+            if (!in_array($tag, $exitingTags)) {
+                Insert::new($this->connection)
+                    ->into('post_tags')
+                    ->columns([
+                        'post_id' => $postId,
+                        'tag_id' => $tag
+                    ])->perform();
+            }
+        }
+
+        // Add new tags to tags table then to post_tags table
+        foreach ($tagsNew as $tag) {
+            $result = Select::new($this->connection)
+                ->columns('id')
+                ->from('tags')
+                ->whereEquals(['name' => $tag])
+                ->fetchOne();
+
+            if ($result) {
+                $tagId = $result['id'];
+            } else {
+                $result = Insert::new($this->connection)
+                    ->into('tags')
+                    ->columns([
+                        'name' => ucwords($tag),
+                        'slug' => Utility::Slug($tag)
+                    ]);
+
+                $result->perform();
+                
+                $tagId = $result->getLastInsertId();
+            }
+
+            $result = Select::new($this->connection)
+                ->columns('id')
+                ->from('post_tags')
+                ->whereEquals(['post_id' => $postId])
+                ->whereEquals(['tag_id' => $tagId])
+                ->fetchOne();
+
+            if (!$result) {
+                Insert::new($this->connection)
+                    ->into('post_tags')
+                    ->columns([
                     'post_id' => $postId,
-                    'tag_id' => $tag
-                ]);
+                    'tag_id' => $tagId
+                ])->perform();
             }
         }
 
@@ -63,7 +99,7 @@ class Post extends Base
 
     public function categories($postId)
     {
-        return $this->postCategory->get('*', ['where' => ['id', $postId]]);
+        return $this->postCategory->getCategoriesByPostId($postId);
 
     }
 }

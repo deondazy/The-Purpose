@@ -1,4 +1,8 @@
 <?php
+declare(strict_types=1);
+
+use Atlas\Pdo\Connection;
+
 /**
  * The Core Bootstrap File
  *
@@ -33,23 +37,24 @@ require_once(CORE_ROOT . '/vendor/autoload.php');
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
+// Initialize the session, flash and form
+$session = new Core\Session();
+$flash = new Core\Flash($session);
+$form = new Core\Form($session, $flash);
+
 if ($_ENV['APP_DEBUG'] === 'true') {
     // Use our own exception handler (with Whoops)
     Core\Exception\CoreException::handle();
 }
 
-// Require the configuration file
-require_once(CORE_ROOT . '/config.php');
+// Check if the configuration file exists
+if (!file_exists(CORE_ROOT . '/config.php')) {
+    exit('Configuration file not found.');
+}
+
+require_once CORE_ROOT . '/config.php';
 
 // Get Database configuration details
 $dbConfig = $config->database;
 
-// Connect to the Database
-$database = Core\Database\Connection::instance();
-try {
-    $database->connect("mysql:host=$dbConfig->host;dbname=$dbConfig->name", $dbConfig->user, $dbConfig->password);
-} catch (Core\Exception\DatabaseException $e) {
-    $config->debug->logPath = __DIR__ . '/logs/db.log';
-    $logger = Core\Log::factory($config);
-    $logger->error($e->getMessage());
-}
+$connection = Connection::new("mysql:host=$dbConfig->host;dbname=$dbConfig->name", $dbConfig->user, $dbConfig->password);

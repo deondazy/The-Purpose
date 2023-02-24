@@ -7,9 +7,11 @@ use Core\Utility;
 
 class Tag extends Base
 {
-    public function __construct()
+    protected $table = 'tags';
+
+    public function __construct($connection)
     {
-        parent::__construct('tags');
+        parent::__construct($connection, $this->table);
     }
 
     public function saveNewTags(array $newTags): array
