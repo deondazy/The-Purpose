@@ -75,7 +75,7 @@ $menuItem[] = ['Sign Out', 'sign-out/', 'ph-sign-out'];
                     <?php 
                     if ($menu[1] == 'comments/') : 
                         // Add Notification for comment approval
-                        $comment = new Core\Models\Comment($connection);
+                        $comment = $container->get(Core\Models\Comment::class);;
                         $commentCount = $comment->count(['status' => 'PENDING'])['count'];
                         if ($commentCount > 0) : ?>
                             <span class="badge bg-warning align-self-center rounded-pill ms-auto"><?= $commentCount ?></span>

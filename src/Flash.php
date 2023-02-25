@@ -4,11 +4,9 @@ namespace Core;
 
 class Flash 
 {
-    private $session;
   
-    public function __construct($session) 
+    public function __construct(private Session $session) 
     {
-        $this->session = $session;
     }
   
     public function set($type, $message) 

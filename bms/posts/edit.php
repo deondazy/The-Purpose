@@ -10,10 +10,9 @@ $page = 'Edit Post';
 
 $postId = $_GET['post_id'] ?? null;
 
-$postCategory = new Core\Models\PostCategory($connection);
-$postTag = new Core\Models\PostTag($connection);
-$tag = new Core\Models\Tag($connection);
-$post = (new Core\Models\Post($connection, $postCategory, $postTag, $tag));
+$postTag = $container->get(Core\Models\PostTag::class);
+$tag = $container->get(Core\Models\Tag::class);
+$post = $container->get(Core\Models\Post::class);
 
 // Check that post exist
 if (!$post->get('id', $postId)) {
@@ -22,7 +21,7 @@ if (!$post->get('id', $postId)) {
 }
 
 $post = $post->get('title, slug, content, author, created_at, featured_image', $postId);
-$user = new Core\Models\User($connection);
+$user = $container->get(Core\Models\User::class);
 $authors = $user->getAll();
 $currentAuthor = $user->get('id', $post['author'])['id'];
 
@@ -105,9 +104,9 @@ include __DIR__ . '/../header.php';
 
                             <div class="mb-3">
                                 <?php 
-                                $category = new Core\Models\Category($connection); 
+                                $category = $container->get(Core\Models\Category::class); 
                                 $cats = $category->getAll('id, name');
-                                $currentCats = (new Core\Models\PostCategory($connection))->getAll('category_id', ['where' => ['post_id' => $postId]]);
+                                $currentCats = ($container->get(Core\Models\PostCategory::class))->getAll('category_id', ['where' => ['post_id' => $postId]]);
                                 ?>
                                 <label for="categories" class="form-label">Categories:</label>
                                 <input type="hidden" id="categories" name="categories" value="">

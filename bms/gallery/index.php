@@ -1,5 +1,6 @@
 <?php 
 
+use Atlas\Pdo\Connection;
 use Atlas\Query\Select;
 
 require_once __DIR__ . '/../../bootstrap.php';
@@ -200,7 +201,7 @@ include __DIR__ . '/../header.php';
                     <div id="image-preview" class="row">
                 
                         <?php 
-                        $gallery = new Core\Models\Gallery($connection);
+                        $gallery = $container->get(Core\Models\Gallery::class);
                 
                         // Set the limit of records per page
                         $limit = 12;
@@ -219,7 +220,7 @@ include __DIR__ . '/../header.php';
 
                         $imageCount = $gallery->count()['count'];
                         
-                        $images = Select::new($connection)
+                        $images = Select::new($container->get(Connection::class))
                             ->columns('*')
                             ->from('gallery')
                             ->limit($limit)
@@ -367,5 +368,4 @@ $(document).ready(function() {
     });
 </script>
 
-<?php include __DIR__ . '/../includes/flash.php'; ?>
 <?php include __DIR__ . '/../footer.php'; ?>

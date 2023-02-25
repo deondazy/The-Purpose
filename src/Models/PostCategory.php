@@ -9,10 +9,10 @@ class PostCategory extends Base
 {
     protected $table = 'post_categories';
 
-    public function __construct($connection)
-    {
-        parent::__construct($connection, $this->table);
-    }
+    // public function __construct($connection)
+    // {
+    //     parent::__construct($connection, $this->table);
+    // }
     
     private function deletePostCategories(int $postId)
     {

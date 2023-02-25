@@ -11,7 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 $tagId = $_POST['tag_id'] ?? null;
 
-$tag = new Core\Models\Tag($connection);
+$tag = $container->get(Core\Models\Tag::class);
+$flash = $container->get(Core\Flash::class);
 
 if (!$tag->get('id', $tagId)) {
     $flash->set('error', 'Invalid Action');

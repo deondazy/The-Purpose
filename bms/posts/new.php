@@ -1,6 +1,7 @@
 <?php 
 
 require_once __DIR__ . '/../../bootstrap.php';
+include __DIR__ . '/../includes/flash.php';
 
 $parent = 'posts/';
 $file = 'posts/new/';
@@ -75,7 +76,7 @@ include __DIR__ . '/../header.php';
                             <div class="mb-3">
                                 <label for="author" class="form-label">Author:</label>
                                 <select class="form-control" id="author" name="author" required>
-                                    <?php $authors = (new Core\Models\User($connection))->getAll('id, email'); ?>
+                                    <?php $authors = ($container->get(Core\Models\User::class))->getAll('id, email'); ?>
                                     <?php foreach ($authors as $author) : ?>
                                         <option value="<?= $author['id'] ?>"><?= $author['email'] ?></option>
                                     <?php endforeach; ?>
@@ -84,7 +85,7 @@ include __DIR__ . '/../header.php';
 
                             <div class="mb-3">
                                 <?php 
-                                $category = new Core\Models\Category($connection); 
+                                $category = $container->get(Core\Models\Category::class); 
                                 $cats = $category->getAll('id, name');
                                 ?>
                                 <label for="categories" class="form-label">Categories:</label>
@@ -205,7 +206,7 @@ var _componentTokenfield = function() {
 
     <?php 
     // Fetch all tag IDs and their names
-    $tags = (new Core\Models\Tag($connection))->getAll('id, name') ?: [];
+    $tags = ($container->get(Core\Models\Tag::class))->getAll('id, name') ?: [];
     $tags = json_encode($tags);
     ?>
 
@@ -273,5 +274,4 @@ const dpTodayButtonElement = document.querySelector('.datepicker-date-today');
         });
     }
 </script>
-<?php include __DIR__ . '/../includes/flash.php'; ?>
 <?php include __DIR__ . '/../footer.php'; ?>

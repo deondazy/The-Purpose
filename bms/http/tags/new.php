@@ -4,6 +4,8 @@ use Core\Utility;
 
 require_once __DIR__ . '/../../../bootstrap.php';
 
+$flash = $container->get(Core\Flash::class);
+
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     http_response_code(405);
     exit('Method Not Allowed');
@@ -28,7 +30,7 @@ try {
         Utility::redirect($config->site->url . '/bms/tags/');
     }
 
-    $tag = new Core\Models\Tag($connection);
+    $tag = $container->get(Core\Models\Tag::class);
 
     $tagId = $tag->create($input);
 

@@ -12,7 +12,8 @@
         "vlucas/phpdotenv": "^5.5",
         "symfony/validator": "^6.2",
         "nesbot/carbon": "^2.66",
-        "atlas/query": "^2.0"
+        "atlas/query": "^2.0",
+        "league/container": "^4.2"
     },
     "autoload": {
         "psr-4": {

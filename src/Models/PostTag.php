@@ -9,11 +9,6 @@ class PostTag extends Base
 {
     protected $table = 'post_tags';
 
-    public function __construct($connection)
-    {
-        parent::__construct($connection, $this->table);
-    }
-
     public function deleteRemovedTags($postId, $tags)
     {
         $delete = Delete::new($this->connection)

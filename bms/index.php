@@ -1,18 +1,16 @@
 <?php 
 
 require_once __DIR__ . '/../bootstrap.php';
+include __DIR__ . '/includes/flash.php';
 
 $parent = '';
 $file = '';
 $page = 'Dashboard';
 
-$postCategory = new Core\Models\PostCategory($connection);
-$postTag = new Core\Models\PostTag($connection);
-$tag = new Core\Models\Tag($connection);
-$post = new Core\Models\Post($connection, $postCategory, $postTag, $tag);
-$comment = new Core\Models\Comment($connection);
-$user = new Core\Models\User($connection);
-$gallery = new Core\Models\Gallery($connection);
+$post = $container->get(Core\Models\Post::class);
+$comment = $container->get(Core\Models\Comment::class);
+$user = $container->get(Core\Models\User::class);
+$gallery = $container->get(Core\Models\Gallery::class);
 
 include __DIR__ . '/header.php'; ?>
 
@@ -41,7 +39,7 @@ textarea {
                             <div class>
                                 <p class="post-count mb-3">
                                     <span class="me-2 ph-pencil-line"></span>
-                                    <a href="<?= $config->site->url ?>/bms/posts/"><?= $post->count()['count'] ?> Posts</a>
+                                    <a href="<?= $config->site->url ?>/bms/posts/"><?= $post->count(['status' => 'PUBLISH'])['count'] ?> Posts</a>
                                 </p>
                                 <p class="post-count">
                                     <span class="me-2 ph-chats"></span>
@@ -110,5 +108,4 @@ function autoResize(textarea) {
   textarea.style.height = textarea.scrollHeight + "px"; // adjust the height to match the content
 }
 </script>
-<?php include __DIR__ . '/includes/flash.php'; ?>
 <?php include __DIR__ . '/footer.php'; ?>

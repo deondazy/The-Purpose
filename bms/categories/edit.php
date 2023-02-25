@@ -10,7 +10,7 @@ $page = 'Edit Category';
 
 $catId = $_GET['category_id'] ?? null;
 
-$category = new Core\Models\Category($connection);
+$category = $container->get(Core\Models\Category::class);
 
 if (!$category->get('id', $catId)) {
     $flash->set('error', 'Invalid Action');

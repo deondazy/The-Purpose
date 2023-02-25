@@ -64,8 +64,8 @@ include __DIR__ . '/../header.php';
                             </thead>
                             <tbody>
                                 <?php 
-                                $postTag = new Core\Models\PostTag($connection);
-                                $tag = (new Core\Models\Tag($connection));
+                                $postTag = $container->get(Core\Models\PostTag::class);
+                                $tag = $container->get(Core\Models\Tag::class);
                                 $tags = $tag->getAll('*', ['orderBy' => ['id DESC']]);
 
                                 foreach($tags as $tag) : ?>
@@ -148,5 +148,4 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-<?php include __DIR__ . '/../includes/flash.php'; ?>
 <?php include __DIR__ . '/../footer.php'; ?>

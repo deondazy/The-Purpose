@@ -1,18 +1,17 @@
 <?php 
 
 use Core\Utility;
+use Atlas\Pdo\Connection;
 use Atlas\Query\Select;
 
 require_once __DIR__ . '/../../bootstrap.php';
+include __DIR__ . '/../includes/flash.php';
 
 $parent = 'posts/';
 $file = $parent;
 $page = 'Manage Posts';
 
-$postCategory = new Core\Models\PostCategory($connection);
-$postTag = new Core\Models\PostTag($connection);
-$tag = new Core\Models\Tag($connection);
-$post = new Core\Models\Post($connection, $postCategory, $postTag, $tag);
+$post = $container->get(Core\Models\Post::class);
 
 $allPostsCount = $post->count();
 $publishedPostsCount = $post->count(['status' => 'PUBLISH']);
@@ -87,7 +86,7 @@ include __DIR__ . '/../header.php';
                             </thead>
                             <tbody>
                                 <?php 
-                                $query = Select::new($connection)
+                                $query = Select::new($container->get(Connection::class))
                                     ->columns(
                                         'p.id',
                                         'p.title',
@@ -221,5 +220,4 @@ include __DIR__ . '/../header.php';
     })
 </script>
 
-<?php include __DIR__ . '/../includes/flash.php'; ?>
 <?php include __DIR__ . '/../footer.php'; ?>

@@ -6,7 +6,7 @@ require_once __DIR__ . '/../../../bootstrap.php';
 
 $imageId = $_GET['image_id'];
 
-$gallery = new Core\Models\Gallery($connection);
+$gallery = $container->get(Core\Models\Gallery::class);
 
 $id = ($gallery->get('id', $imageId)['id']) ?? null;
 

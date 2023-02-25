@@ -5,26 +5,16 @@ namespace Core\Models;
 use Core\Models\Base;
 use Core\Utility;
 
-use Atlas\Query\Delete;
 use Atlas\Query\Insert;
 use Atlas\Query\Select;
-use Atlas\Query\Update;
+use Atlas\Pdo\Connection;
 
 class Post extends Base
 {
     protected $table = 'posts';
 
-    private $postCategory;
-    private $postTag;
-    private $tag;
-
-    public function __construct($connection, PostCategory $postCategory, PostTag $postTag, Tag $tag)
+    public function __construct(protected Connection $connection, private PostCategory $postCategory, private PostTag $postTag, private Tag $tag)
     {
-        parent::__construct($connection, $this->table);
-
-        $this->postCategory = $postCategory;
-        $this->postTag      = $postTag;
-        $this->tag          = $tag;
     }
 
     public function saveTags($postId, $tags, $tagsNew)

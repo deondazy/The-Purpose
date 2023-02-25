@@ -64,8 +64,8 @@ include __DIR__ . '/../header.php';
                             </thead>
                             <tbody>
                                 <?php 
-                                $postCategory = new Core\Models\PostCategory($connection);
-                                $category = (new Core\Models\Category($connection));
+                                $postCategory = $container->get(Core\Models\PostCategory::class);
+                                $category = $container->get(Core\Models\Category::class);
                                 $categories = $category->getAll('*', ['orderBy' => ['id DESC']]);
 
                                 foreach($categories as $cat) : ?>
@@ -150,5 +150,5 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-<?php include __DIR__ . '/../includes/flash.php'; ?>
+
 <?php include __DIR__ . '/../footer.php'; ?>

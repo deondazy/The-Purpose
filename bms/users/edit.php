@@ -4,9 +4,9 @@ use Core\Utility;
 
 require_once __DIR__ . '/../../bootstrap.php';
 
-$user = new Core\Models\User($connection);
-$role = new Core\Models\Role($connection);
-$userRole = new Core\Models\UserRole($connection);
+$user = $container->get(Core\Models\User::class);
+$role = $container->get(Core\Models\Role::class);
+$userRole = $container->get(Core\Models\UserRole::class);
 
 $userId = (!defined('PROFILE')) ? $user->get('id', $_GET['user_id'] ?? null)['id'] ?? null : 1; // TODO: Use current user ID;
 
@@ -157,7 +157,7 @@ include __DIR__ . '/../header.php';
                             <div class="mb-3">
                                 <label for="role" class="form-label">Role:</label>
                                 <select class="form-select" id="role" name="role">
-                                    <?php foreach((new Core\Models\Role($connection))->getAll('id, name', ['orderBy' => ['id DESC']]) as $role) : ?>
+                                    <?php foreach(($container->get(Core\Models\Role::class))->getAll('id, name', ['orderBy' => ['id DESC']]) as $role) : ?>
                                         <option <?= ($assignedRole == $role['id']) ? 'selected' : '' ?> value="<?= $role['id'] ?>"><?= $role['name'] ?></option>
                                     <?php endforeach; ?>
                                 </select>

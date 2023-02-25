@@ -52,10 +52,9 @@ try {
         Utility::redirect($config->site->url . ($dashDraft ? '/bms/' : '/bms/posts/new'));
     }
 
-    $postCategory = new Core\Models\PostCategory($connection);
-    $postTag = new Core\Models\PostTag($connection);
-    $tag = new Core\Models\Tag($connection);
-    $post = new Core\Models\Post($connection, $postCategory, $postTag, $tag);
+    $flash = $container->get(Core\Flash::class);
+    $postCategory = $container->get(Core\Models\PostCategory::class);
+    $post = $container->get(Core\Models\Post::class);
 
     $postId = $post->create($input);
 
@@ -75,6 +74,7 @@ try {
     $flash->set('error', 'An error occurred while creating post.');
     Utility::redirect($config->site->url . ($dashDraft ? '/bms/' : '/bms/posts/new'));
 }
+
 
 function handleFeaturedImage($file): ?string
 {

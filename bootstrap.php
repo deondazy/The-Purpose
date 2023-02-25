@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Atlas\Pdo\Connection;
+use League\Container\Container;
 
 /**
  * The Core Bootstrap File
@@ -37,11 +38,6 @@ require_once(CORE_ROOT . '/vendor/autoload.php');
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
-// Initialize the session, flash and form
-$session = new Core\Session();
-$flash = new Core\Flash($session);
-$form = new Core\Form($session, $flash);
-
 if ($_ENV['APP_DEBUG'] === 'true') {
     // Use our own exception handler (with Whoops)
     Core\Exception\CoreException::handle();
@@ -57,4 +53,15 @@ require_once CORE_ROOT . '/config.php';
 // Get Database configuration details
 $dbConfig = $config->database;
 
-$connection = Connection::new("mysql:host=$dbConfig->host;dbname=$dbConfig->name", $dbConfig->user, $dbConfig->password);
+$container = new Container();
+
+$container->delegate(
+    new League\Container\ReflectionContainer(true)
+);
+
+$container->add(Connection::class, function () use ($dbConfig) {
+    $dsn = "mysql:host={$dbConfig->host};dbname={$dbConfig->name}";
+    return Connection::new($dsn, $dbConfig->user, $dbConfig->password);
+});
+
+$flash = $container->get(Core\Flash::class);

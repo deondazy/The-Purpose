@@ -6,7 +6,7 @@ require_once __DIR__ . '/../../../bootstrap.php';
 
 $commentId = $_GET['comment_id'];
 
-$comment = new Core\Models\Comment($connection);
+$comment = $container->get(Core\Models\Comment::class);
 
 $ref = $_SERVER['HTTP_REFERER'];
 $ref = explode('/', $ref);

@@ -9,6 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     exit('Method Not Allowed');
 }
 
+$flash = $container->get(Core\Flash::class);
+
 try {
     $username    = trim($_POST['username']);
     $firstName   = trim($_POST['first_name']) ?? null;
@@ -40,7 +42,7 @@ try {
 
     $input['password'] = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
 
-    $user = new Core\Models\User($connection);
+    $user = $container->get(Core\Models\User::class);
 
     $userId = $user->create($input);
 
@@ -48,7 +50,7 @@ try {
         // if somehow role is not set or anything not in roles ID, default to Reader (1)
         $role = (!empty($_POST['role']) && in_array($_POST['role'], ['1', '2', '3', '4'])) ? $_POST['role'] : 4;
 
-        (new Core\Models\UserRole($connection))->create(['user_id' => $userId, 'role_id' => $role]);
+        ($container->get(Core\Models\UserRole::class))->create(['user_id' => $userId, 'role_id' => $role]);
         
         $flash->set('success', 'New User Added');
         Utility::redirect($config->site->url . '/bms/users/');

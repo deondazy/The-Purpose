@@ -4,13 +4,8 @@ namespace Core;
 
 class Form
 {
-    private $session;
-    private $flash;
-
-    public function __construct(Session $session, Flash $flash)
+    public function __construct(private Session $session, private Flash $flash)
     {
-        $this->session = $session;
-        $this->flash = $flash;
     }
 
     public function setData($data)

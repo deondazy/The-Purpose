@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     exit('Method Not Allowed');
 }
 
-$user = new Core\Models\User($connection);
+$user = $container->get(Core\Models\User::class);
+$flash = $container->get(Core\Flash::class);
 
 $id = $user->get('id', $_POST['user_id'] ?? null)['id'] ?? null;
 
@@ -99,7 +100,7 @@ try {
         $role = $_POST['role'];
 
         // Check if role has changed
-        $userRole = new Core\Models\UserRole($connection);
+        $userRole = $container->get(Core\Models\UserRole::class);
 
         if ($userRole->getUserRoleId($id) != $role) {
             $userRole->update(['user_id' => $id], ['role_id' => $role]);

@@ -6,10 +6,8 @@ require_once __DIR__ . '/../../../bootstrap.php';
 
 $postId = $_GET['post_id'];
 
-$postCategory = new Core\Models\PostCategory($connection);
-$postTag = new Core\Models\PostTag($connection);
-$tag = new Core\Models\Tag($connection);
-$post = (new Core\Models\Post($connection, $postCategory, $postTag, $tag));
+$postCategory = $container->get(Core\Models\PostCategory::class);
+$post = $container->get(Core\Models\Post::class);
 
 $id = ($post->get('id', $postId)['id']) ?? null;
 

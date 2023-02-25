@@ -28,7 +28,7 @@ try {
         Utility::redirect($config->site->url . '/bms/categories/');
     }
 
-    $category = new Core\Models\Category($connection);
+    $category = $container->get(Core\Models\Category::class);
 
     $categoryId = $category->create($input);
 

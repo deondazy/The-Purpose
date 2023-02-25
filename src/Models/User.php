@@ -9,10 +9,10 @@ class User extends Base
 {
     protected $table = 'users';
 
-    public function __construct($connection)
-    {
-        parent::__construct($connection, $this->table);
-    }
+    // public function __construct($connection)
+    // {
+    //     parent::__construct($connection, $this->table);
+    // }
 
     public function getAvatar($userId)
     {

@@ -1,6 +1,7 @@
 <?php 
 
 use Core\Utility;
+use Atlas\Pdo\Connection;
 use Atlas\Query\Select;
 
 require_once __DIR__ . '/../../bootstrap.php';
@@ -9,7 +10,7 @@ $parent = 'comments/';
 $file = $parent;
 $page = 'Comments';
 
-$comment = new Core\Models\Comment($connection);
+$comment = $container->get(Core\Models\Comment::class);
 
 $allCommentsCount = $comment->count()['count'];
 $myCommentsCount = $comment->getUserCommentCount(1)[0]['count']; // TODO: Use current user ID.
@@ -89,37 +90,7 @@ include __DIR__ . '/../header.php';
                             <tbody>
                                 <?php 
 
-                                // $query = Select::new($connection)
-                                // ->columns(
-                                //     "p.id AS postId",
-                                //     "p.title AS post",
-                                //     "p.slug AS slug",
-                                //     "c.id AS comment_id",
-                                //     "u.id AS user_id",
-                                //     "c.status AS comment_status",
-                                //     "(SELECT COUNT(id) FROM comments c WHERE c.post_id = p.id) AS comment_count",
-                                //     "(SELECT username FROM users u WHERE c.user_id = u.id) AS comment_user",
-                                //     "CASE
-                                //         WHEN c.user_id = 0 THEN c.author_name
-                                //         ELSE COALESCE(u.display_name, c.author_name)
-                                //     END AS author",
-                                //     "CONCAT(c.content) AS comment",
-                                //     "c.created_at AS date", 
-                                //     "COALESCE(u.email, c.author_email) AS email", 
-                                //     "COALESCE(u.website, c.author_website) AS website",
-                                //     "CASE
-                                //         WHEN c.parent > 0 THEN CONCAT('In reply to <a href=\"', pc.author_website, '\">', COALESCE(pcu.display_name, pc.author_name), '</a> ')
-                                //         ELSE ''
-                                //     END AS in_reply_to"
-                                // )
-                                // ->from('comments c')
-                                // ->join('LEFT', 'users u', 'c.user_id = u.id')
-                                // ->join('', 'posts p', 'c.post_id = p.id')
-                                // ->join('LEFT', 'comments pc', 'c.parent = pc.id')
-                                // ->join('LEFT', 'users pcu', 'pc.user_id = pcu.id');
-                                // ->whereSprintf("(pc.id IS NOT NULL OR c.parent = 0)");
-
-                                $query = Select::new($connection)
+                                $query = Select::new($container->get(Connection::class))
                                     ->columns(
                                         "p.id AS postId",
                                         "p.title AS post",
@@ -174,7 +145,7 @@ include __DIR__ . '/../header.php';
                                     <td>
                                         <div class="d-flex gap-2 fs-sm">
                                             <span class="">
-                                                <img src="<?= (new Core\Models\User($connection))->getAvatar($comment['user_id']) ?>" height="32" width="32">
+                                                <img src="<?= ($container->get(Core\Models\User::class))->getAvatar($comment['user_id']) ?>" height="32" width="32">
                                             </span>
                                             <span class="">
                                                 <span class="fw-bold"><?= $comment['author'] ?></span><br />
@@ -277,5 +248,4 @@ include __DIR__ . '/../header.php';
     })
 </script>
 
-<?php include __DIR__ . '/../includes/flash.php'; ?>
 <?php include __DIR__ . '/../footer.php'; ?>

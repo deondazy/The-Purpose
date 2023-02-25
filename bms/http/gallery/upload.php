@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
         if ($check !== false) {
             if (move_uploaded_file($uploadedFiles['tmp_name'][$i], $targetFile)) {
-                $gallery = new Core\Models\Gallery($connection);
+                $gallery = $container->get(Core\Models\Gallery::class);
                 $result = $gallery->create([
                     'name' => $newName,
                     'image' => $filePath . $newName,

@@ -6,7 +6,7 @@ require_once __DIR__ . '/../../../bootstrap.php';
 
 $catId = $_GET['category_id'];
 
-$category = new Core\Models\Category($connection);
+$category = $container->get(Core\Models\Category::class);
 
 $id = ($category->get('id', $catId)['id']) ?? null;
 

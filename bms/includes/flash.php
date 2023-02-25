@@ -1,15 +1,6 @@
-<script src="<?= $config->site->url; ?>/bms/assets/js/vendor/noty.min.js"></script>
-
-<script> 
-Noty.overrideDefaults({
-    theme: 'limitless',
-    layout: 'topRight',
-    type: 'alert',
-    timeout: 2500
-});
-</script>
-
 <?php
+$flash = $container->get(Core\Flash::class);
+
 // Check for success messages and display them
 if ($flash->has('success')) {
     echo "<script>new Noty({
@@ -25,4 +16,13 @@ if ($flash->has('error')) {
         type: 'error'
     }).show();</script>";
 }
-?>
+
+echo "<script src='{$config->site->url}/bms/assets/js/vendor/noty.min.js'></script>";
+echo "<script> 
+Noty.overrideDefaults({
+    theme: 'limitless',
+    layout: 'topRight',
+    type: 'alert',
+    timeout: 2500
+});
+</script>";

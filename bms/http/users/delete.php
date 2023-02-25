@@ -4,7 +4,8 @@ use Core\Utility;
 
 require_once __DIR__ . '/../../../bootstrap.php';
 
-$user = new Core\Models\User($connection);
+$user = $container->get(Core\Models\User::class);
+$flash = $container->get(Core\Flash::class);
 
 $id = $user->get('id', $_GET['user_id'] ?? null)['id'] ?? null;
 

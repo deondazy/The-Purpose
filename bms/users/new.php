@@ -70,7 +70,7 @@ include __DIR__ . '/../header.php';
                             <div class="mb-3">
                                 <label for="role" class="form-label">Role:</label>
                                 <select class="form-control" id="role" name="role">
-                                    <?php foreach((new Core\Models\Role($connection))->getAll('id, name', ['orderBy' => ['id DESC']]) as $role) : ?>
+                                    <?php foreach(($container->get(Core\Models\Role::class))->getAll('id, name', ['orderBy' => ['id DESC']]) as $role) : ?>
                                         <option value="<?= $role['id'] ?>"><?= $role['name'] ?></option>
                                     <?php endforeach; ?>
                                 </select>

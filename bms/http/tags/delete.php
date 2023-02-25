@@ -6,7 +6,8 @@ require_once __DIR__ . '/../../../bootstrap.php';
 
 $tagId = $_GET['tag_id'];
 
-$tag = new Core\Models\Tag($connection);
+$tag = $container->get(Core\Models\Tag::class);
+$flash = $container->get(Core\Flash::class);
 
 $id = ($tag->get('id', $tagId)['id']) ?? null;
 

@@ -10,7 +10,7 @@ $page = 'Edit Tag';
 
 $tagId = $_GET['tag_id'] ?? null;
 
-$tag = new Core\Models\Tag($connection);
+$tag = $container->get(Core\Models\Tag::class);
 
 if (!$tag->get('id', $tagId)) {
     $flash->set('error', 'Invalid Action');

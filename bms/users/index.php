@@ -1,6 +1,7 @@
 <?php 
 
 use Core\Utility;
+use Atlas\Pdo\Connection;
 use Atlas\Query\Select;
 
 require_once __DIR__ . '/../../bootstrap.php';
@@ -9,7 +10,7 @@ $parent = 'users/';
 $file = $parent;
 $page = 'Manage Users';
 
-$user = new Core\Models\User($connection);
+$user = $container->get(Core\Models\User::class);
 
 include __DIR__ . '/../header.php'; 
 ?>
@@ -47,7 +48,7 @@ include __DIR__ . '/../header.php';
                             <tbody>
 
                                 <?php 
-                                $query = Select::new($connection)
+                                $query = Select::new($container->get(Connection::class))
                                     ->columns(
                                         'users.id',
                                         'users.username',
@@ -71,7 +72,7 @@ include __DIR__ . '/../header.php';
                                         <td class="fw-bold">
                                             <div class="d-flex gap-2">
                                                 <div class="avatar align-bottom">
-                                                    <img src="<?= (new Core\Models\User($connection))->getAvatar($user['id']) ?>" width="40">
+                                                    <img src="<?= ($container->get(Core\Models\User::class))->getAvatar($user['id']) ?>" width="40">
                                                 </div>
                                                 <div class="text-muted">
                                                     <span class="align-top"><?= $user['username'] ?></span>

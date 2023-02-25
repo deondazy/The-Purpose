@@ -6,16 +6,10 @@ use Atlas\Query\Delete;
 use Atlas\Query\Insert;
 use Atlas\Query\Select;
 use Atlas\Query\Update;
+use Atlas\Pdo\Connection;
 
 abstract class Base
 {
-    /**
-     * The Database Connection
-     * 
-     * @var Core\Database\Connection
-     */
-    protected $connection;
-
     /**
      * The Database Table
      * 
@@ -24,14 +18,12 @@ abstract class Base
     protected $table;
 
     /**
-     * Constructor sets the Database Table.
-     *
-     * @param string $table The Database Table.
+     * Set the Database connection in the constructor
+     * 
+     * @param Connection $connection
      */
-    public function __construct($connection, $table)
+    public function __construct(protected Connection $connection)
     {
-        $this->connection = $connection;
-        $this->table = $table;
     }
 
     /**
