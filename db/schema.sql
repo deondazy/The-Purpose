@@ -43,6 +43,7 @@ CREATE TABLE `events` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `event_date` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `title` (`title`)
