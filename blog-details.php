@@ -106,21 +106,25 @@ label.error {
                                 <p class="news-details__text-one"><?= $postContent ?></p>
                             </div>
                             <div class="news-details__bottom">
-                                <p class="news-details__tags">
-                                    <span>Tags:</span>
-                                    <a href="news-details.html#">Donation</a>
-                                    <a href="news-details.html#">Charity</a>
-                                    <a href="news-details.html#">Poor</a>
-                                </p>
+                                    <?php 
+                                    $postTags = $postTag->getAll('tag_id', ['where' => ['post_id' => $postId]]);
+
+                                    if (!empty($postTags)) : ?>
+                                        <p class="news-details__tags">
+                                            <span>Tags:</span>
+                                            <?php foreach ($postTags as $t) : ?>
+                                                <a href="<?= $config->site->url ?>/blog/tag/<?= $tag->get('slug', $t['tag_id'])['slug'] ?>"><?= ucfirst($tag->get('name', $t['tag_id'])['name']) ?></a>
+                                            <?php endforeach; ?>
+                                        </p>
+                                    <?php endif; ?>
                                 <div class="news-details__social-list">
                                     <span class="me-3">Share:</span>
                                     <a rel="nofollow" target="_blank" href="<?= Utility::generateTwitterShareUrl($postUrl, $postTitle, $image) ?>"><i class="fab fa-twitter"></i></a>
                                     <a rel="nofollow" target="_blank" href="<?= Utility::generateFacebookShareUrl($postUrl, $image) ?>"><i class="fab fa-facebook-square"></i></a>
-                                    <a rel="nofollow" target="_blank" href="<?= Utility::generateInstagramShareUrl($postUrl, $image) ?>"><i class="fab fa-instagram"></i></a>
+                                    <!-- <a rel="nofollow" target="_blank" href="<?= Utility::generateInstagramShareUrl($postUrl, $image) ?>"><i class="fab fa-instagram"></i></a> -->
                                     <a rel="nofollow" target="_blank" href="<?= Utility::generateLinkedinShareUrl($postUrl, $postTitle, $postDescription, $image) ?>"><i class="fab fa-linkedin"></i></a>
                                 </div>
                             </div>
-                            xxx
                             <div class="author-one">
                                 <div class="author-one__image">
                                     <img src="<?= $user->getAvatar($postClass->get('author', $postId)) ?>" alt="">
