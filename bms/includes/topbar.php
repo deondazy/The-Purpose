@@ -35,32 +35,29 @@
         </div>
 
         <ul class="nav gap-sm-2 order-1 order-lg-2 ms-auto">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded">
                     <i class="ph-bell"></i>
                     <span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">2</span>
                 </a>
-            </li>
+            </li> -->
 
             <li class="nav-item nav-item-dropdown-lg dropdown">
                 <a href="#" class="navbar-nav-link align-items-center rounded p-1" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="status-indicator-container">
-                        <img src="/../bms/assets/images/face3.jpg" class="w-32px h-32px rounded" alt="">
+                        <img src="<?= $user->getAvatar($currentUserId) ?>" class="w-32px h-32px rounded" alt="">
                         <span class="status-indicator bg-success"></span>
                     </div>
-                    <span class="d-none d-lg-inline-block mx-lg-2">Victoria</span>
+                    <span class="d-none d-lg-inline-block mx-lg-2"><?= $user->get('display_name', $currentUserId)['display_name'] ?></span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a href="#" class="dropdown-item">
+                    <a href="<?= $config->site->url ?>/bms/users/profile/" class="dropdown-item">
                         <i class="ph-user-circle me-2"></i>
                         My Profile
                     </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ph-gear me-2"></i>
-                        Change Password
-                    </a>
-                    <a href="#" class="dropdown-item">
+                    
+                    <a href="<?= $config->site->url ?>/bms/http/auth/sign-out/" class="dropdown-item">
                         <i class="ph-sign-out me-2"></i>
                         Sign Out
                     </a>
