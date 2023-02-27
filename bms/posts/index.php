@@ -180,7 +180,7 @@ include __DIR__ . '/../header.php';
                                         
                                         <td class="fs-sm" data-order="<?= $post['latest_date'] ?>">
                                             <?= ($post['status'] == 'DRAFT' || $post['status'] == 'TRASH') ? 'Last Modified' : 'Published' ?><br />
-                                            <?= Utility::formatDate($post['latest_date'], 'Y/m/d \a\t h:i a'); ?>
+                                            <?= Utility::formatDate($post['latest_date'], 'm/d/Y \a\t h:i a'); ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
