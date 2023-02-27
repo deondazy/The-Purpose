@@ -27,6 +27,7 @@ RewriteRule ^about/*$ ./about.php
 RewriteRule ^volunteers/*$ ./volunteers.php
 RewriteRule ^gallery/*$ ./gallery.php
 RewriteRule ^events/*$ ./events.php
+RewriteRule ^events/page/([0-9]+)/*$ ./events.php?page=$1
 RewriteRule ^blog/*$ ./blog.php
 RewriteRule ^blog/([0-9a-zA-Z-_]+)/*$ ./blog-details.php?slug=$1
 RewriteRule ^blog/author/([0-9a-zA-Z-_]+)/*$ ./blog-author.php?username=$1
