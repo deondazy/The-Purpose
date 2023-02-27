@@ -76,11 +76,11 @@ include __DIR__ . '/../header.php';
                                                 <div class="text-muted">
                                                     <span class="align-top"><?= $user['username'] ?></span>
                                                     <div class="actions fs-sm fw-medium">
-                                                        <a href="<?= $config->site->url ?>/bms/users/<?= ($user['id'] != $auth->currentUserId()) ? "edit/{$user['id']}/" : 'profile/' ?>">Edit</a> 
+                                                        <a href="<?= $config->site->url ?>/bms/users/<?= ($user['id'] != $currentUserId) ? "edit/{$user['id']}/" : 'profile/' ?>">Edit</a> 
                                                         
                                                         <span class="text-muted fs-xs mx-1">|</span>
         
-                                                        <?php if ($user['id'] != $auth->currentUserId()) : ?>
+                                                        <?php if ($user['id'] != $currentUserId) : ?>
                                                             <a class="text-danger" href="<?= $config->site->url ?>/bms/http/users/delete/<?= $user['id'] ?>/" onclick="return confirm('User cannot be recovered after delete. OK to Delete?')">Delete</a>
                                                             <span class="text-muted fs-xs mx-1">|</span>
                                                         <?php endif; ?>

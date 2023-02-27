@@ -9,10 +9,12 @@ $parent = 'comments/';
 $file = $parent;
 $page = 'Comments';
 
+include __DIR__ . '/../header.php'; 
+
 $comment = new Core\Models\Comment($connection);
 
 $allCommentsCount = $comment->count()['count'];
-$myCommentsCount = $comment->getUserCommentCount(1)[0]['count']; // TODO: Use current user ID.
+$myCommentsCount = $comment->getUserCommentCount($currentUserId)[0]['count'];
 $pendingCommentsCount = $comment->count(['status' => 'PENDING'])['count'];
 $approvedCommentsCount = $comment->count(['status' => 'APPROVED'])['count'];
 $spamCommentsCount = $comment->count(['status' => 'SPAM'])['count'];
@@ -31,8 +33,6 @@ function activeStatus($active) {
 
     return ($active == $status);
 }
-
-include __DIR__ . '/../header.php'; 
 ?>
 
 <style>
@@ -156,7 +156,7 @@ include __DIR__ . '/../header.php';
                                     // dd($query->fetchAll());
 
                                 if ($status && $status == 'mine') {
-                                    $query->catWhereSprintf(" AND u.id = 1"); // TODO: use current use ID
+                                    $query->catWhereSprintf(" AND u.id = {$currentUserId}");
                                 } 
                                 
                                 if ($status && $status != 'mine') {

@@ -10,8 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 }
 
 $user = new Core\Models\User($connection);
-$session = new Core\Models\Session($connection);
-$auth = new Core\Auth($user, $session);
 
 $postSlug = Utility::escape($_POST['post_slug']);
 

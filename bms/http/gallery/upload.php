@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $result = $gallery->create([
                     'name' => $newName,
                     'image' => $filePath . $newName,
-                    'user_id' => 1, // TODO: Use current user ID
+                    'user_id' => $currentUserId,
                 ]);
             } else {
                 $error = 'Error uploading file ' . $targetFile;

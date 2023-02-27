@@ -161,7 +161,7 @@ label.error {
                                 if ($flash->has('pending_comment')) : $commentContent = $flash->get('pending_comment'); ?>
                                     <div class="comment-one__single" id="comment-<?= $commentContent['comment_id'] ?>">
                                         <div class="comment-one__image">
-                                            <img src="<?= $user->getAvatar($auth->currentUserId(), $commentContent['email']) ?>" alt="">
+                                            <img src="<?= $user->getAvatar($currentUserId, $commentContent['email']) ?>" alt="">
                                         </div>
                                         <div class="comment-one__content">
                                         <h3><?= $commentContent['name'] ?> <span><?= Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $commentContent['date'])->diffForHumans() ?></span></h3>
@@ -177,13 +177,13 @@ label.error {
                                 <?php endif; ?>
                                 <h3 id="comment_box_title" class="comment-form__title">Leave a Comment</h3>
                                 <?php if ($auth->isLogged()) : ?>
-                                    <Required>Signed in as <?= $user->get('display_name', $auth->currentUserId())['display_name'] ?>. <a href="<?= $config->site->url ?>/bms/users/profile/" style="color: var(--thm-primary);">Edit Profile.</></a> <a href="<?= $config->site->url ?>/bms/http/auth/sign-out/?ref=<?= urlencode($_SERVER['REQUEST_URI']) ?>" style="color: var(--thm-primary);">Sign Out?</a> Required fields are marked *</p>
+                                    <Required>Signed in as <?= $user->get('display_name', $currentUserId)['display_name'] ?>. <a href="<?= $config->site->url ?>/bms/users/profile/" style="color: var(--thm-primary);">Edit Profile.</></a> <a href="<?= $config->site->url ?>/bms/http/auth/sign-out/?ref=<?= urlencode($_SERVER['REQUEST_URI']) ?>" style="color: var(--thm-primary);">Sign Out?</a> Required fields are marked *</p>
                                 <?php else : ?>
                                     <p>Your email address will not be published. Required fields are marked *</p>
                                 <?php endif ?>
                                 <form method="post" action="<?= $config->site->url ?>/bms/http/comments/new/" class="comment-one__form">
                                     <input type="hidden" name="post_id" value="<?= $postId ?>">
-                                    <input type="hidden" name="user_id" value="<?= $auth->currentUserId() ?>">
+                                    <input type="hidden" name="user_id" value="<?= $currentUserId ?>">
                                     <input type="hidden" name="post_slug" value="<?= $slug ?>">
 
                                     <div class="row mb-3">

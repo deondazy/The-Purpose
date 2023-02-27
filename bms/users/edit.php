@@ -8,7 +8,7 @@ $user = new Core\Models\User($connection);
 $role = new Core\Models\Role($connection);
 $userRole = new Core\Models\UserRole($connection);
 
-$userId = (!defined('PROFILE')) ? $user->get('id', $_GET['user_id'] ?? null)['id'] ?? null : $auth->currentUserId();
+$userId = (!defined('PROFILE')) ? $user->get('id', $_GET['user_id'] ?? null)['id'] ?? null : ($currentUserId ?? null);
 
 if (!$userId) {
     $flash->set('error', 'Invalid Action');

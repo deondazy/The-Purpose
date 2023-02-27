@@ -26,7 +26,7 @@ try {
         'slug'           => empty($_POST['slug']) ? Utility::slug($_POST['title']) : Utility::escape($_POST['slug']),
         'content'        => $_POST['content'],
         'featured_image' => $filename,
-        'author'         => empty($_POST['author']) ? $auth->currentUserId() : Utility::escape($_POST['author']),
+        'author'         => empty($_POST['author']) ? $currentUserId : Utility::escape($_POST['author']),
         'status'         => isset($_POST['publish']) ? 'publish': 'draft',
         'created_at'     => $date,
         'updated_at'     => $date,
