@@ -152,7 +152,7 @@ label.error {
                                         <h3><?= $c['author'] ?> <span><?= Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $c['date'])->diffForHumans() ?></span></h3>
                                         <p><?= $c['comment'] ?></p>
 
-                                        <a rel="nofollow" class="reply-to-comment mt-4 d-block" href="?replyto=<?= $c['comment_id'] ?>#comment_box" data-commentid="<?= $c['comment_id'] ?>" data-postid="<?= $postId ?>" data-belowelement="comment-<?= $c['comment_id'] ?>" data-respondelement="comment_box" data-replyto="Reply to <?= $c['author'] ?>" aria-label="Reply to <?= $c['author'] ?>"><i class="fas fa-arrow-circle-right"></i> Reply</a>
+                                        <!-- <a rel="nofollow" class="reply-to-comment mt-4 d-block" href="?replyto=<?= $c['comment_id'] ?>#comment_box" data-commentid="<?= $c['comment_id'] ?>" data-postid="<?= $postId ?>" data-belowelement="comment-<?= $c['comment_id'] ?>" data-respondelement="comment_box" data-replyto="Reply to <?= $c['author'] ?>" aria-label="Reply to <?= $c['author'] ?>"><i class="fas fa-arrow-circle-right"></i> Reply</a> -->
                                     </div>
                                 </div>
 
@@ -226,7 +226,7 @@ label.error {
 
                                     <div class="row mb-3">
                                         <div class="col-xl-12">
-                                            <input type="hidden" name="comment_parent" id="comment_id_input">
+                                            <input type="hidden" name="parent" id="comment_id_input">
                                             <button type="submit" class="thm-btn comment-form__btn"><i class="fas fa-arrow-circle-right"></i>Submit Comment</button>
                                         </div>
                                     </div>
