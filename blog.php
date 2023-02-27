@@ -61,7 +61,10 @@ include __DIR__ . '/includes/header.php'; ?>
 
                     <?php 
                     endif;
-                    foreach ($posts as $post) : ?>
+                    foreach ($posts as $post) : 
+                        $authorUsername = $user->get('username', $post['author'])['username'] ?? null;
+                        $authorDisplayname = $user->get('display_name', $post['author'])['display_name'] ?? null;
+                    ?>
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
                         <!--News Two Single-->
                         <div class="news-two__single">
@@ -82,7 +85,12 @@ include __DIR__ . '/includes/header.php'; ?>
                             </div>
                             <div class="news-two__content">
                                 <ul class="list-unstyled news-two__meta">
-                                    <li><a href="<?= $config->site->url ?>/blog/author/<?= $user->get('username', $post['author'])['username'] ?>/"><i class="far fa-user-circle"></i> <?= $user->get('display_name', $post['author'])['display_name'] ?></a></li>
+                                    <li>
+                                        <a href="<?= $config->site->url ?>/blog/author/<?= $authorUsername ?>/">
+                                            <i class="far fa-user-circle"></i> 
+                                            <?= $authorDisplayname ?>
+                                        </a>
+                                    </li>
                                     <li><span>/</span></li>
                                     <li><a href="<?= $config->site->url ?>/blog/<?= $post['slug'] ?>#comments"><i class="far fa-comments"></i> <?= Atlas\Query\Select::new($connection)->columns("COUNT('id') AS count")->from('comments')->whereEquals(['post_id' => $post['id']])->whereEquals(['status' => 'APPROVED'])->fetchOne()['count'] ?> Comments</a>
                                     </li>
