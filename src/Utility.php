@@ -114,4 +114,74 @@ class Utility {
         // Return the escaped input
         return $input;
     }
+
+    public static function getPostDescription($content) 
+    {
+        $pattern = '/<p>(.*?)<\/p>/i'; // Match content between <p> tags
+        $matches = [];
+      
+        preg_match($pattern, $content, $matches); // Match the first occurrence
+      
+        if (!empty($matches)) {
+            $description = $matches[1]; // Get the content between the tags
+            $description = strip_tags($description); // Remove any HTML tags
+            $description = substr($description, 0, 150); // Limit the description to 150 characters
+        } else {
+            $description = 'N/A'; // Set a default description
+        }
+      
+        return $description;
+    }
+
+    public static function generateFacebookShareUrl($url, $image) 
+    {
+        $share_url = 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode($url);
+        $share_url .= '&picture=' . urlencode($image);
+        return $share_url;
+    }
+
+    public static function generateTwitterShareUrl($url, $title, $image, $handle = null, $hashTags = null) 
+    {
+        $share_url = 'https://twitter.com/intent/tweet?';
+        $share_url .= 'text=' . urlencode($title);
+        $share_url .= '&url=' . urlencode($url);
+        if (!is_null($hashTags)) {
+            $share_url .= "&hashtags={$hashTags}";
+        }
+
+        if (!is_null($handle)) {
+            $share_url .= "&via={$handle}";
+        }
+
+        $share_url .= '&media=' . urlencode($image);
+        return $share_url;
+    }
+      
+    public static function generateLinkedinShareUrl($url, $title, $description, $image) 
+    {
+        global $config;
+
+        $share_url = 'https://www.linkedin.com/sharing/share-offsite/?';
+        $share_url .= 'url=' . urlencode($url);
+        $share_url .= '&title=' . urlencode($title);
+        $share_url .= '&summary=' . urlencode($description);
+        $share_url .= "&source={$config->site->url}";
+        $share_url .= '&mini=true';
+        $share_url .= '&images[0]=' . urlencode($image);
+        $share_url .= '&width=700&height=400';
+        return $share_url;
+    }
+
+    public static function generateInstagramShareUrl($url, $image) 
+    {
+        // Encode the image URL for use in the Instagram URL
+        $encodedImageUrl = rawurlencode($image);
+        
+        // Generate the Instagram share URL
+        $instagramUrl = 'https://www.instagram.com/create/story/';
+        $instagramUrl .= '?media=' . $encodedImageUrl;
+        $instagramUrl .= '&url=' . urlencode($url);
+        
+        return $instagramUrl;
+    }  
 }
