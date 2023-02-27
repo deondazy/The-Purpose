@@ -27,13 +27,14 @@ if (!version_compare(PHP_VERSION, CORE_PHP, '>=')) {
     );
 }
 
-var_dump('here'); exit;
 
 // Set default timezone, we'll base off of this later
 date_default_timezone_set('UTC');
 
 // Require Autoloader
 require_once(CORE_ROOT . '/vendor/autoload.php');
+
+var_dump('autoloading works'); exit;
 
 // Load environment variables
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
