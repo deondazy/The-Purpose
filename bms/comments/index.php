@@ -238,7 +238,7 @@ include __DIR__ . '/../header.php';
                                             Post Comments: <?= $comment['comment_count'] ?>
                                         </div>
                                     </td>
-                                    <td class="fs-sm"><?= Utility::formatDate($comment['date'], 'Y/m/d \a\t h:i a'); ?></td>
+                                    <td class="fs-sm"><?= Utility::formatDate($comment['date'], 'm/d/Y \a\t h:i a'); ?></td>
                                 </tr>
                                 <?php endforeach; ?>
 
@@ -264,7 +264,7 @@ include __DIR__ . '/../header.php';
     $(document).ready(function() {
         $('.datatable-basic').DataTable({
             order: [[3, 'desc']],
-            autoWidth: true,
+            autoWidth: false,
             dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
             language: {
                 emptyTable: 'No comments found.',
