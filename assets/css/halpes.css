@@ -258,7 +258,7 @@ h6 {
     float: left;
     background-color: var(--thm-primary);
     text-align: center;
-    padding: 44px 0;
+    padding: 22px 0;
 }
 
 
@@ -702,6 +702,10 @@ h6 {
     cursor: pointer;
     transition: 500ms;
     margin-right: 20px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    outline: 0;
 }
 
 .main-menu .mobile-nav__toggler:hover {
@@ -2867,7 +2871,6 @@ h6 {
     display: block;
     padding: 190px 0 100px;
     background-color: #eff5f4;
-    margin-top: -90px;
     z-index: 1;
 }
 
@@ -3697,20 +3700,9 @@ h6 {
 .site-footer__bottom {
     position: relative;
     display: block;
-    background: #1b1e2b;
     z-index: 1;
     margin-top: 87px;
-}
-
-.site-footer__bottom:before {
-    position: absolute;
-    top: 0;
-    right: -10000000000px;
-    left: 0;
-    bottom: 0;
-    content: "";
-    background: #1b1e2b;
-    z-index: -1;
+    padding-bottom: 25px;
 }
 
 .site-footer__bottom-inner {
@@ -6100,6 +6092,7 @@ h6 {
     font-size: 16px;
     color: var(--thm-gray);
     height: 192px;
+    line-height: 1.2;
     width: 100%;
     padding: 20px 30px 30px;
     border: none;
