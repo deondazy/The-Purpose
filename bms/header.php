@@ -21,7 +21,6 @@
     <script src="<?= $config->site->url; ?>/bms/assets/js/jquery.min.js"></script>
 	<script src="<?= $config->site->url; ?>/bms/assets/js/app.js"></script>
 	<!-- /theme JS files -->
-
 </head>
 
 <body>
