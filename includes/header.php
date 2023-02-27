@@ -37,6 +37,8 @@ $user = new Core\Models\User($connection);
     <!-- template styles -->
     <link rel="stylesheet" href="<?= $config->site->url ?>/assets/css/halpes.css" />
     <link rel="stylesheet" href="<?= $config->site->url ?>/assets/css/halpes-responsive.css" />
+
+    <?= (isset($injectInHeaderSection)) ? $injectInHeaderSection : '' ?>
 </head>
 
 <body>
