@@ -21,6 +21,31 @@ if (empty($postClass->getAll('id', ['where' => ['slug' => $slug]]))) {
 }
 
 $postId = $postClass->getAll('id', ['where' => ['slug' => $slug]])[0]['id'];
+$postUrl = "{$config->site->url}/blog/{$slug}";
+$postTitle = Utility::escape($postClass->get('title', $postId)['title']);
+$postContent = $postClass->get('content', $postId)['content'];
+$postDescription = Utility::getPostDescription($postContent);
+$postImage = $postClass->get('featured_image', $postId)['featured_image'];
+$image = (!is_null($postImage)) ? "{$config->site->url}/public/uploads/posts/featured-images/{$postImage}" : "{$config->site->url}/public/assets/images/blog_featured_image_placeholder.jpg";
+$imageSize = @getimagesize($image);
+$imageWidth = $imageSize[0] ?? 1542;
+$imageHeight = $imageSize[1] ?? 1025;
+
+$injectInHeaderSection = <<<HEADER
+    <meta property="og:title" content="{$postTitle}">
+    <meta property="og:description" content="{$postDescription}">
+    <meta property="og:image" content="{$image}">
+    <meta property="og:url" content="{$postUrl}">
+    <meta property="og:type" content="article">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{$postTitle}">
+    <meta name="twitter:description" content="{$postDescription}">
+    <meta name="twitter:image" content="{$image}">
+
+    <meta property="og:image:width" content="{$imageWidth}">
+    <meta property="og:image:height" content="{$imageHeight}">
+HEADER;
 
 include __DIR__ . '/includes/header.php'; ?>
 <style> 
@@ -54,7 +79,7 @@ label.error {
             <div class="page-header__bg" style="background-image: url(<?= $config->site->url ?>/assets/images/backgrounds/page-header-bg-1-1.jpg);"></div>
             <!-- /.page-header__bg -->
             <div class="container">
-                <h2><?= Utility::escape($postClass->get('title', $postId)['title']) ?></h2>
+                <h2><?= $postTitle ?></h2>
             </div>
         </section>
         <!--Page Header End-->
@@ -65,9 +90,9 @@ label.error {
                 <div class="row">
                     <div class="col-xl-8 col-lg-7">
                         <div class="news-details__left">
-                            <?php if (!empty($postClass->get('featured_image', $postId))) : ?>
+                            <?php if (!empty($postImage)) : ?>
                                 <div class="news-details__img">
-                                    <img src="<?= $config->site->url ?>/public/uploads/posts/featured-images/<?= $postClass->get('featured_image', $postId)['featured_image'] ?>" alt="">
+                                    <img src="<?= $config->site->url ?>/public/uploads/posts/featured-images/<?= $postImage ?>" alt="">
                                 </div>
                             <?php endif; ?>
                             <div class="news-details__content">
@@ -78,7 +103,7 @@ label.error {
                                     </li>
                                 </ul>
                                 <h3 class="news-details__title"><?= Utility::escape($postClass->get('title', $postId)['title']) ?></h3>
-                                <p class="news-details__text-one"><?= $postClass->get('content', $postId)['content'] ?></p>
+                                <p class="news-details__text-one"><?= $postContent ?></p>
                             </div>
                             <div class="news-details__bottom">
                                 <p class="news-details__tags">
@@ -88,12 +113,14 @@ label.error {
                                     <a href="news-details.html#">Poor</a>
                                 </p>
                                 <div class="news-details__social-list">
-                                    <a href="news-details.html#"><i class="fab fa-twitter"></i></a>
-                                    <a href="news-details.html#"><i class="fab fa-facebook-square"></i></a>
-                                    <a href="news-details.html#"><i class="fab fa-dribbble"></i></a>
-                                    <a href="news-details.html#"><i class="fab fa-instagram"></i></a>
+                                    <span class="me-3">Share:</span>
+                                    <a rel="nofollow" target="_blank" href="<?= Utility::generateTwitterShareUrl($postUrl, $postTitle, $image) ?>"><i class="fab fa-twitter"></i></a>
+                                    <a rel="nofollow" target="_blank" href="<?= Utility::generateFacebookShareUrl($postUrl, $image) ?>"><i class="fab fa-facebook-square"></i></a>
+                                    <a rel="nofollow" target="_blank" href="<?= Utility::generateInstagramShareUrl($postUrl, $image) ?>"><i class="fab fa-instagram"></i></a>
+                                    <a rel="nofollow" target="_blank" href="<?= Utility::generateLinkedinShareUrl($postUrl, $postTitle, $postDescription, $image) ?>"><i class="fab fa-linkedin"></i></a>
                                 </div>
                             </div>
+                            xxx
                             <div class="author-one">
                                 <div class="author-one__image">
                                     <img src="<?= $user->getAvatar($postClass->get('author', $postId)) ?>" alt="">
