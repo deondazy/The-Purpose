@@ -14,14 +14,15 @@ class User extends Base
         parent::__construct($connection, $this->table);
     }
 
-    public function getAvatar($userId)
+    public function getAvatar($userId, $email = null)
     {
         $uploadedAvatar = $this->get('avatar', $userId)['avatar'] ?? null;
-        $email = $this->get('email', $userId)['email'] ?? 'guest';
+
+        if (is_null($email)) {
+            $email = $this->get('email', $userId)['email'] ?? 'guest';
+        }
+
         $username = $this->get('username', $userId)['username'] ?? null;
-
-        // dd(CORE_ROOT);
-
 
         if (!$uploadedAvatar) {
             return Utility::generateAvatar($email);
