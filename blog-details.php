@@ -1,6 +1,7 @@
 <?php
 
 use Core\Utility;
+use Atlas\Query\Select;
 
 require_once __DIR__ . '/bootstrap.php';
 
@@ -8,6 +9,7 @@ $page = 'blog';
 
 $slug = $_GET['slug'] ?? null;
 
+$category = new \Core\Models\Category($connection);
 $postCategory = new Core\Models\PostCategory($connection);
 $postTag = new Core\Models\PostTag($connection);
 $tag = new Core\Models\Tag($connection);
@@ -113,7 +115,7 @@ label.error {
                                         <p class="news-details__tags">
                                             <span>Tags:</span>
                                             <?php foreach ($postTags as $t) : ?>
-                                                <a href="<?= $config->site->url ?>/blog/tag/<?= $tag->get('slug', $t['tag_id'])['slug'] ?>"><?= ucfirst($tag->get('name', $t['tag_id'])['name']) ?></a>
+                                                <a href="<?= $config->site->url ?>/blog/tag/<?= $tag->get('slug', $t['tag_id'])['slug'] ?>"><?= ucwords($tag->get('name', $t['tag_id'])['name']) ?></a>
                                             <?php endforeach; ?>
                                         </p>
                                     <?php endif; ?>
@@ -267,71 +269,72 @@ label.error {
                     </div>
                     <div class="col-xl-4 col-lg-5">
                         <div class="sidebar">
-                            <div class="sidebar__single sidebar__search">
+                            <!-- <div class="sidebar__single sidebar__search">
                                 <form action="news-details.html#" class="sidebar__search-form">
                                     <input type="search" placeholder="Search">
                                     <button type="submit"><i class="icon-magnifying-glass"></i></button>
                                 </form>
-                            </div>
+                            </div> -->
                             <div class="sidebar__single sidebar__post">
                                 <h3 class="sidebar__title">Recent Posts</h3>
                                 <ul class="sidebar__post-list list-unstyled">
+                                    <?php 
+                                    $recent = Select::new($connection)
+                                        ->columns(
+                                            'p.featured_image as image',
+                                            'p.slug as slug',
+                                            'p.title as title',
+                                            'u.display_name as author',
+                                            'u.username as username'
+                                        )
+                                        ->from('posts p')
+                                        ->join('LEFT', 'users u', 'p.author = u.id')
+                                        ->whereEquals(['status' => 'PUBLISH'])
+                                        ->orderBy('p.created_at DESC')
+                                        ->limit(5)
+                                        ->fetchAll();
+                                    
+                                    foreach($recent as $r) : ?>
                                     <li>
-                                        <div class="sidebar__post-image">
-                                            <img src="assets/images/blog/lp-1-1.jpg" alt="">
-                                        </div>
+                                        <?php if (!empty($r['image'])) : ?>
+                                            <div class="sidebar__post-image">
+                                                <img src="<?= $config->site->url ?>/public/uploads/posts/featured-images/<?= $r['image'] ?>" alt="">
+                                            </div>
+                                        <?php endif ?>
                                         <div class="sidebar__post-content">
                                             <h3>
-                                                <a href="news-details.html#" class="sidebar__post-content_meta"><i class="far fa-user-circle"></i>by Admin</a>
-                                                <a href="news-details.html">Help Children Rise out of Poverty</a>
+                                                <a href="<?= $config->site->url ?>/blog/author/<?= $r['username'] ?>/" class="sidebar__post-content_meta"><i class="far fa-user-circle"></i>by <?= $r['author'] ?></a>
+                                                <a href="<?= $config->site->url ?>/blog/<?= $r['slug'] ?>/"><?= $r['title'] ?></a>
                                             </h3>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="sidebar__post-image">
-                                            <img src="assets/images/blog/lp-1-2.jpg" alt="">
-                                        </div>
-                                        <div class="sidebar__post-content">
-                                            <h3>
-                                                <a href="news-details.html#" class="sidebar__post-content_meta"><i class="far fa-user-circle"></i>by Admin</a>
-                                                <a href="news-details.html">Help Children Rise out of Poverty</a>
-                                            </h3>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="sidebar__post-image">
-                                            <img src="assets/images/blog/lp-1-3.jpg" alt="">
-                                        </div>
-                                        <div class="sidebar__post-content">
-                                            <h3>
-                                                <a href="news-details.html#" class="sidebar__post-content_meta"><i class="far fa-user-circle"></i>by Admin</a>
-                                                <a href="news-details.html">Help Children Rise out of Poverty</a>
-                                            </h3>
-                                        </div>
-                                    </li>
+                                    <?php endforeach ?>
                                 </ul>
                             </div>
                             <div class="sidebar__single sidebar__category">
                                 <h3 class="sidebar__title">Categories</h3>
                                 <ul class="sidebar__category-list list-unstyled">
-                                    <li><a href="news-details.html#"><i class="fas fa-arrow-circle-right"></i>Charity</a></li>
-                                    <li><a href="news-details.html#"><i class="fas fa-arrow-circle-right"></i>Fundrising</a></li>
-                                    <li><a href="news-details.html#"><i class="fas fa-arrow-circle-right"></i>Donations</a></li>
-                                    <li><a href="news-details.html#"><i class="fas fa-arrow-circle-right"></i>Save Lifes</a></li>
-                                    <li><a href="news-details.html#"><i class="fas fa-arrow-circle-right"></i>Health</a></li>
-                                    <li><a href="news-details.html#"><i class="fas fa-arrow-circle-right"></i>Education</a></li>
-                                    <li><a href="news-details.html#"><i class="fas fa-arrow-circle-right"></i>Food</a></li>
-                                    <li><a href="news-details.html#"><i class="fas fa-arrow-circle-right"></i>Water</a></li>
+                                    <?php foreach($category->getAll() as $cat) : ?>
+                                    <li><a href="<?= $config->site->url ?>/blog/category/<?= $cat['slug'] ?>/"><i class="fas fa-arrow-circle-right"></i><?= ucwords($cat['name']) ?></a></li>
+                                    <?php endforeach ?>
                                 </ul>
                             </div>
                             <div class="sidebar__single sidebar__tags">
                                 <h3 class="sidebar__title">Popular Tags</h3>
                                 <div class="sidebar__tags-list">
-                                    <a href="news-details.html#">Donation</a>
-                                    <a href="news-details.html#">Charity</a>
-                                    <a href="news-details.html#">Poor</a>
-                                    <a href="news-details.html#">Education</a>
-                                    <a href="news-details.html#">Fundraising</a>
+                                <?php 
+                                    $popular = Select::new($connection)
+                                        ->columns('tags.name as name', 'tags.slug as slug', 'COUNT(tags.id) AS count')
+                                        ->from('tags')
+                                        ->join('', 'post_tags', 'tags.id = post_tags.tag_id')
+                                        ->groupBy('tags.id')
+                                        ->orderBy('count DESC')
+                                        ->limit(5)
+                                        ->fetchAll();
+                                    
+                                    foreach($popular as $p) : ?>
+                                    <a href="<?= $config->site->url ?>/blog/tag/<?= $p['slug'] ?>"><?= $p['name'] ?></a>
+                                    <?php endforeach ?>
                                 </div>
                             </div>
                         </div>
