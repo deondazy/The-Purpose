@@ -103,7 +103,7 @@ include __DIR__ . '/../header.php';
                                         "GROUP_CONCAT(DISTINCT t.slug ORDER BY t.name SEPARATOR ', ') AS tag_slugs",
                                         "COUNT(DISTINCT co.id) AS comment_count",
                                         "u.id AS author_id",
-                                        "u.email AS author_email",
+                                        "u.display_name AS author_display_name",
                                     )
                                     ->from('posts p')
                                     ->join('LEFT', 'post_categories pc', 'p.id = pc.post_id')
@@ -149,7 +149,7 @@ include __DIR__ . '/../header.php';
                                             <?php endif; ?>
                                         </td>
                                         <td class="fs-base">
-                                            <a href="<?= $config->site->url ?>/bms/posts/<?= $post['author_id'] ?>"><?= $post['author_email']; ?></a>
+                                            <a href="<?= $config->site->url ?>/bms/posts/<?= $post['author_id'] ?>"><?= $post['author_display_name']; ?></a>
                                         </td>
                                         <?php
                                         // display categories with links
@@ -208,7 +208,7 @@ include __DIR__ . '/../header.php';
     $(document).ready(function() {
         $('.datatable-basic').DataTable({
             order: [[5, 'desc']],
-            autoWidth: false,
+            autoWidth: true,
             dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
             language: {
                 emptyTable: 'No posts found in <?= !is_null($status) ? ucfirst($status) : 'table' ?>',

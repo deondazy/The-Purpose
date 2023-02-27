@@ -75,9 +75,9 @@ include __DIR__ . '/../header.php';
                             <div class="mb-3">
                                 <label for="author" class="form-label">Author:</label>
                                 <select class="form-control" id="author" name="author" required>
-                                    <?php $authors = (new Core\Models\User($connection))->getAll('id, email'); ?>
+                                    <?php $authors = (new Core\Models\User($connection))->getAll('id, display_name'); ?>
                                     <?php foreach ($authors as $author) : ?>
-                                        <option value="<?= $author['id'] ?>"><?= $author['email'] ?></option>
+                                        <option value="<?= $author['id'] ?>"><?= $author['display_name'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

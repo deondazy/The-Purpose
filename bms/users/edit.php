@@ -8,7 +8,7 @@ $user = new Core\Models\User($connection);
 $role = new Core\Models\Role($connection);
 $userRole = new Core\Models\UserRole($connection);
 
-$userId = (!defined('PROFILE')) ? $user->get('id', $_GET['user_id'] ?? null)['id'] ?? null : 1; // TODO: Use current user ID;
+$userId = (!defined('PROFILE')) ? $user->get('id', $_GET['user_id'] ?? null)['id'] ?? null : $auth->currentUserId();
 
 if (!$userId) {
     $flash->set('error', 'Invalid Action');
@@ -30,6 +30,7 @@ $file = (!defined('PROFILE')) ? $parent : 'users/profile/';
 $page = (!defined('PROFILE')) ? 'Edit User' : 'Profile';
 
 include __DIR__ . '/../header.php'; 
+
 ?>
 
 <style>

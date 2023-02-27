@@ -18,17 +18,15 @@ $dashDraft = isset($_POST['dash_draft']);
 
 $date = isset($_POST['date']) ? Carbon::createFromFormat('m/d/Y', $_POST['date'])->format('Y-m-d H:i:s') : Carbon::now();
 
-// dd(isset($_POST['dash_draft']) ? '/bms/' : '/bms/posts/new');
-
 try {
     $filename = handleFeaturedImage($featuredImage);
 
     $input = [
-        'title'          => $_POST['title'],
-        'slug'           => empty($_POST['slug']) ? Utility::slug($_POST['title']) : $_POST['slug'],
+        'title'          => Utility::escape($_POST['title']),
+        'slug'           => empty($_POST['slug']) ? Utility::slug($_POST['title']) : Utility::escape($_POST['slug']),
         'content'        => $_POST['content'],
         'featured_image' => $filename,
-        'author'         => empty($_POST['author']) ? 1 : $_POST['author'], // TODO: Use current User ID
+        'author'         => empty($_POST['author']) ? $auth->currentUserId() : Utility::escape($_POST['author']),
         'status'         => isset($_POST['publish']) ? 'publish': 'draft',
         'created_at'     => $date,
         'updated_at'     => $date,

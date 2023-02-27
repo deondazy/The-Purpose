@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/includes/bms-user.php'; ?>
+<?php require __DIR__ . '/includes/bms-user.php'; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="layout-static">
 <head>

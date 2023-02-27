@@ -98,7 +98,7 @@ include __DIR__ . '/../header.php';
                                 <label for="author" class="form-label">Author:</label>
                                 <select class="form-control" id="author" name="author" required>
                                     <?php foreach ($authors as $author) : ?>
-                                        <option <?= ($author['id'] == $currentAuthor) ? 'selected' : '' ?> value="<?= $author['id'] ?>"><?= $author['email'] ?></option>
+                                        <option <?= ($author['id'] == $currentAuthor) ? 'selected' : '' ?> value="<?= $author['id'] ?>"><?= $author['display_name'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

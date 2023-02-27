@@ -54,7 +54,7 @@ try {
         Utility::redirect($config->site->url . '/bms/');
     }
 
-    $flash->set('error', 'Username or Password is incorrect');
+    $flash->set('error', 'Email or Password is incorrect');
     Utility::redirect($config->site->url . '/bms/sign-in/'.$refUrl);
 } catch (Exception $e) {
     $flash->set('error', $e->getMessage());
