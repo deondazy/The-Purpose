@@ -27,6 +27,8 @@ if (!version_compare(PHP_VERSION, CORE_PHP, '>=')) {
     );
 }
 
+var_dump('here'); exit;
+
 // Set default timezone, we'll base off of this later
 date_default_timezone_set('UTC');
 
