@@ -15,11 +15,13 @@ $menuItem[] = ['Categories', 'categories/', 'ph-square-half'];
 $menuItem[] = ['Tags', 'tags/', 'ph-tag'];
 $menuItem[] = ['Comments', 'comments/', 'ph-chats'];
 $menuItem[] = ['Gallery', 'gallery/', 'ph-image'];
+$menuItem[] = ['Events', 'events/', 'ph-calendar-plus'];
 $menuItem[] = ['Users', 'users/', 'ph-users'];
     $submenuItem['users/'][] = ['Manage Users', 'users/'];
     $submenuItem['users/'][] = ['Add New', 'users/new/'];
     $submenuItem['users/'][] = ['Profile', 'users/profile/'];
-$menuItem[] = ['Sign Out', 'sign-out/', 'ph-sign-out'];
+$menuItem[] = ['Settings', 'settings/', 'ph-gear'];
+$menuItem[] = ['Sign Out', 'http/auth/sign-out/', 'ph-sign-out'];
 ?>
 
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg">
@@ -100,9 +102,5 @@ $menuItem[] = ['Sign Out', 'sign-out/', 'ph-sign-out'];
 
     </div>
     <!-- /sidebar content -->
-
-    <div class="alert bg-secondary bg-opacity-20 sidebar-resize-hide rounded p-3 m-3">
-            <span class="fw-bold">Custom BMS V:1.0.0</span>
-    </div>
 
 </div>
