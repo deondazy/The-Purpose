@@ -87,30 +87,32 @@ try {
         }
     }
 
-    if (empty($input)) {
+    $role = $_POST['role'];
+
+    // Check if role has changed
+    $userRole = new Core\Models\UserRole($connection);
+    $willUpdateRole = $userRole->getUserRoleId($id) != $role;
+
+    $result = 0;
+    $roleUpdate = 0;
+
+    if (empty($input) && !$willUpdateRole) {
         $flash->set('error', 'No changes to update');
         Utility::redirect($config->site->url . '/bms/users/edit/'.$id);
+    } elseif (!empty($input)) {
+        $result = $user->update(['id' => $id], $input);
+    }  else {   
+        $roleUpdate = $userRole->update(['user_id' => $id], ['role_id' => $role]);
     }
 
-    $result = $user->update(['id' => $id], $input);
-
-    if ($result > 0) {
-        // Check for role
-        $role = $_POST['role'];
-
-        // Check if role has changed
-        $userRole = new Core\Models\UserRole($connection);
-
-        if ($userRole->getUserRoleId($id) != $role) {
-            $userRole->update(['user_id' => $id], ['role_id' => $role]);
-        }
-        
-        $flash->set('success', 'User updated');
+    if ($result == 0 && $roleUpdate == 0) {
+        $flash->set('error', 'Error updating user');
         Utility::redirect($config->site->url . '/bms/users/edit/'.$id);
     }
 
-    $flash->set('error', 'Error updating user');
+    $flash->set('success', 'User updated');
     Utility::redirect($config->site->url . '/bms/users/edit/'.$id);
+
 } catch (Core\Exception\FileSizeExceededException $e) {
     $flash->set('error', $e->getMessage());
     Utility::redirect($config->site->url . '/bms/users/edit/'.$id);
@@ -124,6 +126,6 @@ try {
     $flash->set('error', $e->getMessage());
     Utility::redirect($config->site->url . '/bms/users/edit/'.$id);
 } catch (Exception $e) {
-    $flash->set('error', 'Something went wrong, please try again.');
+    $flash->set('error', $e->getMessage());
     Utility::redirect($config->site->url . '/bms/users/edit/'.$id);
 }

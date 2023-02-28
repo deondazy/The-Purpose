@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     for ($i = 0; $i < count($uploadedFiles['name']); $i++) {
         $image = basename($uploadedFiles['name'][$i]);
         $imageFileType = strtolower(pathinfo($image, PATHINFO_EXTENSION));
-        $newName = uniqid() . $imageFileType;
+        $newName = uniqid() . '.' . $imageFileType;
         
         $targetFile = $targetDir . $newName;
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $result = $gallery->create([
                     'name' => $newName,
                     'image' => $filePath . $newName,
-                    'user_id' => 1, // TODO: Use current user ID
+                    'user_id' => $currentUserId,
                 ]);
             } else {
                 $error = 'Error uploading file ' . $targetFile;

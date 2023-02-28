@@ -1,161 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php 
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Purpose Center</title>
-    <!-- favicons Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/Logo/logoblue.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/Logo/logoblue.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo/logoblue.png" />
-    <link rel="manifest" href="assets/images/Logo/logoblue.png" />
-    <meta name="description" content="Crsine HTML Template For Car Services" />
+require_once __DIR__ . '/bootstrap.php';
 
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+$page = 'home';
 
-
-    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/vendors/animate/animate.min.css" />
-    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
-    <link rel="stylesheet" href="assets/vendors/jarallax/jarallax.css" />
-    <link rel="stylesheet" href="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
-    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.min.css" />
-    <link rel="stylesheet" href="assets/vendors/nouislider/nouislider.pips.css" />
-    <link rel="stylesheet" href="assets/vendors/odometer/odometer.min.css" />
-    <link rel="stylesheet" href="assets/vendors/swiper/swiper.min.css" />
-    <link rel="stylesheet" href="assets/vendors/halpes-icons/style.css">
-    <link rel="stylesheet" href="assets/vendors/tiny-slider/tiny-slider.min.css" />
-    <link rel="stylesheet" href="assets/vendors/reey-font/stylesheet.css" />
-    <link rel="stylesheet" href="assets/vendors/owl-carousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets/vendors/owl-carousel/owl.theme.default.min.css" />
-
-    <!-- template styles -->
-    <link rel="stylesheet" href="assets/css/halpes.css" />
-    <link rel="stylesheet" href="assets/css/halpes-responsive.css" />
-</head>
-
-<body>
-    <div class="preloader">
-        <img class="preloader__image" width="60" src="assets/images/logoblue.png" alt="" />
-    </div>
-    <!-- /.preloader -->
-    <div class="page-wrapper">
-        <header class="main-header clearfix">
-            <div class="main-header__logo">
-                <a href="index.html">
-                    <img src="assets/images/logo/whitelogo.png" alt="">
-                </a>
-            </div>
-            <div class="main-menu-wrapper">
-                <div class="main-menu-wrapper__top">
-                    <div class="main-menu-wrapper__top-inner">
-                        <div class="main-menu-wrapper__left">
-                            <div class="main-menu-wrapper__left-content">
-                                <div class="main-menu-wrapper__left-text">
-                                    <p>Welcome to The Purpose Center</p>
-                                </div>
-                                <div class="main-menu-wrapper__left-email-box">
-                                    <div class="icon">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div class="email">
-                                        <a href="mailto:Info@purposecenters.com">Info@purposecenters.com</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="main-menu-wrapper__right">
-                            <div class="main-menu-wrapper__right-social">
-                                <a href="index.html#"><i class="fab fa-twitter"></i></a>
-                                <a href="index.html#"><i class="fab fa-facebook-square"></i></a>
-                                <a href="index.html#"><i class="fab fa-dribbble"></i></a>
-                                <a href="index.html#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="main-menu-wrapper__bottom">
-                    <nav class="main-menu">
-                        <div class="main-menu__inner">
-                            <a href="index.html#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
-                            <ul class="main-menu__list">
-                                <li class="dropdown current">
-                                    <a href="index.html">Home</a>
-                                    <ul>
-                                       
-                
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="index.html#">About Us</a>
-                                    <ul>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="volunteers.html">Volunteers</a></li>
-                                        <li><a href="gallery.html">Gallery</a></li>
-                                        <li><a href="become-volunteer.html">Become a Volunteer</a></li>
-                                    </ul>
-                                </li>
-                               
-                                <li class="dropdown">
-                                    <a href="events.html#">Events</a>
-                                    
-                                </li>
-                                <li class="dropdown">
-                                    <a href="news.html#">Blog</a>
-                                    
-                                </li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                            </ul>
-                          <div class="main-menu__right">
-                               <!-- <a href="index.html#" class="main-menu__search search-toggler icon-magnifying-glass"></a>
-                                <a href="index.html#" class="main-menu__cart icon-shopping-cart  "></a> -->
-                                <div class="main-menu__phone-contact">
-                                    <div class="main-menu__phone-icon">
-                                        <span class="icon-chat"></span>
-                                    </div>
-                                    <div class="main-menu__phone-number">
-                                        <p>Call Anytime</p>
-                                        <a href="tel:92 666 888 0000">92 666 888 0000</a>
-                                    </div>
-                                </div>
-                                <a href="causes-details.html" class="main-menu__donate-btn"><i class="fa fa-heart"></i>Donate </a>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-
-        </header>
-
-        <div class="stricky-header stricked-menu main-menu">
-            <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
-        </div><!-- /.stricky-header -->
+include __DIR__ . '/includes/header.php'; ?>
 
 
         <section class="main-slider">
-            <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
-    "effect": "fade",
-     "pagination": {
-        "el": "#main-slider-pagination",
-        "type": "bullets",
-        "clickable": true
-      },
-    "navigation": {
-        "nextEl": "#main-slider__swiper-button-next",
-        "prevEl": "#main-slider__swiper-button-prev"
-    },
-    "autoplay": {
-        "delay": 5000
-    }}'>
+            <div 
+                class="swiper-container thm-swiper__slider" 
+                data-swiper-options='{
+                    "slidesPerView": 1, 
+                    "loop": true,
+                    "effect": "fade",
+                    "pagination": {
+                        "el": "#main-slider-pagination",
+                        "type": "bullets",
+                        "clickable": true
+                    },
+                    "navigation": {
+                        "nextEl": "#main-slider__swiper-button-next",
+                        "prevEl": "#main-slider__swiper-button-prev"
+                    },
+                    "autoplay": {
+                        "delay": 5000
+                    }}'
+            >
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="image-layer"
-                            style="background-image: url(assets/images/familyhero.png);">
+                            style="background-image: url(<?= $config->site->url ?>/assets/images/familyhero.png);">
                         </div>
                         <div class="image-layer-overlay"></div>
                         <!-- /.image-layer -->
@@ -165,7 +40,7 @@
                                     <div class="main-slider__content">
                                         <p>Rebuilding Our Families</p>
                                         <h2>Family builds <br>communities</h2>
-                                        <a href="about.html" class="thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
+                                        <a href="<?= $config->site->url ?>/about/" class="thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
                                             More</a>
                                         <div class="main-slider__shape-1 zoom-fade">
                                             <img src="" alt="">
@@ -177,7 +52,7 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="image-layer"
-                            style="background-image: url(assets/images/educationhero.png);">
+                            style="background-image: url(<?= $config->site->url ?>/assets/images/educationhero.png);">
                         </div>
                         <div class="image-layer-overlay"></div>
                         <!-- /.image-layer -->
@@ -187,7 +62,7 @@
                                     <div class="main-slider__content">
                                         <p>Educating Our Community</p>
                                         <h2>Education for<br>the young</h2>
-                                        <a href="about.html" class="thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
+                                        <a href="<?= $config->site->url ?>/about/" class="thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
                                             More</a>
                                         <div class="main-slider__shape-1 zoom-fade">
                                             <img src="" alt="">
@@ -199,7 +74,7 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="image-layer"
-                            style="background-image: url(assets/images/communityhero.png);">
+                            style="background-image: url(<?= $config->site->url ?>/assets/images/communityhero.png);">
                         </div>
                         <div class="image-layer-overlay"></div>
                         <!-- /.image-layer -->
@@ -209,7 +84,7 @@
                                     <div class="main-slider__content">
                                         <p>Empowerment Through Real Estate</p>
                                         <h2>Empower our<br> People </h2>
-                                        <a href="about.html" class="thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
+                                        <a href="<?= $config->site->url ?>/about/" class="thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
                                             More</a>
                                         <div class="main-slider__shape-1 zoom-fade">
                                             <img src="" alt="">
@@ -220,18 +95,6 @@
                         </div>
                     </div>
                 </div>
-               <!--- <div class="main-slider__counter">
-                    <ul class="main-slider__counter-box list-unstyled">
-                        <li>
-                            <h3 class="main-sldier__counter-digit">4390</h3>
-                            <span class="main-slider__counter-text">Volunteers are Available</span>
-                        </li>
-                        <li>
-                            <h3 class="main-sldier__counter-digit">8900</h3>
-                            <span class="main-slider__counter-text">Funds Raised by People</span>
-                        </li>
-                    </ul>
-                </div> -->
                 <!-- If we need navigation buttons -->
                 <div class="swiper-pagination" id="main-slider-pagination"></div>
                 <div class="main-slider__nav">
@@ -252,7 +115,7 @@
                     <div class="col-xl-6 col-lg-6">
                         <div class="introduction__left">
                             <div class="introduction__img">
-                                <img src="assets/images/intro.png" alt="">
+                                <img src="<?= $config->site->url ?>/assets/images/intro.png" alt="">
                             </div>
                             <div class="introduction__content">
                                 <p class="introduction__text">The Purpose Center is about the empowerment of minority families and communities through education, real estate and finance</p>
@@ -282,11 +145,11 @@
                                     </div>
                                     <div class="introduction__content-box">
                                         <h2>Financial Empowerment</h2>
-                                        <p>By opening financial doors for youths in our communities, we aim to contribute in providing economic leverage for minority and underserved communities within Illinois and the United States.</p>
+                                        <p>By opening financial doors for youths in our communities, we aim to contribute in providing economic leverage for minority and undeserved communities within Illinois and the United States.</p>
                                     </div>
                                 </li>
                             </ul>
-                            <a href="about.html" class="introduction__btn thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
+                            <a href="<?= $config->site->url ?>/about/" class="introduction__btn thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
                                 More</a>
                         </div>
                     </div>
@@ -295,9 +158,9 @@
         </section>
         <!--Introduction End-->
 
-     <!--We Inspire Start-->
+        <!--We Inspire Start-->
          <section class="we-inspire">
-            <div class="we-inspire-bg" style="background-image: url(assets/images/eduback.jpg)"></div>
+            <div class="we-inspire-bg" style="background-image: url(<?= $config->site->url ?>/assets/images/eduback.jpg)"></div>
             <div class="we-inspire-bg-overlay"></div>
             <div class="container">
                 <div class="row">
@@ -355,7 +218,7 @@
                     <div class="col-xl-6 col-lg-6">
                         <div class="we-inspire__right">
                             <div class="we-inspire__img">
-                                <img src="assets/images/edu.png" alt="">
+                                <img src="<?= $config->site->url ?>/assets/images/edu.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -363,7 +226,6 @@
             </div>
         </section>
         <!--We Inspire End-->
-
 
          <!--Four Icon Start-->
          <section class="four-icon">
@@ -373,7 +235,7 @@
                         <!--Four Icon Single-->
                         <div class="four-icon__single">
                             <div class="four-icon__img">
-                                <img src="assets/images/fourFamily.png" alt="">
+                                <img src="<?= $config->site->url ?>/assets/images/fourFamily.png" alt="">
                                 <div class="four-icon__content-box">
                                     <h3 class="four-icon__title">Family</h3>
                                     <p class="four-icon__text">Creating healthy and functional families in our communities.</p>
@@ -388,7 +250,7 @@
                         <!--Four Icon Single-->
                         <div class="four-icon__single">
                             <div class="four-icon__img">
-                                <img src="assets/images/FourFinance.png" alt="">
+                                <img src="<?= $config->site->url ?>/assets/images/FourFinance.png" alt="">
                                 <div class="four-icon__content-box">
                                     <h3 class="four-icon__title">Finance</h3>
                                     <p class="four-icon__text">There are many lipsum of pass of but the have in that not
@@ -404,7 +266,7 @@
                         <!--Four Icon Single-->
                         <div class="four-icon__single">
                             <div class="four-icon__img">
-                                <img src="assets/images/FourEducation.png" alt="">
+                                <img src="<?= $config->site->url ?>/assets/images/FourEducation.png" alt="">
                                 <div class="four-icon__content-box">
                                     <h3 class="four-icon__title">Education</h3>
                                     <p class="four-icon__text">There are many lipsum of pass of but the have in that not
@@ -420,7 +282,7 @@
                         <!--Four Icon Single-->
                         <div class="four-icon__single">
                             <div class="four-icon__img">
-                                <img src="assets/images/FourRealestate.png" alt="">
+                                <img src="<?= $config->site->url ?>/assets/images/FourRealestate.png" alt="">
                                 <div class="four-icon__content-box">
                                     <h3 class="four-icon__title">Real estate</h3>
                                     <p class="four-icon__text">There are many lipsum of pass of but the have in that not
@@ -437,109 +299,109 @@
         </section>
         <!--Four Icon End-->
 
-                <!--Become Volunteer Start-->
-                <section class="become-volunteer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="become-volunteer__inner">
-                                    <div class="become-volunteer__left">
-                                        <h2>Join your hand with us to <br>create a better community</h2>
-                                        <div class="become-volunteer__big-text">
-                                            <h2>Become a Volunteer</h2>
-                                        </div>
-                                    </div>
-                                    <div class="become-volunteer__btn-box">
-                                        <a href="become-volunteer.html" class="become-volunteer__btn thm-btn"><i
-                                                class="fas fa-arrow-circle-right"></i>Learn More</a>
-                                    </div>
+        <!--Become Volunteer Start-->
+        <section class="become-volunteer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="become-volunteer__inner">
+                            <div class="become-volunteer__left">
+                                <h2>Join your hand with us to <br>create a better community</h2>
+                                <div class="become-volunteer__big-text">
+                                    <h2>Become a Volunteer</h2>
                                 </div>
                             </div>
+                            <div class="become-volunteer__btn-box">
+                                <a href="<?= $config->site->url ?>/become-volunteer/" class="become-volunteer__btn thm-btn"><i
+                                        class="fas fa-arrow-circle-right"></i>Learn More</a>
+                            </div>
                         </div>
                     </div>
-                </section>
-                <!--Become Volunteer End-->
+                </div>
+            </div>
+        </section>
+        <!--Become Volunteer End-->
 
-      <!--Team One Start-->
-      <section class="team-one">
-        <div class="container">
-            <div class="section-title text-center">
-                <span class="section-title__tagline">Our Stellar Team</span>
-                <h2 class="section-title__title">Meet the best team behind <br> our drivey</h2>
+        <!--Team One Start-->
+        <section class="team-one">
+            <div class="container">
+                <div class="section-title text-center">
+                    <span class="section-title__tagline">Our Stellar Team</span>
+                    <h2 class="section-title__title">Meet the best team behind <br> our drivey</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4">
+                        <!--Team One Single-->
+                        <div class="team-one__single">
+                            <div class="team-one__img-box">
+                                <div class="team-one__img">
+                                    <img src="<?= $config->site->url ?>/assets/images/Lenor.png" alt="">
+                                </div>
+                                <div class="team-one__member-name">
+                                    <h2>Lenor</h2>
+                                </div>
+                            </div>
+                            <div class="team-one__content">
+                                <h4 class="team-one__member-title">Founder</h4>
+                                <p class="team-one__text-box">Lenor is a real estate and business mogul who is passionate about giving back to the community.</p>
+                            </div>
+                            <div class="team-one__social">
+                                <a href="https://www.linkedin.com/in/lenor-sherman-6114176b/"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://web.facebook.com/lenor.sherman"><i class="fab fa-facebook-square"></i></a>
+                                <a href="https://www.instagram.com/lenorsherman/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4">
+                        <!--Team One Single-->
+                        <div class="team-one__single">
+                            <div class="team-one__img-box">
+                                <div class="team-one__img">
+                                    <img src="<?= $config->site->url ?>/assets/images/Tk.png" alt="">
+                                </div>
+                                <div class="team-one__member-name">
+                                    <h2>Tk</h2>
+                                </div>
+                            </div>
+                            <div class="team-one__content">
+                                <h4 class="team-one__member-title">Co-founder</h4>
+                                <p class="team-one__text-box">A serial entrepreneur and assetpreneur. Tk believes in community growth through education and financial literacy. </p>
+                            </div>
+                            <div class="team-one__social">
+                                <a href="https://www.linkedin.com/in/tk-sherman-347511107/"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://web.facebook.com/tk.x.sherman"><i class="fab fa-facebook-square"></i></a>
+                                
+                                <a href="https://www.instagram.com/tkshermanlife/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4">
+                        <!--Team One Single-->
+                        <div class="team-one__single">
+                            <div class="team-one__img-box">
+                                <div class="team-one__img">
+                                    <img src="<?= $config->site->url ?>/assets/images/Victoria.png" alt="">
+                                </div>
+                                <div class="team-one__member-name">
+                                    <h2>Victoria</h2>
+                                </div>
+                            </div>
+                            <div class="team-one__content">
+                                <h4 class="team-one__member-title">Board Member</h4>
+                                <p class="team-one__text-box">CEO Naturally Urban Environmental Inc. The Queen of Green is an ecopreneur and environmental scientist.</p>
+                            </div>
+                            <div class="team-one__social">
+                                <a href="https://www.linkedin.com/in/vwilsonqueenofgreen/"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://web.facebook.com/victoria.young.90"><i class="fab fa-facebook-square"></i></a>
+                                
+                                <a href="https://www.instagram.com/victoria_queenofgreen/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-xl-4 col-lg-4">
-                    <!--Team One Single-->
-                    <div class="team-one__single">
-                        <div class="team-one__img-box">
-                            <div class="team-one__img">
-                                <img src="assets/images/Lenor.png" alt="">
-                            </div>
-                            <div class="team-one__member-name">
-                                <h2>Lenor</h2>
-                            </div>
-                        </div>
-                        <div class="team-one__content">
-                            <h4 class="team-one__member-title">Founder</h4>
-                            <p class="team-one__text-box">Lenor is a real estate and business mogul who is passionate about giving back to the community.</p>
-                        </div>
-                        <div class="team-one__social">
-                            <a href="https://www.linkedin.com/in/lenor-sherman-6114176b/"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://web.facebook.com/lenor.sherman"><i class="fab fa-facebook-square"></i></a>
-                            <a href="https://www.instagram.com/lenorsherman/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4">
-                    <!--Team One Single-->
-                    <div class="team-one__single">
-                        <div class="team-one__img-box">
-                            <div class="team-one__img">
-                                <img src="assets/images/Tk.png" alt="">
-                            </div>
-                            <div class="team-one__member-name">
-                                <h2>Tk</h2>
-                            </div>
-                        </div>
-                        <div class="team-one__content">
-                            <h4 class="team-one__member-title">Co-founder</h4>
-                            <p class="team-one__text-box">A serial entrepreneur and assetpreneur. Tk believes in community growth through education and financial literacy. </p>
-                        </div>
-                        <div class="team-one__social">
-                            <a href="https://www.linkedin.com/in/tk-sherman-347511107/"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://web.facebook.com/tk.x.sherman"><i class="fab fa-facebook-square"></i></a>
-                            
-                            <a href="https://www.instagram.com/tkshermanlife/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4">
-                    <!--Team One Single-->
-                    <div class="team-one__single">
-                        <div class="team-one__img-box">
-                            <div class="team-one__img">
-                                <img src="assets/images/Victoria.png" alt="">
-                            </div>
-                            <div class="team-one__member-name">
-                                <h2>Victoria</h2>
-                            </div>
-                        </div>
-                        <div class="team-one__content">
-                            <h4 class="team-one__member-title">Board Member</h4>
-                            <p class="team-one__text-box">CEO Naturally Urban Environmental Inc. The Queen of Green is an ecopreneur and environmental scientist.</p>
-                        </div>
-                        <div class="team-one__social">
-                            <a href="https://www.linkedin.com/in/vwilsonqueenofgreen/"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://web.facebook.com/victoria.young.90"><i class="fab fa-facebook-square"></i></a>
-                            
-                            <a href="https://www.instagram.com/victoria_queenofgreen/"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--Team One End-->
+        </section>
+        <!--Team One End-->
 
         <!--Three Boxes Start-->
         <section class="three-boxes">
@@ -549,7 +411,7 @@
                         <!--Three Boxes Single-->
                         <div class="three-boxes__single">
                             <div class="three-boxes__single-bg"
-                                style="background-image: url(assets/images/ThreeHealth.png)""></div>
+                                style="background-image: url(<?= $config->site->url ?>/assets/images/ThreeHealth.png)""></div>
                             <div class="three-boxes__content">
                                 <div class="three-boxes__icon">
                                     <span class="icon-fast-food"></span>
@@ -557,7 +419,7 @@
                                 <div class="three-boxes__text-box">
                                     <h2>Healthy Community</h2>
                                     <p class="three-boxes__text">Underserved youths deserve healthy lifestyle if they are to grow and be nurtured into productive individuals</p>
-                                    <a href="index.html#" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
+                                    <a href="<?= $setting->getSetting('donate_link') ?>" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
                                 </div>
                             </div>
                         </div>
@@ -566,7 +428,7 @@
                         <!--Three Boxes Single-->
                         <div class="three-boxes__single three-boxes__single-item-two">
                             <div class="three-boxes__single-bg"
-                                style="background-image: url(assets/images/Threeeducation.png)"></div>
+                                style="background-image: url(<?= $config->site->url ?>/assets/images/Threeeducation.png)"></div>
                             <div class="three-boxes__content">
                                 <div class="three-boxes__icon">
                                     <span class="icon-water"></span>
@@ -574,7 +436,7 @@
                                 <div class="three-boxes__text-box">
                                     <h2>Educated Community</h2>
                                     <p class="three-boxes__text">Provide educational opportunities for underserved youths especially ones from poor homes</p>
-                                    <a href="index.html#" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
+                                    <a href="<?= $setting->getSetting('donate_link') ?>" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
                                 </div>
                             </div>
                         </div>
@@ -583,7 +445,7 @@
                         <!--Three Boxes Single-->
                         <div class="three-boxes__single three-boxes__single-item-three">
                             <div class="three-boxes__single-bg"
-                                style="background-image: url(assets/images/resources/three-boxes-img-1.jpg)"></div>
+                                style="background-image: url(<?= $config->site->url ?>/assets/images/resources/three-boxes-img-1.jpg)"></div>
                             <div class="three-boxes__content">
                                 <div class="three-boxes__icon">
                                     <span class="icon-health-check"></span>
@@ -591,7 +453,7 @@
                                 <div class="three-boxes__text-box">
                                     <h2>Empowered Community</h2>
                                     <p class="three-boxes__text">Through financial literacy, skill acquisition and real estate we can open doors for a prosperous community</p>
-                                    <a href="index.html#" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
+                                    <a href="<?= $setting->getSetting('donate_link') ?>" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
                                 </div>
                             </div>
                         </div>
@@ -601,97 +463,10 @@
         </section>
         <!--Three Boxes End-->
 
-        <!--Helping One Start
-        <section class="helping-one">
-            <div class="container">
-                <div class="section-title text-center">
-                    <span class="section-title__tagline">Latest Causes</span>
-                    <h2 class="section-title__title">Find the popular cause <br> and donate them</h2>
-                </div>
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="helping-one__left">
-                            <h3 class="helping-one__title">We’re Helping Today. Helping Tommorow</h3>
-                            <p class="helping-one__text">There are many variations of passages of available but the
-                                majority have suffered alteration in some form, by injected humou or randomised words
-                                even slightly believable. All the Lorem Ipsum generators on the Internet tend.</p>
-                            <ul class="helping-one__left-list list-unstyled">
-                                <li>
-                                    <div class="helping-one__left-icon">
-                                        <i class="fas fa-arrow-circle-right"></i>
-                                    </div>
-                                    <div class="helping-one__left-text">
-                                        <p>Making this the first true generator on the Internet</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="helping-one__left-icon">
-                                        <i class="fas fa-arrow-circle-right"></i>
-                                    </div>
-                                    <div class="helping-one__left-text">
-                                        <p>Lorem Ipsum is not simply random text</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="helping-one__left-icon">
-                                        <i class="fas fa-arrow-circle-right"></i>
-                                    </div>
-                                    <div class="helping-one__left-text">
-                                        <p>If you are going to use a passage</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="helping-one__left-img">
-                                <img src="assets/images/resources/helping-one-left-img.jpg" alt="">
-                                <div class="helping-one__left-icon-box">
-                                    <span class="icon-heart"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="helping-one__right">
-                            <form action="index.html" class="helping-one__right-form">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="helping-one__right-input-box">
-                                            <input type="text" name="amount" placeholder="Enter Donation Amount">
-                                            <div class="helping-one__right-dolar-icon">
-                                                <span>$</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input type="text" name="name" placeholder="Your Name">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input type="email" name="email" placeholder="Email Address">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <input type="text" name="phone" placeholder="Phone Number">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <textarea name="message" placeholder="Write Message"></textarea>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <button type="submit" class="thm-btn helping-one__right-btn"><i
-                                                class="fas fa-arrow-circle-right"></i>Continue Now</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--Helping One End-->
-
-      
-
         <!--Testimonial One Start-->
         <section class="testimonial-one">
             <div class="testimonial-one-bg"
-                style="background-image: url(assets/images/intro.png)"></div>
+                style="background-image: url(<?= $config->site->url ?>/assets/images/intro.png)"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-xl-4">
@@ -710,7 +485,7 @@
                                     <p class="testimonial-one__text">This is an idea I believe will be crucial in the growth of underserved communities around BIPOC dominated areas and munincipalities in this country</p>
                                     <div class="testimonial-one__client-info">
                                         <div class="testimonial-one__client-img">
-                                            <img src="assets/images/testimonial/testimonial-1-img-1.png" alt="">
+                                            <img src="<?= $config->site->url ?>/assets/images/testimonial/testimonial-1-img-1.png" alt="">
                                             <div class="testimonial-one__quote">
 
                                             </div>
@@ -726,7 +501,7 @@
                                     <p class="testimonial-one__text">Compassion and empathy lay at the heart of ideas like The Purpose Center. I commend the team that are putting this together!</p>
                                     <div class="testimonial-one__client-info">
                                         <div class="testimonial-one__client-img">
-                                            <img src="assets/images/testimonial/testimonial-1-img-2.png" alt="">
+                                            <img src="<?= $config->site->url ?>/assets/images/testimonial/testimonial-1-img-2.png" alt="">
                                             <div class="testimonial-one__quote">
 
                                             </div>
@@ -742,7 +517,7 @@
                                     <p class="testimonial-one__text">I was impressed on multiple levels. The Purpose Center lives up to its very name by providing purpose to these young ones</p>
                                     <div class="testimonial-one__client-info">
                                         <div class="testimonial-one__client-img">
-                                            <img src="assets/images/testimonial/testimonial-1-img-1.png" alt="">
+                                            <img src="<?= $config->site->url ?>/assets/images/testimonial/testimonial-1-img-1.png" alt="">
                                             <div class="testimonial-one__quote">
 
                                             </div>
@@ -758,7 +533,7 @@
                                     <p class="testimonial-one__text">What these guys are doing is amazing. The strength, compassion and dedication this requires is outstanding</p>
                                     <div class="testimonial-one__client-info">
                                         <div class="testimonial-one__client-img">
-                                            <img src="assets/images/testimonial/testimonial-1-img-2.png" alt="">
+                                            <img src="<?= $config->site->url ?>/assets/images/testimonial/testimonial-1-img-2.png" alt="">
                                             <div class="testimonial-one__quote">
 
                                             </div>
@@ -780,7 +555,7 @@
         <!--Help Them Start-->
         <section class="help-them">
             <div class="help-them-bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url(assets/images/familyhero.png)"></div>
+                style="background-image: url(<?= $config->site->url ?>/assets/images/familyhero.png)"></div>
             <div class="container">
                 <div class="help-them__top">
                     <div class="row">
@@ -842,7 +617,7 @@
         </section>
         <!--Help Them End-->
 
-        <!--News Three Start-->
+        <!--News Three Start
         <section class="news-two news-three">
             <div class="container">
                 <div class="section-title text-center">
@@ -851,11 +626,11 @@
                 </div>
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
-                        <!--News Two Single-->
+                        <!--News Two Single--
                         <div class="news-two__single">
                             <div class="news-two__img-box">
                                 <div class="news-two__img">
-                                    <img src="assets/images/blog/blogfamily.png" alt="">
+                                    <img src="/assets/images/blog/blogfamily.png" alt="">
                                     <a href="news-details.html">
                                         <i class="fa fa-plus"></i>
                                     </a>
@@ -880,11 +655,11 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
-                        <!--News Two Single-->
+                        <!--News Two Single--
                         <div class="news-two__single">
                             <div class="news-two__img-box">
                                 <div class="news-two__img">
-                                    <img src="assets/images/blog/blogeducation.png" alt="">
+                                    <img src="/assets/images/blog/blogeducation.png" alt="">
                                     <a href="news-details.html">
                                         <i class="fa fa-plus"></i>
                                     </a>
@@ -909,11 +684,11 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
-                        <!--News Two Single-->
+                        <!--News Two Single--
                         <div class="news-two__single">
                             <div class="news-two__img-box">
                                 <div class="news-two__img">
-                                    <img src="assets/images/blog/blogrealestate.png" alt="">
+                                    <img src="/assets/images/blog/blogrealestate.png" alt="">
                                     <a href="news-details.html">
                                         <i class="fa fa-plus"></i>
                                     </a>
@@ -942,54 +717,54 @@
         </section>
         <!--News Three End-->
 
-          <!--Gallery One Start-->
-          <section class="gallery-one">
+        <!--Gallery One Start-
+        <section class="gallery-one">
             <div class="gallery-one__container-box clearfix">
                 <div class="gallery-one__carousel owl-theme owl-carousel">
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single-
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="assets/images/gallery/gallery1.png" alt="">
+                            <img src="/assets/images/gallery/gallery1.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
                             </div>
                         </div>
                     </div>
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single-
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="assets/images/gallery/gallery2.png" alt="">
+                            <img src="/assets/images/gallery/gallery2.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
                             </div>
                         </div>
                     </div>
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single--
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="assets/images/gallery/gallery3.png" alt="">
+                            <img src="/assets/images/gallery/gallery3.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
                             </div>
                         </div>
                     </div>
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single--
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="assets/images/gallery/gallery4.png" alt="">
+                            <img src="/assets/images/gallery/gallery4.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
                             </div>
                         </div>
                     </div>
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single--
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="assets/images/gallery/gallery5.png" alt="">
+                            <img src="/assets/images/gallery/gallery5.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
@@ -1019,31 +794,31 @@
                             <!--Brand One Single-->
                             <div class="brand-one__single">
                                 <div class="brand-one__img">
-                                    <img src="assets/images/Logo/partner1.png" alt="">
+                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner1.png" alt="">
                                 </div>
                             </div>
                             <!--Brand One Single-->
                             <div class="brand-one__single">
                                 <div class="brand-one__img">
-                                    <img src="assets/images/logo/partner2.png" alt="">
+                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner2.png" alt="">
                                 </div>
                             </div>
                             <!--Brand One Single-->
                             <div class="brand-one__single">
                                 <div class="brand-one__img">
-                                    <img src="assets/images/Logo/partner 3.png" alt="">
+                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner 3.png" alt="">
                                 </div>
                             </div>
                             <!--Brand One Single-->
                             <div class="brand-one__single">
                                 <div class="brand-one__img">
-                                    <img src="assets/images/Logo/partner4.png" alt="">
+                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner4.png" alt="">
                                 </div>
                             </div>
                             <!--Brand One Single-->
                             <div class="brand-one__single">
                                 <div class="brand-one__img">
-                                    <img src="assets/images/logo/partner5.png" alt="">
+                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner5.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -1053,200 +828,4 @@
         </section>
         <!--Brand One End-->
 
-        
-
-        <!--Site Footer One Start-->
-        <footer class="site-footer">
-            <div class="site-footer-bg" style="background-image: url(assets/images/backgrounds/footer-bg.jpg)"></div>
-            <div class="container">
-                <div class="site-footer__top">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
-                            <div class="footer-widget__column footer-widget__about">
-                                <h3 class="footer-widget__title">About</h3>
-                                <p class="footer-widget__text">We are about empowering the underserved in our community. Building on family, real estate, education and finance.
-
-                                    </p>
-                                <a href="index.html#" class="footer-widget__about-btn"><i class="fa fa-heart"></i>Donate </a>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
-                            <div class="footer-widget__column footer-widget__explore clearfix">
-                                <h3 class="footer-widget__title">Explore</h3>
-                                <ul class="footer-widget__explore-list list-unstyled">
-                                    <li><a href="index.html#">Donate</a></li>
-                                    <li><a href="index.html#">Events</a></li>
-                                    <li><a href="index.html#">Blog</a></li>
-                                    <li><a href="index.html#">Volunteers</a></li>
-                                    <li><a href="index.html#">Contact Us</a></li>
-                                </ul>
-                                <ul class="footer-widget__explore-list footer-widget__explore-list-two list-unstyled">
-                                    
-                                    <li><a href="index.html#">Home</a></li>
-                                    <li><a href="index.html#">Help</a></li>
-                                    <li><a href="index.html#">Faqs</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                            <div class="footer-widget__column footer-widget__contact">
-                                <h3 class="footer-widget__title">Contact</h3>
-                                <ul class="list-unstyled footer-widget__contact-list">
-                                    <li>
-                                        <div class="icon">
-                                            <i class="icon-chat"></i>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                <span>Call Anytime</span>
-                                                <a href="tel:92 666 888 0000">92 666 888 0000</a>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <i class="icon-message"></i>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                <span>Send Email</span>
-                                                <a href="mailto:Info@purposecenters.com">Info@purposecenters.com</a>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <i class="icon-address"></i>
-                                        </div>
-                                        <div class="text">
-                                            <p><span>Visit Office</span>80 broklyn golden street</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
-                            <div class="footer-widget__column footer-widget__newsletter">
-                                <h3 class="footer-widget__title">Newsletter</h3>
-                                <p class="footer-widget__newsletter-text">Keep in touch with us. Subscribe to our newsletter.</p>
-                                <form class="footer-widget__newsletter-form">
-                                    <input type="email" placeholder="Email address" name="email">
-                                    <button type="submit" class="footer-widget__newsletter-btn"><i
-                                            class="fas fa-arrow-circle-right"></i>Send</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="site-footer__bottom">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="site-footer__bottom-inner">
-                                <div class="site-footer__bottom-logo-social">
-                                    <div class="site-footer__bottom-logo">
-                                        <a href="index.html"><img src="assets/images/Logo/whitelogo1.png"
-                                                alt=""></a>
-                                    </div>
-                                    <div class="site-footer__bottom-social">
-                                        <a href="index.html#"><i class="fab fa-twitter"></i></a>
-                                        <a href="index.html#"><i class="fab fa-facebook-square"></i></a>
-                                        <a href="index.html#"><i class="fab fa-dribbble"></i></a>
-                                        <a href="index.html#"><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                                <div class="site-footer__bottom-copy-right">
-                                    <p>© Copyright 2023 by <a href="www.johnagbaeze.com"> John Chukwuemeka Agbaeze</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!--Site Footer One End-->
-
-
-    </div><!-- /.page-wrapper -->
-
-
-    <div class="mobile-nav__wrapper">
-        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
-        <!-- /.mobile-nav__overlay -->
-        <div class="mobile-nav__content">
-            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
-
-            <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="assets/images/logo/whitelogo1.png" width="155"
-                        alt="" /></a>
-            </div>
-            <!-- /.logo-box -->
-            <div class="mobile-nav__container"></div>
-            <!-- /.mobile-nav__container -->
-
-            <ul class="mobile-nav__contact list-unstyled">
-                <li>
-                    <i class="fa fa-envelope"></i>
-                    <a href="mailto:Info@purposecenters.com">Info@purposecenters.com</a>
-                </li>
-                <li>
-                    <i class="fa fa-phone-alt"></i>
-                    <a href="tel:666-888-0000">666 888 0000</a>
-                </li>
-            </ul><!-- /.mobile-nav__contact -->
-            <div class="mobile-nav__top">
-                <div class="mobile-nav__social">
-                    <a href="index.html#" class="fab fa-twitter"></a>
-                    <a href="index.html#" class="fab fa-facebook-square"></a>
-                    <a href="index.html#" class="fab fa-pinterest-p"></a>
-                    <a href="index.html#" class="fab fa-instagram"></a>
-                </div><!-- /.mobile-nav__social -->
-            </div><!-- /.mobile-nav__top -->
-
-
-
-        </div>
-        <!-- /.mobile-nav__content -->
-    </div>
-    <!-- /.mobile-nav__wrapper -->
-
-    <div class="search-popup">
-        <div class="search-popup__overlay search-toggler"></div>
-        <!-- /.search-popup__overlay -->
-        <div class="search-popup__content">
-            <form action="index.html#">
-                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
-                <input type="text" id="search" placeholder="Search Here..." />
-                <button type="submit" aria-label="search submit" class="thm-btn">
-                    <i class="icon-magnifying-glass"></i>
-                </button>
-            </form>
-        </div>
-        <!-- /.search-popup__content -->
-    </div>
-    <!-- /.search-popup -->
-
-    <a href="index.html#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
-
-
-    <script src="assets/vendors/jquery/jquery-3.5.1.min.js"></script>
-    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendors/jarallax/jarallax.min.js"></script>
-    <script src="assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
-    <script src="assets/vendors/jquery-appear/jquery.appear.min.js"></script>
-    <script src="assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
-    <script src="assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
-    <script src="assets/vendors/jquery-validate/jquery.validate.min.js"></script>
-    <script src="assets/vendors/nouislider/nouislider.min.js"></script>
-    <script src="assets/vendors/odometer/odometer.min.js"></script>
-    <script src="assets/vendors/swiper/swiper.min.js"></script>
-    <script src="assets/vendors/tiny-slider/tiny-slider.min.js"></script>
-    <script src="assets/vendors/wnumb/wNumb.min.js"></script>
-    <script src="assets/vendors/wow/wow.js"></script>
-    <script src="assets/vendors/isotope/isotope.js"></script>
-    <script src="assets/vendors/countdown/countdown.min.js"></script>
-    <script src="assets/vendors/owl-carousel/owl.carousel.min.js"></script>
-    <!-- template js -->
-    <script src="assets/js/halpes.js"></script>
-</body>
-
-</html>
+        <?php include __DIR__ . '/includes/footer.php';

@@ -258,7 +258,7 @@ h6 {
     float: left;
     background-color: var(--thm-primary);
     text-align: center;
-    padding: 44px 0;
+    padding: 22px 0;
 }
 
 
@@ -702,6 +702,10 @@ h6 {
     cursor: pointer;
     transition: 500ms;
     margin-right: 20px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    outline: 0;
 }
 
 .main-menu .mobile-nav__toggler:hover {
@@ -1625,7 +1629,7 @@ h6 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     content: "";
     background: rgba(var(--thm-black-rgb), .7);
     z-index: 2;
@@ -2867,7 +2871,6 @@ h6 {
     display: block;
     padding: 190px 0 100px;
     background-color: #eff5f4;
-    margin-top: -90px;
     z-index: 1;
 }
 
@@ -3697,20 +3700,9 @@ h6 {
 .site-footer__bottom {
     position: relative;
     display: block;
-    background: #1b1e2b;
     z-index: 1;
     margin-top: 87px;
-}
-
-.site-footer__bottom:before {
-    position: absolute;
-    top: 0;
-    right: -10000000000px;
-    left: 0;
-    bottom: 0;
-    content: "";
-    background: #1b1e2b;
-    z-index: -1;
+    padding-bottom: 25px;
 }
 
 .site-footer__bottom-inner {
@@ -6100,6 +6092,7 @@ h6 {
     font-size: 16px;
     color: var(--thm-gray);
     height: 192px;
+    line-height: 1.2;
     width: 100%;
     padding: 20px 30px 30px;
     border: none;
@@ -6897,11 +6890,8 @@ h6 {
 }
 
 .contact-page__contact-list li .icon {
-    height: 65px;
-    width: 65px;
-    background: var(--thm-primary);
-    color: #ffffff;
-    font-size: 35px;
+    color: var(--thm-primary);
+    font-size: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6910,8 +6900,7 @@ h6 {
 }
 
 .contact-page__contact-list li:hover .icon {
-    background-color: var(--thm-black);
-    color: #fff;
+    color: var(--thm-black);
 }
 
 
@@ -7194,7 +7183,7 @@ h6 {
     overflow: hidden;
 }
 
-.gallery-page__img-box:before {
+/* .gallery-page__img-box:before {
     position: absolute;
     top: 0;
     left: 0;
@@ -7212,7 +7201,7 @@ h6 {
     -moz-transform: translateY(-101%);
     transform: translateY(-101%);
     z-index: 1;
-}
+} */
 
 .gallery-page__single:hover .gallery-page__img-box:before {
     opacity: 1;

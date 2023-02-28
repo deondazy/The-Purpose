@@ -9,10 +9,12 @@ $parent = 'comments/';
 $file = $parent;
 $page = 'Comments';
 
+include __DIR__ . '/../header.php'; 
+
 $comment = new Core\Models\Comment($connection);
 
 $allCommentsCount = $comment->count()['count'];
-$myCommentsCount = $comment->getUserCommentCount(1)[0]['count']; // TODO: Use current user ID.
+$myCommentsCount = $comment->getUserCommentCount($currentUserId)[0]['count'];
 $pendingCommentsCount = $comment->count(['status' => 'PENDING'])['count'];
 $approvedCommentsCount = $comment->count(['status' => 'APPROVED'])['count'];
 $spamCommentsCount = $comment->count(['status' => 'SPAM'])['count'];
@@ -31,8 +33,6 @@ function activeStatus($active) {
 
     return ($active == $status);
 }
-
-include __DIR__ . '/../header.php'; 
 ?>
 
 <style>
@@ -156,7 +156,7 @@ include __DIR__ . '/../header.php';
                                     // dd($query->fetchAll());
 
                                 if ($status && $status == 'mine') {
-                                    $query->catWhereSprintf(" AND u.id = 1"); // TODO: use current use ID
+                                    $query->catWhereSprintf(" AND u.id = {$currentUserId}");
                                 } 
                                 
                                 if ($status && $status != 'mine') {
@@ -238,7 +238,7 @@ include __DIR__ . '/../header.php';
                                             Post Comments: <?= $comment['comment_count'] ?>
                                         </div>
                                     </td>
-                                    <td class="fs-sm"><?= Utility::formatDate($comment['date'], 'Y/m/d \a\t h:i a'); ?></td>
+                                    <td class="fs-sm"><?= Utility::formatDate($comment['date'], 'm/d/Y \a\t h:i a'); ?></td>
                                 </tr>
                                 <?php endforeach; ?>
 
@@ -264,7 +264,7 @@ include __DIR__ . '/../header.php';
     $(document).ready(function() {
         $('.datatable-basic').DataTable({
             order: [[3, 'desc']],
-            autoWidth: true,
+            autoWidth: false,
             dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
             language: {
                 emptyTable: 'No comments found.',

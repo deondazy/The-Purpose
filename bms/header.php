@@ -1,10 +1,11 @@
+<?php require __DIR__ . '/includes/bms-user.php'; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="layout-static">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title><?= $page ?> - Blog Management System</title>
+	<title><?= $page ?> ‹ The Purpose Center — BMS</title><!-- TODO: Change Hardcoded Site Name -->
 
 	<!-- Global stylesheets -->
 	<link href="<?= $config->site->url; ?>/bms/assets/fonts/inter/inter.css" rel="stylesheet" type="text/css">
@@ -20,7 +21,6 @@
     <script src="<?= $config->site->url; ?>/bms/assets/js/jquery.min.js"></script>
 	<script src="<?= $config->site->url; ?>/bms/assets/js/app.js"></script>
 	<!-- /theme JS files -->
-
 </head>
 
 <body>

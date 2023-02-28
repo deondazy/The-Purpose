@@ -1,0 +1,39 @@
+<Files .env>
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files composer.json>
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files composer.lock>
+  Order allow,deny
+  Deny from all
+</Files>
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} /+[^\.]+$
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^about/*$ ./about.php
+RewriteRule ^volunteers/*$ ./volunteers.php
+RewriteRule ^gallery/*$ ./gallery.php
+RewriteRule ^gallery/page/([0-9]+)/*$ ./gallery.php?page=$1
+RewriteRule ^events/*$ ./events.php
+RewriteRule ^events/page/([0-9]+)/*$ ./events.php?page=$1
+RewriteRule ^blog/*$ ./blog.php
+RewriteRule ^blog/([0-9a-zA-Z-_]+)/*$ ./blog-details.php?slug=$1
+RewriteRule ^blog/author/([0-9a-zA-Z-_]+)/*$ ./blog-author.php?username=$1
+RewriteRule ^blog/page/([0-9]+)/*$ ./blog.php?page=$1
+RewriteRule ^contact/*$ ./contact.php
+RewriteRule ^become-volunteer/*$ ./become-volunteer.php
+
+</IfModule>

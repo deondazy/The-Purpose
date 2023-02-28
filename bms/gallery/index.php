@@ -12,14 +12,6 @@ include __DIR__ . '/../header.php';
 ?>
 
 <style>
-    img {
-        display: inline-block;
-        margin: 10px;
-        vertical-align: top;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
     #progressBar {
         height: 5px;
         background-color: #ddd;
@@ -217,7 +209,6 @@ include __DIR__ . '/../header.php';
                         // Calculate the offset for the current page
                         $offset = ($current_page - 1) * $limit;
 
-                        $imageCount = $gallery->count()['count'];
                         
                         $images = Select::new($connection)
                             ->columns('*')
@@ -227,7 +218,7 @@ include __DIR__ . '/../header.php';
                             ->orderBy('id DESC')
                             ->fetchAll();
 
-                        if ($imageCount == 0) : ?>
+                        if ($total_pages == 0) : ?>
                             <span class="">No image found in gallery</span>
                         <?php endif; ?>
                     
@@ -246,7 +237,7 @@ include __DIR__ . '/../header.php';
                         <?php endforeach; ?>
                     </div>
 
-                    <?php if ($imageCount > $limit) : ?>
+                    <?php if ($total_pages > $limit) : ?>
                         <div class="row">
                             <div class="col-lg-12">
                                 <ul class="pagination pagination-flat justify-content-center mt-4">

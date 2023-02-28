@@ -33,7 +33,7 @@ try {
 
     $input = [
         'title'          => $_POST['title'],
-        'slug'           => $_POST['slug'],
+        'slug'           => Utility::slug($_POST['slug']),
         'content'        => $_POST['content'],
         'featured_image' => $filename,
         'author'         => $_POST['author'],
@@ -42,8 +42,8 @@ try {
     ];
 
     $validator = new Core\Validator([
-        'title'   => 'required|min:3|max:255',
-        'slug'    => 'required|min:3|max:255',
+        'title'   => 'required',
+        'slug'    => 'required',
         'author'  => 'required|numeric',
     ]);
 

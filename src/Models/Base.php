@@ -92,6 +92,14 @@ abstract class Base
             $select->orderBy($orderBy);
         }
 
+        if (isset($conditions['limit'])) {
+            $select->limit($conditions['limit']);
+        }
+
+        if (isset($conditions['offset'])) {
+            $select->limit($conditions['offset']);
+        }
+
         return $select->fetchAll();
     }
 

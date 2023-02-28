@@ -57,4 +57,11 @@ require_once CORE_ROOT . '/config.php';
 // Get Database configuration details
 $dbConfig = $config->database;
 
-$connection = Connection::new("mysql:host=$dbConfig->host;dbname=$dbConfig->name", $dbConfig->user, $dbConfig->password);
+$connection = Connection::new("mysql:host=$dbConfig->host;dbname=$dbConfig->name;charset=$dbConfig->charset", $dbConfig->user, $dbConfig->password);
+
+// Check for authentication
+$auth = new Core\Auth(new Core\Models\User($connection), new \Core\Models\Session($connection));
+
+if ($auth->isLogged()) {
+    $currentUserId = $auth->currentUserId();
+}
