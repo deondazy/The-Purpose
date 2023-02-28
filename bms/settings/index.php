@@ -31,6 +31,11 @@ include __DIR__ . '/../header.php';
                                 <label for="site_name" class="form-label">Site Name:</label>
                                 <input type="text" class="form-control" id="site_name" name="site_name" value="<?= $setting->getSetting('site_name') ?>">
                             </div>
+                            
+                            <div class="mb-3">
+                                <label for="site_description" class="form-label">Site Description:</label>
+                                <input type="text" class="form-control" id="site_description" name="site_description" value="<?= $setting->getSetting('site_description') ?>">
+                            </div>
 
                             <div class="mb-3">
                                 <label for="donate_link" class="form-label">Donate Link:</label>
