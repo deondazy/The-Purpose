@@ -8,7 +8,7 @@ include __DIR__ . '/includes/header.php'; ?>
 <style> 
 .events-one__img {
     height: 396px;
-    width: 370px;
+    width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
 }
