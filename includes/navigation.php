@@ -42,10 +42,10 @@ function currentLink($current)
                 </div>
                 <div class="main-menu__phone-number">
                     <p>Call Anytime</p>
-                    <a href="tel:92 666 888 0000">92 666 888 0000</a>
+                    <a href="tel:<?= $setting->getSetting('site_phone') ?>"><?= $setting->getSetting('site_phone') ?></a>
                 </div>
             </div>
-            <a href="causes-details.html" class="main-menu__donate-btn"><i class="fa fa-heart"></i>Donate </a>
+            <a href="<?= $setting->getSetting('donate_link') ?>" class="main-menu__donate-btn"><i class="fa fa-heart"></i>Donate </a>
         </div>
     </div>
 </nav>

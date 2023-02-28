@@ -1,12 +1,14 @@
 <?php 
 $user = new Core\Models\User($connection);
+$setting = new Core\Models\Setting($connection);
 ?><!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="description" content="<?= $setting->getSetting('site_description') ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Purpose Center Chicago</title>
+    <title><?= $setting->getSetting('site_name') ?></title>
     <!-- favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="<?= $config->site->url ?>/assets/images/Logo/logoblue.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="<?= $config->site->url ?>/assets/images/Logo/logoblue.png" />
@@ -43,15 +45,15 @@ $user = new Core\Models\User($connection);
 
 <body>
     <div class="preloader">
-        <img class="preloader__image" width="60" src="<?= $config->site->url ?>/public/assets/images/logoblue.png" alt="" />
+        <img class="preloader__image" src="<?= $config->site->url ?>/public/assets/images/logo_icon_color.svg" width="80" alt="<?= $setting->getSetting('site_name') ?>" />
     </div>
     <!-- /.preloader -->
     <div class="page-wrapper">
         <header class="main-header clearfix">
             <div class="main-header__logo">
                 <a class="" href="<?= $config->site->url ?>">
-                    <img class="" width="100" src="<?= $config->site->url ?>/public/assets/images/icon.svg" alt="" />
-                    <img class="" width="140" src="<?= $config->site->url ?>/public/assets/images/logo.svg" alt="" />
+                    <img class="" width="100" src="<?= $config->site->url ?>/public/assets/images/icon.svg" alt="<?= $setting->getSetting('site_name') ?>" />
+                    <img class="" width="140" src="<?= $config->site->url ?>/public/assets/images/logo.svg" alt="<?= $setting->getSetting('site_name') ?>" />
                 </a>
             </div>
             <div class="main-menu-wrapper">
@@ -60,24 +62,24 @@ $user = new Core\Models\User($connection);
                         <div class="main-menu-wrapper__left">
                             <div class="main-menu-wrapper__left-content">
                                 <div class="main-menu-wrapper__left-text">
-                                    <p>Welcome to Purpose Center</p>
+                                    <p>Welcome to <?= $setting->getSetting('site_name') ?></p>
                                 </div>
                                 <div class="main-menu-wrapper__left-email-box">
                                     <div class="icon">
                                         <i class="fas fa-envelope"></i>
                                     </div>
                                     <div class="email">
-                                        <a href="mailto:Info@purposecenters.com">Info@purposecenters.com</a>
+                                        <a href="mailto:<?= $setting->getSetting('site_email') ?>"><?= $setting->getSetting('site_email') ?></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="main-menu-wrapper__right">
                             <div class="main-menu-wrapper__right-social">
-                                <a href="index.html#"><i class="fab fa-twitter"></i></a>
-                                <a href="index.html#"><i class="fab fa-facebook-square"></i></a>
-                                <a href="index.html#"><i class="fab fa-dribbble"></i></a>
-                                <a href="index.html#"><i class="fab fa-instagram"></i></a>
+                                <a href="<?= $setting->getSetting('site_twitter') ?>"><i class="fab fa-twitter"></i></a>
+                                <a href="<?= $setting->getSetting('site_facebook') ?>"><i class="fab fa-facebook-square"></i></a>
+                                <a href="<?= $setting->getSetting('site_instagram') ?>"><i class="fab fa-instagram"></i></a>
+                                <a href="<?= $setting->getSetting('site_youtube') ?>"><i class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>

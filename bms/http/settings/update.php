@@ -21,21 +21,12 @@ try {
 
         if (is_null($theSettingValue)) {
             $setting->addSetting($name, $value);
-            $updated = true;
         } elseif ($theSettingValue != $value) {
             $setting->updateSetting($name, $value);
-            $updated = true;
-        } else {
-            $updated = false;
         }
     }
 
-    if ($updated) {
-        $flash->set('success', 'Settings Updated');
-        Utility::redirect($config->site->url . '/bms/settings/');
-    } 
-
-    $flash->set('error', 'No changes to update');
+    $flash->set('success', 'Settings Updated');
     Utility::redirect($config->site->url . '/bms/settings/');
 } catch (Exception $e) {
     $flash->set('error', 'An error occurred while updating settings.');

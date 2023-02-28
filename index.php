@@ -419,7 +419,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <div class="three-boxes__text-box">
                                     <h2>Healthy Community</h2>
                                     <p class="three-boxes__text">Underserved youths deserve healthy lifestyle if they are to grow and be nurtured into productive individuals</p>
-                                    <a href="index.html#" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
+                                    <a href="<?= $setting->getSetting('donate_link') ?>" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
                                 </div>
                             </div>
                         </div>
@@ -436,7 +436,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <div class="three-boxes__text-box">
                                     <h2>Educated Community</h2>
                                     <p class="three-boxes__text">Provide educational opportunities for underserved youths especially ones from poor homes</p>
-                                    <a href="index.html#" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
+                                    <a href="<?= $setting->getSetting('donate_link') ?>" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
                                 </div>
                             </div>
                         </div>
@@ -453,7 +453,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <div class="three-boxes__text-box">
                                     <h2>Empowered Community</h2>
                                     <p class="three-boxes__text">Through financial literacy, skill acquisition and real estate we can open doors for a prosperous community</p>
-                                    <a href="index.html#" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
+                                    <a href="<?= $setting->getSetting('donate_link') ?>" class="three-boxes__btn"><i class="fa fa-heart"></i>Donate </a>
                                 </div>
                             </div>
                         </div>

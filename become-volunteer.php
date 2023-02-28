@@ -22,7 +22,7 @@ include __DIR__ . '/includes/header.php'; ?>
             <div class="container">
                 <div class="section-title text-center">
                     <span class="section-title__tagline">Register Now</span>
-                    <h2 class="section-title__title">Join The Purpose Center <br> as a volunteer</h2>
+                    <h2 class="section-title__title">Join <?= $setting->getSetting('site_name') ?> <br> as a volunteer</h2>
                 </div>
                 <div class="row">
                     <div class="col-xl-6 col-lg-6">
@@ -31,7 +31,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <img src="assets/images/Become.png" alt="">
                             </div>
                             <h3 class="become-volunteer-page__title">Requirements</h3>
-                            <p class="become-volunteer-page__text">The Purpose Center as a non-for-profit will depend on the services of professional paid staffs and the effort of a volunteer force if we are ever going to be successful in executing all our programs around multiple cities and communities.</p>
+                            <p class="become-volunteer-page__text"><?= $setting->getSetting('site_name') ?> as a non-for-profit will depend on the services of professional paid staffs and the effort of a volunteer force if we are ever going to be successful in executing all our programs around multiple cities and communities.</p>
                             <ul class="become-volunteer-page__list list-unstyled">
                                 <li>
                                     <div class="icon">
@@ -80,14 +80,14 @@ include __DIR__ . '/includes/header.php'; ?>
                                 </div>
                                 <div class="become-volunteer-page__phone-text">
                                     <p>Call Anytime</p>
-                                    <a href="tel:92 666 888 0000">92 666 888 0000</a>
+                                    <a href="tel:<?= $setting->getSetting('site_phone') ?>"><?= $setting->getSetting('site_phone') ?></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
                         <div class="become-volunteer-page__right">
-                            <form action="http://layerdrops.com/halpes/assets/inc/sendemail.php" class="become-volunteer-page__form contact-form-validated">
+                            <form action="#" class="become-volunteer-page__form contact-form-validated">
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="become-volunteer-page__input">
@@ -127,7 +127,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         <div class="become-volunteer-page__input">
                                             <textarea name="message" placeholder="Why do you want to become a volunteer?"></textarea>
                                         </div>
-                                        <button type="submit" class="thm-btn become-volunteer-page__btn"><i class="fas fa-arrow-circle-right"></i>Submit Comment</button>
+                                        <button type="submit" class="thm-btn become-volunteer-page__btn"><i class="fas fa-arrow-circle-right"></i>Become a Volunteer</button>
                                     </div>
                                 </div>
                             </form>

@@ -39,7 +39,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="text">
                                             <p>Call Anytime</p>
-                                            <a href="tel:92 666 888 0000">92 666 888 0000</a>
+                                            <a href="tel:<?= $setting->getSetting('site_phone') ?>"><?= $setting->getSetting('site_phone') ?></a>
                                         </div>
                                     </li>
                                     <li>
@@ -48,7 +48,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="text">
                                             <p>Send Email</p>
-                                            <a href="mailto:Info@purposecenters.com">Info@purposecenters.com</a>
+                                            <a href="mailto:<?= $setting->getSetting('site_email') ?>"><?= $setting->getSetting('site_email') ?></a>
                                         </div>
                                     </li>
                                     <li>
@@ -57,7 +57,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="text">
                                             <p>Visit Office</p>
-                                            <h5>80 broklyn golden street</h5>
+                                            <h5><?= $setting->getSetting('site_address') ?></h5>
                                         </div>
                                     </li>
                                 </ul>
@@ -66,7 +66,7 @@ include __DIR__ . '/includes/header.php'; ?>
                     </div>
                     <div class="col-xl-6 col-lg-6">
                         <div class="contact-page__form">
-                            <form action="http://layerdrops.com/halpes/assets/inc/sendemail.php" class="contact-page__main-form contact-form-validated">
+                            <form action="#" class="contact-page__main-form contact-form-validated">
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="contact-page__input-box">
@@ -109,7 +109,9 @@ include __DIR__ . '/includes/header.php'; ?>
 
         <!--Contact Page Google Map Start-->
         <section class="contact-page-google-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80123790098536!3d34.152323469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd" class="contact-page-google-map__one" allowfullscreen></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2977.4160219196115!2d-87.55559023125547!3d41.73311871260515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e27e2eba6f175%3A0x4ab755fdaa3a67f0!2s8915%20S%20Commercial%20Ave%2C%20Chicago%2C%20IL%2060617%2C%20USA!5e0!3m2!1sen!2sng!4v1677580247503!5m2!1sen!2sng" class="contact-page-google-map__one" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80123790098536!3d34.152323469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd" class="contact-page-google-map__one" allowfullscreen></iframe> -->
 
         </section>
         <!--Contact Page Google Map End-->
