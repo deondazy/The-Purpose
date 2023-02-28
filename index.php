@@ -800,7 +800,7 @@ include __DIR__ . '/includes/header.php'; ?>
                             <!--Brand One Single-->
                             <div class="brand-one__single">
                                 <div class="brand-one__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/logo/partner2.png" alt="">
+                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner2.png" alt="">
                                 </div>
                             </div>
                             <!--Brand One Single-->
@@ -818,7 +818,7 @@ include __DIR__ . '/includes/header.php'; ?>
                             <!--Brand One Single-->
                             <div class="brand-one__single">
                                 <div class="brand-one__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/logo/partner5.png" alt="">
+                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner5.png" alt="">
                                 </div>
                             </div>
                         </div>
