@@ -10,25 +10,25 @@
                         <p class="footer-widget__text">We are about empowering the undeserved in our community. Building on family, real estate, education and finance.
 
                             </p>
-                        <a href="index.html#" class="footer-widget__about-btn"><i class="fa fa-heart"></i>Donate </a>
+                        <a href="<?= $setting->getSetting('donate_link') ?>" class="footer-widget__about-btn"><i class="fa fa-heart"></i>Donate </a>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
                     <div class="footer-widget__column footer-widget__explore clearfix">
                         <h3 class="footer-widget__title">Explore</h3>
                         <ul class="footer-widget__explore-list list-unstyled">
-                            <li><a href="index.html#">Donate</a></li>
-                            <li><a href="index.html#">Events</a></li>
-                            <li><a href="index.html#">Blog</a></li>
-                            <li><a href="index.html#">Volunteers</a></li>
-                            <li><a href="index.html#">Contact Us</a></li>
+                            <li><a href="<?= $setting->getSetting('donate_link') ?>">Donate</a></li>
+                            <li><a href="<?= $config->site->url ?>/events/">Events</a></li>
+                            <li><a href="<?= $config->site->url ?>/blog/">Blog</a></li>
+                            <li><a href="<?= $config->site->url ?>/volunteers/">Volunteers</a></li>
+                            <li><a href="<?= $config->site->url ?>/contact/">Contact Us</a></li>
                         </ul>
-                        <ul class="footer-widget__explore-list footer-widget__explore-list-two list-unstyled">
+                        <!-- <ul class="footer-widget__explore-list footer-widget__explore-list-two list-unstyled">
                             
                             <li><a href="index.html#">Home</a></li>
                             <li><a href="index.html#">Help</a></li>
                             <li><a href="index.html#">Faqs</a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
@@ -42,7 +42,7 @@
                                 <div class="text">
                                     <p>
                                         <span>Call Anytime</span>
-                                        <a href="tel:92 666 888 0000">92 666 888 0000</a>
+                                        <a href="tel:<?= $setting->getSetting('site_phone') ?>"><?= $setting->getSetting('site_phone') ?></a>
                                     </p>
                                 </div>
                             </li>
@@ -53,7 +53,7 @@
                                 <div class="text">
                                     <p>
                                         <span>Send Email</span>
-                                        <a href="mailto:Info@purposecenters.com">Info@purposecenters.com</a>
+                                        <a href="mailto:<?= $setting->getSetting('site_email') ?>"><?= $setting->getSetting('site_email') ?></a>
                                     </p>
                                 </div>
                             </li>
@@ -62,7 +62,7 @@
                                     <i class="icon-address"></i>
                                 </div>
                                 <div class="text">
-                                    <p><span>Visit Office</span>80 Brooklyn golden street</p>
+                                    <p><span>Visit Office</span><?= $setting->getSetting('site_address') ?></p>
                                 </div>
                             </li>
                         </ul>
@@ -93,10 +93,10 @@
                                 </a>
                             </div>
                             <div class="site-footer__bottom-social">
-                                <a href="index.html#"><i class="fab fa-twitter"></i></a>
-                                <a href="index.html#"><i class="fab fa-facebook-square"></i></a>
-                                <a href="index.html#"><i class="fab fa-dribbble"></i></a>
-                                <a href="index.html#"><i class="fab fa-instagram"></i></a>
+                                <a href="<?= $setting->getSetting('site_twitter') ?>"><i class="fab fa-twitter"></i></a>
+                                <a href="<?= $setting->getSetting('site_facebook') ?>"><i class="fab fa-facebook-square"></i></a>
+                                <a href="<?= $setting->getSetting('site_instagram') ?>"><i class="fab fa-instagram"></i></a>
+                                <a href="<?= $setting->getSetting('site_youtube') ?>"><i class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                         <div class="site-footer__bottom-copy-right">
