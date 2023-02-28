@@ -6890,11 +6890,8 @@ h6 {
 }
 
 .contact-page__contact-list li .icon {
-    height: 65px;
-    width: 65px;
-    background: var(--thm-primary);
-    color: #ffffff;
-    font-size: 35px;
+    color: var(--thm-primary);
+    font-size: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6903,8 +6900,7 @@ h6 {
 }
 
 .contact-page__contact-list li:hover .icon {
-    background-color: var(--thm-black);
-    color: #fff;
+    color: var(--thm-black);
 }
 
 

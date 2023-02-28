@@ -37,7 +37,7 @@ $setting = new Core\Models\Setting($connection);
     <link rel="stylesheet" href="<?= $config->site->url ?>/assets/vendors/owl-carousel/owl.theme.default.min.css" />
 
     <!-- template styles -->
-    <link rel="stylesheet" href="<?= $config->site->url ?>/assets/css/halpes.css" />
+    <link rel="stylesheet" href="<?= $config->site->url ?>/assets/css/halpes.css?version=<?= $_ENV['APP_VERSION'] ?>" />
     <link rel="stylesheet" href="<?= $config->site->url ?>/assets/css/halpes-responsive.css" />
 
     <?= (isset($injectInHeaderSection)) ? $injectInHeaderSection : '' ?>
