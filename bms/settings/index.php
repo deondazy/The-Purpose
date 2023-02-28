@@ -49,7 +49,7 @@ include __DIR__ . '/../header.php';
 
                             <div class="mb-3">
                                 <label for="site_address" class="form-label">Address:</label>
-                                <input type="url" class="form-control" id="site_address" name="site_address" value="<?= $setting->getSetting('site_address') ?>">
+                                <textarea rows="4" class="form-control" id="site_address" name="site_address"><?= $setting->getSetting('site_address') ?></textarea>
                             </div>
 
                             <div class="mb-3">
