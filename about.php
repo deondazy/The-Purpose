@@ -182,7 +182,7 @@ include __DIR__ . '/includes/header.php'; ?>
         <!--Join One End-->
 
         <!--Counters One Start-->
-        <section class="counters-one about-page-counter">
+        <!-- <section class="counters-one about-page-counter">
             <div class="container">
                 <ul class="counters-one__box list-unstyled">
                     <li class="counter-one__single">
@@ -203,7 +203,7 @@ include __DIR__ . '/includes/header.php'; ?>
                     </li>
                 </ul>
             </div>
-        </section>
+        </section> -->
         <!--Counters One Start-->
 
         <!--Team One Start-->
