@@ -12,25 +12,8 @@
         <div class="navbar-collapse order-2 order-lg-1 collapse" id="navbar-mobile" style="">
             <ul class="navbar-nav mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a href="#" class="navbar-nav-link rounded">Home</a>
+                    <a href="<?= $config->site->url ?>" class="navbar-nav-link rounded">View Site</a>
                 </li>
-
-                <li class="nav-item">
-                    <a href="#" class="navbar-nav-link rounded">About Us</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="navbar-nav-link rounded">Events</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="navbar-nav-link rounded">Blog</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="navbar-nav-link rounded">Contact Us</a>
-                </li>
-                
             </ul>
         </div>
 
