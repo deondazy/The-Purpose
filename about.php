@@ -27,7 +27,7 @@ include __DIR__ . '/includes/header.php'; ?>
                             <div class="about-page__img">
                                 <img src="<?= $config->site->url ?>/assets/images/about1.png" alt="">
                                 <div class="about-page__trusted">
-                                    <h3>We’re trusted by <span>9,8750</span> donors</h3>
+                                    <h3>We’re trusted by <span>our donors</span></h3>
                                 </div>
                             </div>
                         </div>
