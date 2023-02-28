@@ -143,9 +143,9 @@ class Auth
             return false;
         }
 
-        if ($ip != $dbIp) {
-            return false;
-        }
+        // if ($ip != $dbIp) {
+        //     return false;
+        // }
 
         if ($dbCookie == sha1($hash . $config->site->key)) {
             return true;
