@@ -6,6 +6,8 @@ $parent = 'settings/';
 $file = $parent;
 $page = 'Settings';
 
+$setting = new \Core\Models\Setting($connection);
+
 include __DIR__ . '/../header.php'; 
 ?>
 
@@ -23,128 +25,56 @@ include __DIR__ . '/../header.php';
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
-                    <div class="card-body">
-                        <form method="post" action="<?= $config->site->url ?>/bms/http/users/edit/" enctype="multipart/form-data">
-                            <input name="user_id" type="hidden" value="<?= $userId ?>">
-                            <div class="card-header">
-                                <h6 class="mb-0">Name</h6>
+                    <form method="post" action="<?= $config->site->url ?>/bms/http/settings/update/" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="site_name" class="form-label">Site Name:</label>
+                                <input type="text" class="form-control" id="site_name" name="site_name" value="<?= $setting->getSetting('site_name') ?>">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="donate_link" class="form-label">Donate Link:</label>
+                                <input type="url" class="form-control" id="donate_link" name="donate_link" value="<?= $setting->getSetting('donate_link') ?>">
                             </div>
                         
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Username:</label>
-                                    <input type="text" class="form-control" id="username" name="username" value="<?= $username ?>" disabled>
-                                    <p class="text-muted mt-1 fs-sm">Username cannot be changed</p>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="first_name" class="form-label">First Name:</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?= $firstName ?>">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="last_name" class="form-label">Last Name:</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" value="<?= $lastName ?>">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="website" class="form-label">Display Name:</label>
-                                    <?php $getDisplayNames = Utility::getDisplayNames($username, $firstName, $lastName) ?>
-                                    
-                                    <select class="form-select" id="display_name" name="display_name">
-                                    <?php foreach ($getDisplayNames as $dname) : ?>
-                                        <option <?= ($dname == $displayName) ? 'selected' : '' ?>><?= $dname ?></option>
-                                    <?php endforeach; ?>
-                                    </select>
-                                </div>
+                            <div class="mb-3">
+                                <label for="site_phone" class="form-label">Phone Number:</label>
+                                <input type="phone" class="form-control" id="site_phone" name="site_phone" value="<?= $setting->getSetting('site_phone') ?>">
                             </div>
 
-                            <div class="card-header">
-                                <h6 class="mb-0">Contact Info</h6>
+                            <div class="mb-3">
+                                <label for="site_email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="site_email" name="site_email" value="<?= $setting->getSetting('site_email') ?>">
                             </div>
 
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email: <span class="text-warning">(Required)</span></label>
-                                    <input type="email" class="form-control" id="email" name="email" required value="<?= $email ?>">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="website" class="form-label">Website:</label>
-                                    <input type="text" class="form-control" id="website" name="website" value="<?= $website ?>">
-                                    <p class="text-muted mt-1">https://example.com</p>
-                                </div>
+                            <div class="mb-3">
+                                <label for="site_address" class="form-label">Address:</label>
+                                <input type="url" class="form-control" id="site_address" name="site_address" value="<?= $setting->getSetting('site_address') ?>">
                             </div>
 
-                            <div class="card-header">
-                                <h6 class="mb-0">About <?= (!defined('PROFILE')) ? 'User' : 'Yourself' ?></h6>
-                            </div>
-                            
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <label for="bio" class="form-label">Biographical Info:</label>
-                                    <textarea rows="5" class="form-control" id="bio" name="bio"><?= $bio ?></textarea>
-                                    <p class="text-muted mt-1">Share a little biographical information to fill out your profile. This may be shown publicly.</p>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="avatar" class="form-label">Avatar:</label>
-                                    <div class="mt-2 d-flex align-items-center gap-5">
-                                        <div class="avatar">
-                                            <img id="avatarPreview" src="<?= $user->getAvatar($userId) ?>" width="96">
-                                        </div>
-
-                                        <div class="d-flex flex-column gap-2">
-                                            <div class="upload-avatar">
-                                                <button id="avatarUpload" type="button" class="btn btn-light btn-sm"><?= (is_null($avatar)) ? 'Upload' : 'Change' ?> Avatar</button>
-                                                <input type="file" name="avatar" id="avatarInput" style="display: none;">
-                                            </div>
-                                            <?php if (!is_null($user->get('avatar', $userId)['avatar'])) : ?>
-                                                <div class="remove-button">
-                                                    <button id="avatarRemove" type="button" class="btn btn-danger btn-sm">Remove Avatar</button>
-                                                </div>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="mb-3">
+                                <label for="site_twitter" class="form-label">Twitter:</label>
+                                <input type="url" class="form-control" id="site_twitter" name="site_twitter" value="<?= $setting->getSetting('site_twitter') ?>">
                             </div>
 
-                            <div class="card-header">
-                                <h6 class="mb-0">Account Management</h6>
+                            <div class="mb-3">
+                                <label for="site_facebook" class="form-label">Facebook:</label>
+                                <input type="url" class="form-control" id="site_facebook" name="site_facebook" value="<?= $setting->getSetting('site_facebook') ?>">
                             </div>
-                            
-                            <div class="card-body">
-                                <div class="mb-3 position-relative">
-                                    <div class="mb-2">
-                                        <label for="password" class="form-label">Password:</label>
-                                        <button id="setNewPasswordGen" aria-expanded="false" type="button" class="btn btn-light btn-sm generate-badge-absolute mx-3">Set New Password</button>
-                                    </div>
-                                    
-                                    <div id="setNewPassword" class="position-relative d-none">
-                                        <div class="position-relative" style="flex-grow: 1; margin-right: 5px;">
-                                            <input type="text" class="form-control badge-indicator-absolute" id="password" name="password">
-                                            <span class="badge password-indicator-badge-absolute position-absolute end-0 top-50 translate-middle-y me-2"></span>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-flat-primary btn-sm" id="passwordToggle"><i class="ph-eye-slash"></i> <span class="mx-1">Hide</span></button>
-                                            <button type="button" class="btn btn-flat-primary btn-sm" id="passwordCancel">Cancel</button>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="mb-3">
-                                    <label for="role" class="form-label">Role:</label>
-                                    <select class="form-select" id="role" name="role">
-                                        <?php foreach((new Core\Models\Role($connection))->getAll('id, name', ['orderBy' => ['id DESC']]) as $role) : ?>
-                                            <option <?= ($assignedRole == $role['id']) ? 'selected' : '' ?> value="<?= $role['id'] ?>"><?= $role['name'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Update <?= (!defined('PROFILE')) ? 'User' : 'Profile' ?></button>
+                            <div class="mb-3">
+                                <label for="site_instagram" class="form-label">Instagram:</label>
+                                <input type="url" class="form-control" id="site_instagram" name="site_instagram" value="<?= $setting->getSetting('site_instagram') ?>">
                             </div>
-                        </form>
-                    </div>
+
+                            <div class="mb-3">
+                                <label for="site_youtube" class="form-label">Youtube:</label>
+                                <input type="url" class="form-control" id="site_youtube" name="site_youtube" value="<?= $setting->getSetting('site_youtube') ?>">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Update Settings</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
