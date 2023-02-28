@@ -617,7 +617,7 @@ include __DIR__ . '/includes/header.php'; ?>
         </section>
         <!--Help Them End-->
 
-        <!--News Three Start-->
+        <!--News Three Start
         <section class="news-two news-three">
             <div class="container">
                 <div class="section-title text-center">
@@ -626,11 +626,11 @@ include __DIR__ . '/includes/header.php'; ?>
                 </div>
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
-                        <!--News Two Single-->
+                        <!--News Two Single--
                         <div class="news-two__single">
                             <div class="news-two__img-box">
                                 <div class="news-two__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/blog/blogfamily.png" alt="">
+                                    <img src="/assets/images/blog/blogfamily.png" alt="">
                                     <a href="news-details.html">
                                         <i class="fa fa-plus"></i>
                                     </a>
@@ -655,11 +655,11 @@ include __DIR__ . '/includes/header.php'; ?>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
-                        <!--News Two Single-->
+                        <!--News Two Single--
                         <div class="news-two__single">
                             <div class="news-two__img-box">
                                 <div class="news-two__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/blog/blogeducation.png" alt="">
+                                    <img src="/assets/images/blog/blogeducation.png" alt="">
                                     <a href="news-details.html">
                                         <i class="fa fa-plus"></i>
                                     </a>
@@ -684,11 +684,11 @@ include __DIR__ . '/includes/header.php'; ?>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
-                        <!--News Two Single-->
+                        <!--News Two Single--
                         <div class="news-two__single">
                             <div class="news-two__img-box">
                                 <div class="news-two__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/blog/blogrealestate.png" alt="">
+                                    <img src="/assets/images/blog/blogrealestate.png" alt="">
                                     <a href="news-details.html">
                                         <i class="fa fa-plus"></i>
                                     </a>
@@ -717,54 +717,54 @@ include __DIR__ . '/includes/header.php'; ?>
         </section>
         <!--News Three End-->
 
-        <!--Gallery One Start-->
+        <!--Gallery One Start-
         <section class="gallery-one">
             <div class="gallery-one__container-box clearfix">
                 <div class="gallery-one__carousel owl-theme owl-carousel">
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single-
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="<?= $config->site->url ?>/assets/images/gallery/gallery1.png" alt="">
+                            <img src="/assets/images/gallery/gallery1.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
                             </div>
                         </div>
                     </div>
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single-
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="<?= $config->site->url ?>/assets/images/gallery/gallery2.png" alt="">
+                            <img src="/assets/images/gallery/gallery2.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
                             </div>
                         </div>
                     </div>
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single--
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="<?= $config->site->url ?>/assets/images/gallery/gallery3.png" alt="">
+                            <img src="/assets/images/gallery/gallery3.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
                             </div>
                         </div>
                     </div>
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single--
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="<?= $config->site->url ?>/assets/images/gallery/gallery4.png" alt="">
+                            <img src="/assets/images/gallery/gallery4.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
                             </div>
                         </div>
                     </div>
-                    <!--Gallery One Single-->
+                    <!--Gallery One Single--
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="<?= $config->site->url ?>/assets/images/gallery/gallery5.png" alt="">
+                            <img src="/assets/images/gallery/gallery5.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>
@@ -773,7 +773,7 @@ include __DIR__ . '/includes/header.php'; ?>
                     </div>
                     <div class="gallery-one__single">
                         <div class="gallery-one__img-box">
-                            <img src="<?= $config->site->url ?>/assets/images/gallery/gallery6.png" alt="">
+                            <img src="assets/images/gallery/gallery6.png" alt="">
                             <div class="gallery-one__hover-content-box">
                                 <h2>The Purpose</h2>
                                 <p>Center</p>

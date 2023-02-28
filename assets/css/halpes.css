@@ -7183,7 +7183,7 @@ h6 {
     overflow: hidden;
 }
 
-.gallery-page__img-box:before {
+/* .gallery-page__img-box:before {
     position: absolute;
     top: 0;
     left: 0;
@@ -7201,7 +7201,7 @@ h6 {
     -moz-transform: translateY(-101%);
     transform: translateY(-101%);
     z-index: 1;
-}
+} */
 
 .gallery-page__single:hover .gallery-page__img-box:before {
     opacity: 1;
