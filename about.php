@@ -211,7 +211,7 @@ include __DIR__ . '/includes/header.php'; ?>
         <div class="container">
             <div class="section-title text-center">
                 <span class="section-title__tagline">Our Stellar Team</span>
-                <h2 class="section-title__title">Meet the best team behind <br> our drivey</h2>
+                <h2 class="section-title__title">Meet the best team behind <br> our drive</h2>
             </div>
             <div class="row">
                 <div class="col-xl-4 col-lg-4">
@@ -302,7 +302,7 @@ include __DIR__ . '/includes/header.php'; ?>
                         <!--Brand One Single-->
                         <div class="brand-one__single">
                             <div class="brand-one__img">
-                                <img src="<?= $config->site->url ?>/assets/images/logo/partner2.png" alt="">
+                                <img src="<?= $config->site->url ?>/assets/images/Logo/partner2.png" alt="">
                             </div>
                         </div>
                         <!--Brand One Single-->
@@ -320,7 +320,7 @@ include __DIR__ . '/includes/header.php'; ?>
                         <!--Brand One Single-->
                         <div class="brand-one__single">
                             <div class="brand-one__img">
-                                <img src="<?= $config->site->url ?>/assets/images/logo/partner5.png" alt="">
+                                <img src="<?= $config->site->url ?>/assets/images/Logo/partner5.png" alt="">
                             </div>
                         </div>
                     </div>

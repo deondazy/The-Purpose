@@ -2505,7 +2505,8 @@ h6 {
     display: block;
     overflow: hidden;
     z-index: 1;
-    padding: 60px 60px 60px;
+    padding: 60px 35px 60px;
+    max-height: 355px;
 }
 
 .three-boxes__single:before {
@@ -2581,7 +2582,7 @@ h6 {
     background: #ffffff;
     display: inline-block;
     padding: 7px 20px;
-    margin-top: 34px;
+    margin-top: 15px;
     transition: all 500ms ease;
 }
 
