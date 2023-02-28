@@ -87,7 +87,7 @@
                     <div class="site-footer__bottom-inner">
                         <div class="site-footer__bottom-logo-social">
                             <div class="site-footer__bottom-logo">
-                                <a href="index.html">
+                                <a href="<?= $config->site->url ?>">
                                     <img class="" width="100" src="<?= $config->site->url ?>/public/assets/images/icon.svg" alt="" />
                                     <img class="" width="140" src="<?= $config->site->url ?>/public/assets/images/logo.svg" alt="" />
                                 </a>
