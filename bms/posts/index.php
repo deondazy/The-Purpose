@@ -149,7 +149,7 @@ include __DIR__ . '/../header.php';
                                             <?php endif; ?>
                                         </td>
                                         <td class="fs-base">
-                                            <a href="<?= $config->site->url ?>/bms/posts/<?= $post['author_id'] ?>"><?= $post['author_display_name']; ?></a>
+                                            <a href="<?= $config->site->url ?>/bms/posts/author/<?= $post['author_id'] ?>"><?= $post['author_display_name']; ?></a>
                                         </td>
                                         <?php
                                         // display categories with links

@@ -161,10 +161,19 @@ class Auth
         $cookieName = $config->cookie->login['name'];
         $cookieVal  = trim($hash);
         $cookieExp  = trim($expire);
-        $cookiePath = preg_replace('|https?://[^/]+|i', '', $config->site->url . '/');
+
+        // TODO: make hardcoded cookie data configurable
+        $cookieOptions = [
+            'expires'   =>  $cookieExp,
+            'path'      =>  '/',
+            'domain'    =>  null,
+            'secure'    =>  1,
+            'httponly'  =>  1,
+            'samesite'  =>  'Lax' // None || Lax  || Strict
+        ];
 
         // Set cookie for the logged user
-        return setcookie($cookieName, $cookieVal, $cookieExp, $cookiePath);
+        return setcookie($cookieName, $cookieVal, $cookieOptions);
     }
 
     public function currentUserId()

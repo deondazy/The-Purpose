@@ -56,7 +56,10 @@ try {
 
     $post->update(['id' => $postId], $input);
 
-    $postCategory->saveCategories($postId, $categories);
+    if (!empty($categories)) {
+        $postCategory->saveCategories($postId, $categories);
+    }
+    
     $post->saveTags($postId, $tags, $tagsNew);
 
     $status = ($input['status'] == 'publish') ? 'published' : 'saved';

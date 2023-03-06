@@ -296,11 +296,6 @@ label.error {
                                     
                                     foreach($recent as $r) : ?>
                                     <li>
-                                        <?php if (!empty($r['image'])) : ?>
-                                            <div class="sidebar__post-image">
-                                                <img src="<?= $config->site->url ?>/public/uploads/posts/featured-images/<?= $r['image'] ?>" alt="">
-                                            </div>
-                                        <?php endif ?>
                                         <div class="sidebar__post-content">
                                             <h3>
                                                 <a href="<?= $config->site->url ?>/blog/author/<?= $r['username'] ?>/" class="sidebar__post-content_meta"><i class="far fa-user-circle"></i>by <?= $r['author'] ?></a>
@@ -324,9 +319,11 @@ label.error {
                                 <div class="sidebar__tags-list">
                                 <?php 
                                     $popular = Select::new($connection)
-                                        ->columns('tags.name as name', 'tags.slug as slug', 'COUNT(tags.id) AS count')
-                                        ->from('tags')
-                                        ->join('', 'post_tags', 'tags.id = post_tags.tag_id')
+                                        ->columns('tags.name', 'tags.slug', 'COUNT(tags.id) AS count')
+                                        ->from('post_tags')
+                                        ->join('LEFT', 'tags', 'post_tags.tag_id = tags.id')
+                                        ->join('LEFT', 'posts', 'posts.id = post_tags.post_id')
+                                        ->whereEquals(['posts.status' => 'PUBLISH'])
                                         ->groupBy('tags.id')
                                         ->orderBy('count DESC')
                                         ->limit(5)
@@ -431,7 +428,5 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-
-        </script>
-        <!--News Details End-->
+</script>
         <?php include __DIR__ . '/includes/footer.php';

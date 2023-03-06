@@ -327,7 +327,7 @@ include __DIR__ . '/includes/header.php'; ?>
             <div class="container">
                 <div class="section-title text-center">
                     <span class="section-title__tagline">Our Stellar Team</span>
-                    <h2 class="section-title__title">Meet the best team behind <br> our drivey</h2>
+                    <h2 class="section-title__title">Meet the best team behind <br> our drive</h2>
                 </div>
                 <div class="row">
                     <div class="col-xl-4 col-lg-4">

@@ -38,7 +38,7 @@ $setting = new Core\Models\Setting($connection);
 
     <!-- template styles -->
     <link rel="stylesheet" href="<?= $config->site->url ?>/assets/css/halpes.css?version=<?= $_ENV['APP_VERSION'] ?>" />
-    <link rel="stylesheet" href="<?= $config->site->url ?>/assets/css/halpes-responsive.css" />
+    <link rel="stylesheet" href="<?= $config->site->url ?>/assets/css/halpes-responsive.css?version=<?= $_ENV['APP_VERSION'] ?>" />
 
     <?= (isset($injectInHeaderSection)) ? $injectInHeaderSection : '' ?>
 </head>
