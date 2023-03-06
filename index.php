@@ -30,7 +30,7 @@ include __DIR__ . '/includes/header.php'; ?>
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="image-layer"
-                            style="background-image: url(<?= $config->site->url ?>/assets/images/familyhero.png);">
+                            style="background-image: url(<?= $config->site->url ?>/assets/images/familyhero.jpg);">
                         </div>
                         <div class="image-layer-overlay"></div>
                         <!-- /.image-layer -->
