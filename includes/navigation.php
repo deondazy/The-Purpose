@@ -19,9 +19,9 @@ function currentLink($current)
             <li class="dropdown <?= currentLink('about') ?>">
                 <a href="<?= $config->site->url ?>/about/">About Us</a>
                 <ul>
-                    <li><a href="<?= $config->site->url ?>/volunteers/">Volunteers</a></li>
+                    <li><a href="<?= $config->site->url ?>/participants/">Participants</a></li>
                     <li><a href="<?= $config->site->url ?>/gallery/">Gallery</a></li>
-                    <li><a href="<?= $config->site->url ?>/become-volunteer/">Become a Volunteer</a></li>
+                    <li><a href="<?= $config->site->url ?>/become-participant/">Become a Participant</a></li>
                 </ul>
             </li>
             

@@ -103,7 +103,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="testimonial-one__client-name">
                                             <h3>Kevin Martin</h3>
-                                            <p>Volunteer</p>
+                                            <p>Participant</p>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="testimonial-one__client-name">
                                             <h3>Jessica Brown</h3>
-                                            <p>Volunteer</p>
+                                            <p>Participant</p>
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="testimonial-one__client-name">
                                             <h3>Jessica Brown</h3>
-                                            <p>Volunteer</p>
+                                            <p>Participant</p>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="testimonial-one__client-name">
                                             <h3>Kevin Martin</h3>
-                                            <p>Volunteer</p>
+                                            <p>Participant</p>
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +172,7 @@ include __DIR__ . '/includes/header.php'; ?>
                     <div class="col-xl-12">
                         <div class="join-one__inner">
                             <h2 class="join-one__title">Join the community so <br> we can make a difference</h2>
-                            <a href="<?= $config->site->url ?>/become-volunteer/" class="join-one__btn thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
+                            <a href="<?= $config->site->url ?>/become-participant/" class="join-one__btn thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
                                 More</a>
                         </div>
                     </div>
@@ -199,7 +199,7 @@ include __DIR__ . '/includes/header.php'; ?>
                     </li>
                     <li class="counter-one__single">
                         <h3 class="odometer" data-count="00">00</h3><span class="counter-one__letter">+</span>
-                        <p class="counter-one__text">Volunteers</p>
+                        <p class="counter-one__text">Participants</p>
                     </li>
                 </ul>
             </div>
