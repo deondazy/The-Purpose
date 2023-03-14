@@ -11,7 +11,7 @@ include __DIR__ . '/includes/header.php'; ?>
             <div class="page-header__bg" style="background-image: url(<?= $config->site->url ?>/assets/images/volunteerback.png);"></div>
             <!-- /.page-header__bg -->
             <div class="container">
-                <h2>Volunteers</h2>
+                <h2>Participants</h2>
             </div>
         </section>
         <!--Page Header End-->
@@ -25,7 +25,7 @@ include __DIR__ . '/includes/header.php'; ?>
                             <div class="become-volunteer__left">
                                 <h2>Join your hand with us for <br> a better life and future</h2>
                                 <div class="become-volunteer__big-text">
-                                    <h2>Become a Volunteer</h2>
+                                    <h2>Become a Participant</h2>
                                 </div>
                             </div>
                             <div class="become-volunteer__btn-box">

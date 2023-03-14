@@ -24,7 +24,7 @@ RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
 RewriteRule ^about/*$ ./about.php
-RewriteRule ^volunteers/*$ ./volunteers.php
+RewriteRule ^participants/*$ ./volunteers.php
 RewriteRule ^gallery/*$ ./gallery.php
 RewriteRule ^gallery/page/([0-9]+)/*$ ./gallery.php?page=$1
 RewriteRule ^events/*$ ./events.php
@@ -39,6 +39,6 @@ RewriteRule ^blog/tag/([0-9a-zA-Z-_]+)/*$ ./blog-tag.php?tag_slug=$1
 RewriteRule ^blog/tag/([0-9a-zA-Z-_]+)/page/([0-9]+)/*$ ./blog-tag.php?tag_slug=$1&page=$2
 RewriteRule ^blog/page/([0-9]+)/*$ ./blog.php?page=$1
 RewriteRule ^contact/*$ ./contact.php
-RewriteRule ^become-volunteer/*$ ./become-volunteer.php
+RewriteRule ^become-participant/*$ ./become-volunteer.php
 
 </IfModule>

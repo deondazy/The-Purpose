@@ -268,7 +268,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <img src="<?= $config->site->url ?>/assets/images/FourEducation.png" alt="">
                                 <div class="four-icon__content-box">
                                     <h3 class="four-icon__title">Education</h3>
-                                    <p class="four-icon__text">Education young adults in underserved families and communities</p>
+                                    <p class="four-icon__text">Educating young adults in underserved families and communities</p>
                                 </div>
                             </div>
                             <div class="four-icon__bottom-icon">

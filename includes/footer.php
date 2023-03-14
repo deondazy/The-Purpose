@@ -20,7 +20,7 @@
                             <li><a href="<?= $setting->getSetting('donate_link') ?>">Donate</a></li>
                             <li><a href="<?= $config->site->url ?>/events/">Events</a></li>
                             <li><a href="<?= $config->site->url ?>/blog/">Blog</a></li>
-                            <li><a href="<?= $config->site->url ?>/volunteers/">Volunteers</a></li>
+                            <li><a href="<?= $config->site->url ?>/participants/">Participants</a></li>
                             <li><a href="<?= $config->site->url ?>/contact/">Contact Us</a></li>
                         </ul>
                         <!-- <ul class="footer-widget__explore-list footer-widget__explore-list-two list-unstyled">

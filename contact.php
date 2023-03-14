@@ -125,11 +125,11 @@ include __DIR__ . '/includes/header.php'; ?>
                             <div class="become-volunteer__left">
                                 <h2>Join your hand with us for <br> a better life and future</h2>
                                 <div class="become-volunteer__big-text">
-                                    <h2>Become a Volunteers</h2>
+                                    <h2>Become a Participant</h2>
                                 </div>
                             </div>
                             <div class="become-volunteer__btn-box">
-                                <a href="become-volunteer.html" class="become-volunteer__btn thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn More</a>
+                                <a href="<?= $config->site->url ?>/participant/" class="become-volunteer__btn thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn More</a>
                             </div>
                         </div>
                     </div>
