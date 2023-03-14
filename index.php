@@ -39,7 +39,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <div class="col-lg-8">
                                     <div class="main-slider__content">
                                         <p>Rebuilding Our Families</p>
-                                        <h2>Family builds <br>communities</h2>
+                                        <h2>Families build <br>communities</h2>
                                         <a href="<?= $config->site->url ?>/about/" class="thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
                                             More</a>
                                         <div class="main-slider__shape-1 zoom-fade">
@@ -61,7 +61,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <div class="col-lg-8">
                                     <div class="main-slider__content">
                                         <p>Educating Our Community</p>
-                                        <h2>Education for<br>the young</h2>
+                                        <h2>Education for<br>the young adults</h2>
                                         <a href="<?= $config->site->url ?>/about/" class="thm-btn"><i class="fas fa-arrow-circle-right"></i>Learn
                                             More</a>
                                         <div class="main-slider__shape-1 zoom-fade">
@@ -125,18 +125,18 @@ include __DIR__ . '/includes/header.php'; ?>
                     <div class="col-xl-6 col-lg-6">
                         <div class="introduction__right">
                             <div class="section-title text-left">
-                                <span class="section-title__tagline">Our Inroductions</span>
+                                <span class="section-title__tagline">Our Introduction</span>
                                 <h2 class="section-title__title">We can make our communities better!</h2>
                             </div>
-                            <p class="introduction__right-text">The Purpose Center aims to create better minority communities by empowering low income and underserved youths through education and creating relevant workforce from these communities. We are about family, real estate, education and finance.</p>
+                            <p class="introduction__right-text">The Purpose Center aims to create better minority communities by empowering underserved young adults through education and creating relevant workforce from these communities. We are about family, real estate, education and finance.</p>
                             <ul class="introduction__icon-wrap list-unstyled">
                                 <li class="introduction__icon-wrap-single">
                                     <div class="introduction__icon-box">
                                         <span class="icon-college-graduation"></span>
                                     </div>
                                     <div class="introduction__content-box">
-                                        <h2>Youth Education</h2>
-                                        <p>Youths from low income households must be given the opportunity to cultivate a better future by providing them the educational opportunities they lack.</p>
+                                        <h2>Young adult Education</h2>
+                                        <p>Young adults from underserved households must be given the opportunity to cultivate a better future by providing them the educational opportunities they lack.</p>
                                     </div>
                                 </li>
                                 <li class="introduction__icon-wrap-single">
@@ -145,7 +145,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                     </div>
                                     <div class="introduction__content-box">
                                         <h2>Financial Empowerment</h2>
-                                        <p>By opening financial doors for youths in our communities, we aim to contribute in providing economic leverage for minority and undeserved communities within Illinois and the United States.</p>
+                                        <p>By opening financial doors for young adults in our communities, we aim to contribute in providing economic leverage for minority and undeserved communities within Illinois and the United States.</p>
                                     </div>
                                 </li>
                             </ul>
@@ -179,9 +179,9 @@ include __DIR__ . '/includes/header.php'; ?>
                                         <div class="accrodion-content">
                                             <div class="inner">
                                                 <p>An educated youthful demographic is the foundation of a prosperous community and nation. We 
-                                                    understand that there are many out-of-school youths in underserved communities especially 
+                                                    understand that there are many out-of-school young adults in underserved communities especially 
                                                     in communities with high poverty rate. We are committed to creating a path to servicable education
-                                                    for youths in underserved minority communities as a stepping stone to rejuvenating our communities.
+                                                    for young adults in underserved minority communities as a stepping stone to rejuvenating our communities.
                                                 </p>
                                             </div><!-- /.inner -->
                                         </div>
@@ -253,8 +253,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <img src="<?= $config->site->url ?>/assets/images/FourFinance.png" alt="">
                                 <div class="four-icon__content-box">
                                     <h3 class="four-icon__title">Finance</h3>
-                                    <p class="four-icon__text">There are many lipsum of pass of but the have in that not
-                                        some.</p>
+                                    <p class="four-icon__text">Empowering our communities through financial literacy and workforce development</p>
                                 </div>
                             </div>
                             <div class="four-icon__bottom-icon">
@@ -269,8 +268,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <img src="<?= $config->site->url ?>/assets/images/FourEducation.png" alt="">
                                 <div class="four-icon__content-box">
                                     <h3 class="four-icon__title">Education</h3>
-                                    <p class="four-icon__text">There are many lipsum of pass of but the have in that not
-                                        some.</p>
+                                    <p class="four-icon__text">Education young adults in underserved families and communities</p>
                                 </div>
                             </div>
                             <div class="four-icon__bottom-icon">
@@ -285,8 +283,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                 <img src="<?= $config->site->url ?>/assets/images/FourRealestate.png" alt="">
                                 <div class="four-icon__content-box">
                                     <h3 class="four-icon__title">Real estate</h3>
-                                    <p class="four-icon__text">There are many lipsum of pass of but the have in that not
-                                        some.</p>
+                                    <p class="four-icon__text">Getting our communities a seat at the modern economy through real estate</p>
                                 </div>
                             </div>
                             <div class="four-icon__bottom-icon">
@@ -308,7 +305,7 @@ include __DIR__ . '/includes/header.php'; ?>
                             <div class="become-volunteer__left">
                                 <h2>Join your hand with us to <br>create a better community</h2>
                                 <div class="become-volunteer__big-text">
-                                    <h2>Become a Volunteer</h2>
+                                    <h2>Become a Participant</h2>
                                 </div>
                             </div>
                             <div class="become-volunteer__btn-box">
@@ -492,7 +489,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="testimonial-one__client-name">
                                             <h3>Kevin Martin</h3>
-                                            <p>Volunteer</p>
+                                            <p>Participant</p>
                                         </div>
                                     </div>
                                 </div>
@@ -508,7 +505,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="testimonial-one__client-name">
                                             <h3>Jessica Brown</h3>
-                                            <p>Volunteer</p>
+                                            <p>Participant</p>
                                         </div>
                                     </div>
                                 </div>
@@ -524,7 +521,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="testimonial-one__client-name">
                                             <h3>Jessica Brown</h3>
-                                            <p>Volunteer</p>
+                                            <p>Participant</p>
                                         </div>
                                     </div>
                                 </div>
@@ -540,7 +537,7 @@ include __DIR__ . '/includes/header.php'; ?>
                                         </div>
                                         <div class="testimonial-one__client-name">
                                             <h3>Kevin Martin</h3>
-                                            <p>Volunteer</p>
+                                            <p>Participant</p>
                                         </div>
                                     </div>
                                 </div>
@@ -582,8 +579,8 @@ include __DIR__ . '/includes/header.php'; ?>
                                     <span class="icon-charity"></span>
                                 </div>
                                 <div class="help-them__text">
-                                    <h3>Become a Volunteer</h3>
-                                    <p>If you want to help us in the field, you can become a Volunteer and lend your skills or knowledge</p>
+                                    <h3>Become a participant</h3>
+                                    <p>If you want to help us in the field, you can become a participant and be a part of our program</p>
                                 </div>
                             </div>
                         </div>
