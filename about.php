@@ -40,7 +40,7 @@ include __DIR__ . '/includes/header.php'; ?>
                             </div>
                             <p class="about-page__right-text"><span>The Purpose Center</span> is a non-for-profit organization
                             set up for underserved BIPOC communities especially African American communities, with the aim of
-                        rebuilding and empowering the youths from poor families through education, financial empowerment and real estate. To create strong families as a means to rebuild our communities, stronger.</p>
+                        rebuilding and empowering the young adults from underserved families through education, financial empowerment and real estate. To create strong families as a means to rebuild our communities, stronger.</p>
                             <h3 class="about-page__right-title">The Purpose Center is all about bringing back purpose into our communities</h3>
                             <div class="about-five__progress-wrap">
 
