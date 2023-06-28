@@ -782,47 +782,4 @@ include __DIR__ . '/includes/header.php'; ?>
         </section>
         <!--Gallery One End-->
 
-        <!--Brand One Start-->
-        <section class="brand-one">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="brand-one__carousel owl-theme owl-carousel">
-                            <!--Brand One Single-->
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner1.png" alt="">
-                                </div>
-                            </div>
-                            <!--Brand One Single-->
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner2.png" alt="">
-                                </div>
-                            </div>
-                            <!--Brand One Single-->
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner 3.png" alt="">
-                                </div>
-                            </div>
-                            <!--Brand One Single-->
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner4.png" alt="">
-                                </div>
-                            </div>
-                            <!--Brand One Single-->
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="<?= $config->site->url ?>/assets/images/Logo/partner5.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--Brand One End-->
-
         <?php include __DIR__ . '/includes/footer.php';

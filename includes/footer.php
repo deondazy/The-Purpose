@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="site-footer__bottom-copy-right">
-                            <p>© Copyright <?= date('Y') ?> by <a href="www.johnagbaeze.com"> John Chukwuemeka Agbaeze</a></p>
+                            <p>© Copyright <?= date('Y') ?> <?= $config->site->name ?></p>
                         </div>
                     </div>
                 </div>
