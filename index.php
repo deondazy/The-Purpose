@@ -396,7 +396,7 @@ include __DIR__ . '/includes/header.php'; ?>
                         </div>
                     </div>
                 </div>
-                <div class="row col-offset-2">
+                <div class="row offset-lg-2">
                     <div class="col-lg-4 col-xl-4">
                     <div class="team-one__single">
                             <div class="team-one__img-box">
