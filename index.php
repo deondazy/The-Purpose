@@ -396,6 +396,52 @@ include __DIR__ . '/includes/header.php'; ?>
                         </div>
                     </div>
                 </div>
+                <div class="row col-offset-2">
+                    <div class="col-lg-4 col-xl-4">
+                    <div class="team-one__single">
+                            <div class="team-one__img-box">
+                                <div class="team-one__img">
+                                    <img src="<?= $config->site->url ?>/assets/images/Akilah.png" alt="">
+                                </div>
+                                <div class="team-one__member-name">
+                                    <h2>Akilah</h2>
+                                </div>
+                            </div>
+                            <div class="team-one__content">
+                                <h4 class="team-one__member-title">Board Member</h4>
+                                <p class="team-one__text-box">Director of Operations & Programs for Greater Southwest Development Corporation (GSDC), currently working towards a Doctoral in Organizational Leadership.</p>
+                            </div>
+                            <div class="team-one__social">
+                                <a href="https://www.linkedin.com/in/akilah-mccord-mba-1a280b51/"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://web.facebook.com/AkilahMcCord"><i class="fab fa-facebook-square"></i></a>
+                                
+                                <a href="https://www.instagram.com/akilahlani/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-4">
+                    <div class="team-one__single">
+                            <div class="team-one__img-box">
+                                <div class="team-one__img">
+                                    <img src="<?= $config->site->url ?>/assets/images/Rachel.png" alt="">
+                                </div>
+                                <div class="team-one__member-name">
+                                    <h2>Rachel</h2>
+                                </div>
+                            </div>
+                            <div class="team-one__content">
+                                <h4 class="team-one__member-title">Board Member</h4>
+                                <p class="team-one__text-box">President and Owner of Hilltop Services Group LLC. With over 25 years of Multifamily and Public Housing experience</p>
+                            </div>
+                            <div class="team-one__social">
+                                <a href="https://www.linkedin.com/in/rachelhill-hsgllc/"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://web.facebook.com/profile.php?id=100077335451343"><i class="fab fa-facebook-square"></i></a>
+                                
+                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <!--Team One End-->
