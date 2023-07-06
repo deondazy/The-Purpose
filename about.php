@@ -208,116 +208,162 @@ include __DIR__ . '/includes/header.php'; ?>
 
         <!--Team One Start-->
         <section class="team-one">
-        <div class="container">
-            <div class="section-title text-center">
-                <span class="section-title__tagline">Our Stellar Team</span>
-                <h2 class="section-title__title">Meet the best team behind <br> our drive</h2>
+    <div class="container">
+        <div class="section-title text-center">
+            <span class="section-title__tagline">Our Stellar Team</span>
+            <h2 class="section-title__title">Meet the best team behind <br> our drive</h2>
+        </div>
+        <div class="row mb-lg-5">
+            <div class="col-xl-4 col-lg-4">
+                <!--Team One Single-->
+                <div class="team-one__single">
+                    <div class="team-one__img-box">
+                        <div class="team-one__img">
+                            <img src="<?= $config->site->url ?>/assets/images/Lenor.png" alt="">
+                        </div>
+                        <div class="team-one__member-name">
+                            <h2>Lenor</h2>
+                        </div>
+                    </div>
+                    <div class="team-one__content">
+                        <h4 class="team-one__member-title">Founder</h4>
+                        <p class="team-one__text-box">Lenor is a real estate and business mogul who is passionate about giving back to the community.</p>
+                    </div>
+                    <div class="team-one__social">
+                        <a href="https://www.linkedin.com/in/lenor-sherman-6114176b/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://web.facebook.com/lenor.sherman"><i class="fab fa-facebook-square"></i></a>
+                        <a href="https://www.instagram.com/lenorsherman/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-xl-4 col-lg-4">
-                    <!--Team One Single-->
-                    <div class="team-one__single">
-                        <div class="team-one__img-box">
-                            <div class="team-one__img">
-                                <img src="<?= $config->site->url ?>/assets/images/Lenor.png" alt="">
-                            </div>
-                            <div class="team-one__member-name">
-                                <h2>Lenor</h2>
-                            </div>
+            <div class="col-xl-4 col-lg-4">
+                <!--Team One Single-->
+                <div class="team-one__single">
+                    <div class="team-one__img-box">
+                        <div class="team-one__img">
+                            <img src="<?= $config->site->url ?>/assets/images/Tk.png" alt="">
                         </div>
-                        <div class="team-one__content">
-                            <h4 class="team-one__member-title">Founder</h4>
-                            <p class="team-one__text-box">Lenor is a real estate and business mogul who is passionate about giving back to the community.</p>
-                        </div>
-                        <div class="team-one__social">
-                            <a href="https://www.linkedin.com/in/lenor-sherman-6114176b/"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://web.facebook.com/lenor.sherman"><i class="fab fa-facebook-square"></i></a>
-                            <a href="https://www.instagram.com/lenorsherman/"><i class="fab fa-instagram"></i></a>
+                        <div class="team-one__member-name">
+                            <h2>Tk</h2>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-4">
-                    <!--Team One Single-->
-                    <div class="team-one__single">
-                        <div class="team-one__img-box">
-                            <div class="team-one__img">
-                                <img src="<?= $config->site->url ?>/assets/images/Tk.png" alt="">
-                            </div>
-                            <div class="team-one__member-name">
-                                <h2>Tk</h2>
-                            </div>
-                        </div>
-                        <div class="team-one__content">
-                            <h4 class="team-one__member-title">Co-founder</h4>
-                            <p class="team-one__text-box">A serial entrepreneur and assetpreneur. Tk believes in community growth through education and financial literacy. </p>
-                        </div>
-                        <div class="team-one__social">
-                            <a href="https://www.linkedin.com/in/tk-sherman-347511107/"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://web.facebook.com/tk.x.sherman"><i class="fab fa-facebook-square"></i></a>
-                            
-                            <a href="https://www.instagram.com/tkshermanlife/"><i class="fab fa-instagram"></i></a>
-                        </div>
+                    <div class="team-one__content">
+                        <h4 class="team-one__member-title">Co-founder</h4>
+                        <p class="team-one__text-box">A serial entrepreneur and assetpreneur. Tk believes in community growth through education and financial literacy. </p>
+                    </div>
+                    <div class="team-one__social">
+                        <a href="https://www.linkedin.com/in/tk-sherman-347511107/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://web.facebook.com/tk.x.sherman"><i class="fab fa-facebook-square"></i></a>
+
+                        <a href="https://www.instagram.com/tkshermanlife/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4">
-                    <!--Team One Single-->
-                    <div class="team-one__single">
-                        <div class="team-one__img-box">
-                            <div class="team-one__img">
-                                <img src="<?= $config->site->url ?>/assets/images/Victoria.png" alt="">
-                            </div>
-                            <div class="team-one__member-name">
-                                <h2>Victoria</h2>
-                            </div>
+            </div>
+            <div class="col-xl-4 col-lg-4">
+                <!--Team One Single-->
+                <div class="team-one__single">
+                    <div class="team-one__img-box">
+                        <div class="team-one__img">
+                            <img src="<?= $config->site->url ?>/assets/images/Victoria.png" alt="">
                         </div>
-                        <div class="team-one__content">
-                            <h4 class="team-one__member-title">Board Member</h4>
-                            <p class="team-one__text-box">CEO Naturally Urban Environmental Inc. The Queen of Green is an ecopreneur and environmental scientist.</p>
+                        <div class="team-one__member-name">
+                            <h2>Victoria</h2>
                         </div>
-                        <div class="team-one__social">
-                            <a href="https://www.linkedin.com/in/vwilsonqueenofgreen/"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://web.facebook.com/victoria.young.90"><i class="fab fa-facebook-square"></i></a>
-                            
-                            <a href="https://www.instagram.com/victoria_queenofgreen/"><i class="fab fa-instagram"></i></a>
-                        </div>
+                    </div>
+                    <div class="team-one__content">
+                        <h4 class="team-one__member-title">Board Member</h4>
+                        <p class="team-one__text-box">CEO Naturally Urban Environmental Inc. The Queen of Green is an ecopreneur and environmental scientist.</p>
+                    </div>
+                    <div class="team-one__social">
+                        <a href="https://www.linkedin.com/in/vwilsonqueenofgreen/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://web.facebook.com/victoria.young.90"><i class="fab fa-facebook-square"></i></a>
+
+                        <a href="https://www.instagram.com/victoria_queenofgreen/"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-        </section>
+        <div class="row">
+            <div class="col-lg-4 col-xl-4 offset-lg-2">
+                <div class="team-one__single">
+                    <div class="team-one__img-box">
+                        <div class="team-one__img">
+                            <img src="<?= $config->site->url ?>/assets/images/Akilah.png" alt="">
+                        </div>
+                        <div class="team-one__member-name">
+                            <h2>Akilah</h2>
+                        </div>
+                    </div>
+                    <div class="team-one__content">
+                        <h4 class="team-one__member-title">Board Member</h4>
+                        <p class="team-one__text-box">Director of Operations & Programs for Greater Southwest Development Corporation (GSDC), currently working towards a Doctoral in Organizational Leadership.</p>
+                    </div>
+                    <div class="team-one__social">
+                        <a href="https://www.linkedin.com/in/akilah-mccord-mba-1a280b51/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://web.facebook.com/AkilahMcCord"><i class="fab fa-facebook-square"></i></a>
+
+                        <a href="https://www.instagram.com/akilahlani/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xl-4">
+                <div class="team-one__single">
+                    <div class="team-one__img-box">
+                        <div class="team-one__img">
+                            <img src="<?= $config->site->url ?>/assets/images/Rachel.png" alt="">
+                        </div>
+                        <div class="team-one__member-name">
+                            <h2>Rachel</h2>
+                        </div>
+                    </div>
+                    <div class="team-one__content">
+                        <h4 class="team-one__member-title">Board Member</h4>
+                        <p class="team-one__text-box">President and Owner of Hilltop Services Group LLC. With over 25 years of Multifamily and Public Housing experience</p>
+                    </div>
+                    <div class="team-one__social">
+                        <a href="https://www.linkedin.com/in/rachelhill-hsgllc/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://web.facebook.com/profile.php?id=100077335451343"><i class="fab fa-facebook-square"></i></a>
+
+                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         <!--Team One End-->
 
-        <!--Brand One Start-->
+        <!--Brand One Start
         <section class="brand-one">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="brand-one__carousel owl-theme owl-carousel">
-                        <!--Brand One Single-->
+                        Brand One Single
                         <div class="brand-one__single">
                             <div class="brand-one__img">
                                 <img src="<?= $config->site->url ?>/assets/images/Logo/partner1.png" alt="">
                             </div>
                         </div>
-                        <!--Brand One Single-->
+                        <!--Brand One Single
                         <div class="brand-one__single">
                             <div class="brand-one__img">
                                 <img src="<?= $config->site->url ?>/assets/images/Logo/partner2.png" alt="">
                             </div>
                         </div>
-                        <!--Brand One Single-->
+                        <!--Brand One Single
                         <div class="brand-one__single">
                             <div class="brand-one__img">
                                 <img src="<?= $config->site->url ?>/assets/images/Logo/partner 3.png" alt="">
                             </div>
                         </div>
-                        <!--Brand One Single-->
+                        <!--Brand One Single
                         <div class="brand-one__single">
                             <div class="brand-one__img">
                                 <img src="<?= $config->site->url ?>/assets/images/Logo/partner4.png" alt="">
                             </div>
                         </div>
-                        <!--Brand One Single-->
+                        <!--Brand One Single
                         <div class="brand-one__single">
                             <div class="brand-one__img">
                                 <img src="<?= $config->site->url ?>/assets/images/Logo/partner5.png" alt="">
